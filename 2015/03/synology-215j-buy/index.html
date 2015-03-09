@@ -26,11 +26,11 @@
 
 
 
-  <title> 归档 // Untitled </title>
+  <title> Synology 215J 入手记 // Untitled </title>
 </head>
 
 <body>
-  <div class="container one-column  page-archive ">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <div id="header" class="header">
@@ -84,34 +84,9 @@
             
           
 
-          <div id="posts" class="posts-collapse">
+          <div id="posts" class="posts-expand">
             
-
-  <span class="archive-move-on"></span>
-
-  <span class="archive-page-counter">
-    
-    
-     
-    
-    嗯..! 目前共计 4 篇日志。 继续努力。
-  </span>
-
   
-
-    
-    
-    
-
-    
-      
-      <div class="collection-title">
-        <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
-      </div>
-    
-    
-
-    
 
   <div class="post post-type-normal ">
     <div class="post-header">
@@ -122,9 +97,7 @@
           
           
             
-              <a class="post-title-link" href="/2015/03/synology-215j/">
-                Synology 215j 安装迅雷远程
-              </a>
+              Synology 215J 入手记
             
           
         </h1>
@@ -133,7 +106,7 @@
       <div class="post-meta">
           <span class="post-time">
             
-              03-09
+              发表于 2015-03-09
             
           </span>
         
@@ -143,153 +116,36 @@
     </div>
 
     
+      <div class="post-body">
 
+        
+        
+
+        
+          <p>其实在去年就已经对 NAS 长草了, 观望了一整年, 终于决定下手了.<br>中间比较过 <a href="https://www.synology.com/zh-cn/products/DS215j" target="_blank" rel="external">Synology 215J</a> 和 <a href="https://www.qnap.com/i/cn/product/model.php?II=155" target="_blank" rel="external">QNAP TS-231</a>, 最终入手 <a href="https://www.synology.com/zh-cn/products/DS215j" target="_blank" rel="external">215J</a> 的原因是 <a href="https://www.synology.com" target="_blank" rel="external">Synology</a> 家的 <a href="https://www.synology.com/zh-cn/dsm/5.1" target="_blank" rel="external">DSM</a> 的颜值比较高, 评价也不错.</p>
+
+        
+
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+
+        
+
+        
+      </div>
     
   </div>
 
 
 
   
-
-    
-    
-    
-
-    
-    
-
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
+    <div class="comments" id="comments">
       
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/03/synology-215j-buy/">
-                Synology 215J 入手记
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-          <span class="post-time">
-            
-              03-09
-            
-          </span>
-        
-          
-        
-      </div>
     </div>
-
-    
-
-    
-  </div>
-
-
-
-  
-
-    
-    
-    
-
-    
-    
-
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/03/first/">
-                untitled
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-          <span class="post-time">
-            
-              03-03
-            
-          </span>
-        
-          
-        
-      </div>
-    </div>
-
-    
-
-    
-  </div>
-
-
-
-  
-
-    
-    
-    
-
-    
-    
-
-    
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/03/hello-world/">
-                Hello World
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-          <span class="post-time">
-            
-              03-03
-            
-          </span>
-        
-          
-        
-      </div>
-    </div>
-
-    
-
-    
-  </div>
-
-
-
   
 
           </div>
@@ -309,6 +165,15 @@
 <div id="sidebar" class="sidebar">
   <div class="sidebar-inner">
 
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          站点概览
+        </li>
+      </ul>
     
 
     <div class="site-overview">
@@ -340,6 +205,10 @@
 
     </div>
 
+    
+      <div class="post-toc sidebar-panel-active">
+        
+      </div>
     
   </div>
 </div>
@@ -504,11 +373,239 @@
   
 
   
+  <script type="text/javascript" id="helpers.escapeSelector">
+    function escapeSelector (selector) {
+      return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+    }
+  </script>
+
   
-    <script type="text/javascript">
-      $('.archive-year').velocity('transition.slideLeftIn');
+    <script type="text/javascript" id="post-details-motion">
+      $(document).ready(function () {
+        var html = $('html');
+
+        $('.sidebar-nav li').on('click', function () {
+          var item = $(this);
+          var activeTabClassName = 'sidebar-nav-active';
+          var activePanelClassName = 'sidebar-panel-active';
+          if (item.hasClass(activeTabClassName)) {
+            return;
+          }
+
+          var currentTarget = $('.' + activePanelClassName);
+          var target = $('.' + item.data('target'));
+
+          currentTarget.velocity('transition.slideUpOut', 200, function () {
+            target
+              .velocity('stop')
+              .velocity('transition.slideDownIn', 200)
+              .addClass(activePanelClassName);
+          });
+
+          item.siblings().removeClass(activeTabClassName);
+          item.addClass(activeTabClassName);
+        });
+
+        $('.post-toc a').on('click', function (e) {
+          e.preventDefault();
+          var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+          html.velocity('stop').velocity('scroll', {
+            offset: offset  + 'px',
+            mobileHA: false
+          });
+        });
+
+        // Expand sidebar on post detail page by default, when post has a toc.
+        if ($('.post-toc').html().trim().length > 0 && isDesktop()) {
+          setTimeout(function () {
+            $('.sidebar-toggle').trigger('click');
+          }, 800);
+        }
+      });
     </script>
   
+
+  <script type="text/javascript" id="bootstrap.scrollspy">
+    /* ========================================================================
+    * Bootstrap: scrollspy.js v3.3.2
+    * http://getbootstrap.com/javascript/#scrollspy
+    * ========================================================================
+    * Copyright 2011-2015 Twitter, Inc.
+    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+    * ======================================================================== */
+
+
+    +function ($) {
+      'use strict';
+
+      // SCROLLSPY CLASS DEFINITION
+      // ==========================
+
+      function ScrollSpy(element, options) {
+        this.$body          = $(document.body)
+        this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+        this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+        this.selector       = (this.options.target || '') + ' .nav li > a'
+        this.offsets        = []
+        this.targets        = []
+        this.activeTarget   = null
+        this.scrollHeight   = 0
+
+        this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+        this.refresh()
+        this.process()
+      }
+
+      ScrollSpy.VERSION  = '3.3.2'
+
+      ScrollSpy.DEFAULTS = {
+        offset: 10
+      }
+
+      ScrollSpy.prototype.getScrollHeight = function () {
+        return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+      }
+
+      ScrollSpy.prototype.refresh = function () {
+        var that          = this
+        var offsetMethod  = 'offset'
+        var offsetBase    = 0
+
+        this.offsets      = []
+        this.targets      = []
+        this.scrollHeight = this.getScrollHeight()
+
+        if (!$.isWindow(this.$scrollElement[0])) {
+          offsetMethod = 'position'
+          offsetBase   = this.$scrollElement.scrollTop()
+        }
+
+        this.$body
+          .find(this.selector)
+          .map(function () {
+            var $el   = $(this)
+            var href  = $el.data('target') || $el.attr('href')
+            var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+            return ($href
+              && $href.length
+              && $href.is(':visible')
+              && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+          })
+          .sort(function (a, b) { return a[0] - b[0] })
+          .each(function () {
+            that.offsets.push(this[0])
+            that.targets.push(this[1])
+          })
+
+
+      }
+
+      ScrollSpy.prototype.process = function () {
+        var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+        var scrollHeight = this.getScrollHeight()
+        var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+        var offsets      = this.offsets
+        var targets      = this.targets
+        var activeTarget = this.activeTarget
+        var i
+
+        if (this.scrollHeight != scrollHeight) {
+          this.refresh()
+        }
+
+        if (scrollTop >= maxScroll) {
+          return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+        }
+
+        if (activeTarget && scrollTop < offsets[0]) {
+          this.activeTarget = null
+          return this.clear()
+        }
+
+        for (i = offsets.length; i--;) {
+          activeTarget != targets[i]
+            && scrollTop >= offsets[i]
+            && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+            && this.activate(targets[i])
+        }
+      }
+
+      ScrollSpy.prototype.activate = function (target) {
+        this.activeTarget = target
+
+        this.clear()
+
+        var selector = this.selector +
+          '[data-target="' + target + '"],' +
+          this.selector + '[href="' + target + '"]'
+
+        var active = $(selector)
+          .parents('li')
+          .addClass('active')
+
+        if (active.parent('.dropdown-menu').length) {
+          active = active
+            .closest('li.dropdown')
+            .addClass('active')
+        }
+
+        active.trigger('activate.bs.scrollspy')
+      }
+
+      ScrollSpy.prototype.clear = function () {
+        $(this.selector)
+          .parentsUntil(this.options.target, '.active')
+          .removeClass('active')
+      }
+
+
+      // SCROLLSPY PLUGIN DEFINITION
+      // ===========================
+
+      function Plugin(option) {
+        return this.each(function () {
+          var $this   = $(this)
+          var data    = $this.data('bs.scrollspy')
+          var options = typeof option == 'object' && option
+
+          if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+          if (typeof option == 'string') data[option]()
+        })
+      }
+
+      var old = $.fn.scrollspy
+
+      $.fn.scrollspy             = Plugin
+      $.fn.scrollspy.Constructor = ScrollSpy
+
+
+      // SCROLLSPY NO CONFLICT
+      // =====================
+
+      $.fn.scrollspy.noConflict = function () {
+        $.fn.scrollspy = old
+        return this
+      }
+
+
+      // SCROLLSPY DATA-API
+      // ==================
+
+      $(window).on('load.bs.scrollspy.data-api', function () {
+        $('[data-spy="scroll"]').each(function () {
+          var $spy = $(this)
+          Plugin.call($spy, $spy.data())
+        })
+      })
+
+    }(jQuery);
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('body').scrollspy({ target: '.post-toc' });
+    });
+  </script>
 
 
   
