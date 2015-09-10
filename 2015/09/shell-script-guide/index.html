@@ -1,17 +1,11 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next use-motion">
 <head>
   
 
 <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
 
 
 
@@ -19,187 +13,87 @@
   <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
 
 
-
-
-<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.3.0rc2"/>
 
 
     <meta name="description" content="Writing My Life&Job" />
 
 
 
-  <meta name="keywords" content="Linux,Shell,技术," />
+
+
+    <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.3.0rc2" />
 
 
 
-
-
-  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
-
-
-<meta name="description" content="什么是Shell脚本示例看个例子吧：
-#!/bin/sh
-cd ~
-mkdir shell_tut
-cd shell_tut
-
-for ((i=0; i&amp;lt;10; i++)); do
-    touch test_$i.txt
-done
-示例解释
-第1行：指定脚本解释器，这里是用/bin/sh做解释器的
-第2行：切换到当前用户的home目录
-第3行：创建一个目录shell_tut
-第4行：切换">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Shell脚本编程入门">
-<meta property="og:url" content="http://app2ex.com/2015/09/shell-script-guide/index.html">
-<meta property="og:site_name" content="Untitled">
-<meta property="og:description" content="什么是Shell脚本示例看个例子吧：
-#!/bin/sh
-cd ~
-mkdir shell_tut
-cd shell_tut
-
-for ((i=0; i&amp;lt;10; i++)); do
-    touch test_$i.txt
-done
-示例解释
-第1行：指定脚本解释器，这里是用/bin/sh做解释器的
-第2行：切换到当前用户的home目录
-第3行：创建一个目录shell_tut
-第4行：切换">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Shell脚本编程入门">
-<meta name="twitter:description" content="什么是Shell脚本示例看个例子吧：
-#!/bin/sh
-cd ~
-mkdir shell_tut
-cd shell_tut
-
-for ((i=0; i&amp;lt;10; i++)); do
-    touch test_$i.txt
-done
-示例解释
-第1行：指定脚本解释器，这里是用/bin/sh做解释器的
-第2行：切换到当前用户的home目录
-第3行：创建一个目录shell_tut
-第4行：切换">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var CONFIG = {
-    scheme: '',
-    sidebar: 'post'
-  };
-</script>
-
-  <title> Shell脚本编程入门 | Untitled </title>
+  <title> Shell脚本编程入门 // Untitled </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  <!--[if lte IE 8]>
-  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
-    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
-           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
-           style='margin-left:auto;margin-right:auto;display: block;'/>
-    </a>
-  </div>
-<![endif]-->
-  
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-60713578-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
+<body>
   <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><h1 class="site-meta">
-  <span class="logo-line-before"><i></i></span>
-  <a href="/" class="brand" rel="start">
-      <span class="logo">
-        <i class="icon-next-logo"></i>
-      </span>
-      <span class="site-title">Untitled</span>
-  </a>
-  <span class="logo-line-after"><i></i></span>
+    <div id="header" class="header">
+      <div class="header-inner">
+        <h1 class="site-meta">
+    <a href="/" class="brand">
+        <span class="logo">
+          <i class="icon-logo"></i>
+        </span>
+        <span class="site-title">Untitled</span>
+    </a>
 </h1>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
 
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            <i class="menu-item-icon icon-next-home"></i> <br />
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            <i class="menu-item-icon icon-next-archives"></i> <br />
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            <i class="menu-item-icon icon-next-tags"></i> <br />
-            标签
-          </a>
-        </li>
-      
-
-      
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div id="content" class="content"> 
-
-  <div id="posts" class="posts-expand">
+  <ul id="menu" class="menu">
     
+      
+      <li class="menu-item menu-item-home">
+        <a href="/">
+          <i class="menu-item-icon icon-home"></i> <br />
+          首页
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-archives">
+        <a href="/archives">
+          <i class="menu-item-icon icon-archives"></i> <br />
+          归档
+        </a>
+      </li>
+    
+      
+      <li class="menu-item menu-item-tags">
+        <a href="/tags">
+          <i class="menu-item-icon icon-tags"></i> <br />
+          标签
+        </a>
+      </li>
+    
+  </ul>
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+
+      </div>
+    </div>
+
+    <div id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+            
+          
+
+          <div id="posts" class="posts-expand">
+            
+  
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
 
       
       
-        <h1 class="post-title" itemprop="name headline">
+        <h1 class="post-title">
           
           
             
@@ -210,28 +104,25 @@ done
       
 
       <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-09-10T10:05:54+08:00" content="2015-09-10">
-            2015-09-10
-          </time>
-        </span>
-
-        
-
+          <span class="post-time">
+            
+              发表于 2015-09-10
+            
+          </span>
         
           
         
       </div>
-    </header>
+    </div>
 
-    <div class="post-body">
+    
+      <div class="post-body">
 
-      
-      
+        
+        
 
-      
-        <span itemprop="articleBody"><h2 id="什么是Shell脚本">什么是Shell脚本</h2><h3 id="示例">示例</h3><p>看个例子吧：</p>
+        
+          <h2 id="什么是Shell脚本">什么是Shell脚本</h2><h3 id="示例">示例</h3><p>看个例子吧：</p>
 <pre><code><span class="shebang">#!/bin/sh</span>
 <span class="built_in">cd</span> ~
 mkdir shell_tut
@@ -503,157 +394,128 @@ done
 <li><a href="http://www.tutorialspoint.com/unix/unix-shell.htm" target="_blank" rel="external">Unix Shell Programming</a></li>
 <li><a href="http://bash.cyberciti.biz/guide/Main_Page" target="_blank" rel="external">Linux Shell Scripting Tutorial - A Beginner’s handbook</a></li>
 </ul>
-</span>
-      
-    </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Linux/" rel="tag">#Linux</a>
-          
-            <a href="/tags/Shell/" rel="tag">#Shell</a>
-          
-            <a href="/tags/技术/" rel="tag">#技术</a>
-          
-        </div>
-      
+        
 
-      
-        <div class="post-nav">
-          <div class="post-nav-prev post-nav-item">
+      </div>
+    
+
+    
+      <div class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Linux/">
+                #Linux
+              </a>
+            
+              <a href="/tags/Shell/">
+                #Shell
+              </a>
+            
+              <a href="/tags/技术/">
+                #技术
+              </a>
             
           </div>
+        
 
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/07/BaaS-server/" rel="next">BaaS server</a>
-            
-          </div>
-        </div>
-      
+        
 
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
+        
+      </div>
+    
   </div>
 
- </div>
 
-        
 
-        
-          <div class="comments" id="comments">
-            
+  
+    <div class="comments" id="comments">
+      
+    </div>
+  
+
           </div>
+
+          
+
+          <div id="disqus_thread"></div>
+        </div>
+
         
+<div class="sidebar-toggle">
+  <div class="sidebar-toggle-line-wrap">
+    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  </div>
+</div>
+
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-inner">
+
+    
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview">
+          站点概览
+        </li>
+      </ul>
+    
+
+    <div class="site-overview">
+      <div class="site-author motion-element">
+        <img class="site-author-image" src="/images/default_avatar.jpg" alt="Joe Zhao" />
+        <p class="site-author-name">Joe Zhao</p>
+      </div>
+      <p class="site-description motion-element">Writing My Life&Job</p>
+      <div class="site-state motion-element">
+        <div class="site-state-item site-state-posts">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </div>
+        <div class="site-state-item site-state-tags">
+            <span class="site-state-item-count">6</span>
+            <span class="site-state-item-name">标签</span>
+        </div>
+        <div class="site-state-item site-state-pages">
+            <span class="site-state-item-count">1</span>
+            <span class="site-state-item-name">页面</span>
+        </div>
       </div>
 
       
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+
+      <div class="social-info motion-element">
+        
+      </div>
+
     </div>
+
+    
+      <div class="post-toc sidebar-panel-active">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Shell脚本"><span class="nav-number">1.</span> <span class="nav-text">什么是Shell脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例解释"><span class="nav-number">1.2.</span> <span class="nav-text">示例解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell和shell脚本的概念"><span class="nav-number">1.3.</span> <span class="nav-text">shell和shell脚本的概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OS"><span class="nav-number">2.1.</span> <span class="nav-text">OS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">2.1.1.</span> <span class="nav-text">Linux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mac_OS"><span class="nav-number">2.1.2.</span> <span class="nav-text">Mac OS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows上的模拟器"><span class="nav-number">2.1.3.</span> <span class="nav-text">Windows上的模拟器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本解释器"><span class="nav-number">2.2.</span> <span class="nav-text">脚本解释器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sh"><span class="nav-number">2.2.1.</span> <span class="nav-text">sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bash"><span class="nav-number">2.2.2.</span> <span class="nav-text">bash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级编程语言"><span class="nav-number">2.2.3.</span> <span class="nav-text">高级编程语言</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何选择shell编程语言"><span class="nav-number">3.</span> <span class="nav-text">如何选择shell编程语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#熟悉_vs_陌生"><span class="nav-number">3.1.</span> <span class="nav-text">熟悉 vs 陌生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单_vs_高级"><span class="nav-number">3.2.</span> <span class="nav-text">简单 vs 高级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境兼容性"><span class="nav-number">3.3.</span> <span class="nav-text">环境兼容性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个shell脚本"><span class="nav-number">4.</span> <span class="nav-text">第一个shell脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写"><span class="nav-number">4.1.</span> <span class="nav-text">编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">4.2.</span> <span class="nav-text">运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作为可执行程序"><span class="nav-number">4.2.1.</span> <span class="nav-text">作为可执行程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作为解释器参数"><span class="nav-number">4.2.2.</span> <span class="nav-text">作为解释器参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">5.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义变量"><span class="nav-number">5.1.</span> <span class="nav-text">定义变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用变量"><span class="nav-number">5.2.</span> <span class="nav-text">使用变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定义变量"><span class="nav-number">5.3.</span> <span class="nav-text">重定义变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">6.</span> <span class="nav-text">注释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多行注释"><span class="nav-number">6.1.</span> <span class="nav-text">多行注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">7.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单引号"><span class="nav-number">7.1.</span> <span class="nav-text">单引号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双引号"><span class="nav-number">7.2.</span> <span class="nav-text">双引号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串操作"><span class="nav-number">7.3.</span> <span class="nav-text">字符串操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拼接字符串"><span class="nav-number">7.3.1.</span> <span class="nav-text">拼接字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取字符串长度："><span class="nav-number">7.3.2.</span> <span class="nav-text">获取字符串长度：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提取子字符串"><span class="nav-number">7.3.3.</span> <span class="nav-text">提取子字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找子字符串"><span class="nav-number">7.3.4.</span> <span class="nav-text">查找子字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多"><span class="nav-number">7.3.5.</span> <span class="nav-text">更多</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">8.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管道"><span class="nav-number">9.</span> <span class="nav-text">管道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件判断"><span class="nav-number">10.</span> <span class="nav-text">条件判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制"><span class="nav-number">11.</span> <span class="nav-text">流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if_else"><span class="nav-number">11.1.</span> <span class="nav-text">if else</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if"><span class="nav-number">11.1.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if_else-1"><span class="nav-number">11.1.2.</span> <span class="nav-text">if else</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if_else-if_else"><span class="nav-number">11.1.3.</span> <span class="nav-text">if else-if else</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for_while"><span class="nav-number">11.2.</span> <span class="nav-text">for while</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for"><span class="nav-number">11.2.1.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C风格的for"><span class="nav-number">11.2.2.</span> <span class="nav-text">C风格的for</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#while"><span class="nav-number">11.2.3.</span> <span class="nav-text">while</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无限循环"><span class="nav-number">11.2.4.</span> <span class="nav-text">无限循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#until"><span class="nav-number">11.2.5.</span> <span class="nav-text">until</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case"><span class="nav-number">11.3.</span> <span class="nav-text">case</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">12.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">12.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用"><span class="nav-number">12.2.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含"><span class="nav-number">13.</span> <span class="nav-text">文件包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户输入"><span class="nav-number">14.</span> <span class="nav-text">用户输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行脚本时传入"><span class="nav-number">14.1.</span> <span class="nav-text">执行脚本时传入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本运行中输入"><span class="nav-number">14.2.</span> <span class="nav-text">脚本运行中输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select菜单"><span class="nav-number">14.3.</span> <span class="nav-text">select菜单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stdin和stdout"><span class="nav-number">15.</span> <span class="nav-text">stdin和stdout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的命令"><span class="nav-number">16.</span> <span class="nav-text">常用的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ps"><span class="nav-number">16.1.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">16.2.</span> <span class="nav-text">grep</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#排除grep自身"><span class="nav-number">16.2.1.</span> <span class="nav-text">排除grep自身</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找与target相邻的结果"><span class="nav-number">16.2.2.</span> <span class="nav-text">查找与target相邻的结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#awk"><span class="nav-number">16.3.</span> <span class="nav-text">awk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed"><span class="nav-number">16.4.</span> <span class="nav-text">sed</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插入"><span class="nav-number">16.4.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#替换"><span class="nav-number">16.4.2.</span> <span class="nav-text">替换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">16.4.3.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xargs"><span class="nav-number">16.5.</span> <span class="nav-text">xargs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#curl"><span class="nav-number">16.6.</span> <span class="nav-text">curl</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合案例"><span class="nav-number">17.</span> <span class="nav-text">综合案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">18.</span> <span class="nav-text">参考资料</span></a></li></ol>
+      </div>
+    
   </div>
+</div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Joe Zhao" itemprop="image"/>
-          <p class="site-author-name" itemprop="name">Joe Zhao</p>
-        </div>
-        <p class="site-description motion-element" itemprop="description">Writing My Life&Job</p>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">6</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          <div class="site-state-item site-state-categories">
-            
-              <span class="site-state-item-count">0</span>
-              <span class="site-state-item-name">分类</span>
-              
-          </div>
-
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">6</span>
-              <span class="site-state-item-name">标签</span>
-              </a>
-          </div>
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-      </section>
-
-      
-        <section class="post-toc-wrap sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator"></div>
-          <div class="post-toc">
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Shell脚本"><span class="nav-number">1.</span> <span class="nav-text">什么是Shell脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例解释"><span class="nav-number">1.2.</span> <span class="nav-text">示例解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell和shell脚本的概念"><span class="nav-number">1.3.</span> <span class="nav-text">shell和shell脚本的概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OS"><span class="nav-number">2.1.</span> <span class="nav-text">OS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">2.1.1.</span> <span class="nav-text">Linux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mac_OS"><span class="nav-number">2.1.2.</span> <span class="nav-text">Mac OS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows上的模拟器"><span class="nav-number">2.1.3.</span> <span class="nav-text">Windows上的模拟器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本解释器"><span class="nav-number">2.2.</span> <span class="nav-text">脚本解释器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sh"><span class="nav-number">2.2.1.</span> <span class="nav-text">sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#bash"><span class="nav-number">2.2.2.</span> <span class="nav-text">bash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级编程语言"><span class="nav-number">2.2.3.</span> <span class="nav-text">高级编程语言</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何选择shell编程语言"><span class="nav-number">3.</span> <span class="nav-text">如何选择shell编程语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#熟悉_vs_陌生"><span class="nav-number">3.1.</span> <span class="nav-text">熟悉 vs 陌生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单_vs_高级"><span class="nav-number">3.2.</span> <span class="nav-text">简单 vs 高级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境兼容性"><span class="nav-number">3.3.</span> <span class="nav-text">环境兼容性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个shell脚本"><span class="nav-number">4.</span> <span class="nav-text">第一个shell脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写"><span class="nav-number">4.1.</span> <span class="nav-text">编写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行"><span class="nav-number">4.2.</span> <span class="nav-text">运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作为可执行程序"><span class="nav-number">4.2.1.</span> <span class="nav-text">作为可执行程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作为解释器参数"><span class="nav-number">4.2.2.</span> <span class="nav-text">作为解释器参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">5.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义变量"><span class="nav-number">5.1.</span> <span class="nav-text">定义变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用变量"><span class="nav-number">5.2.</span> <span class="nav-text">使用变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定义变量"><span class="nav-number">5.3.</span> <span class="nav-text">重定义变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注释"><span class="nav-number">6.</span> <span class="nav-text">注释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多行注释"><span class="nav-number">6.1.</span> <span class="nav-text">多行注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">7.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单引号"><span class="nav-number">7.1.</span> <span class="nav-text">单引号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双引号"><span class="nav-number">7.2.</span> <span class="nav-text">双引号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串操作"><span class="nav-number">7.3.</span> <span class="nav-text">字符串操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拼接字符串"><span class="nav-number">7.3.1.</span> <span class="nav-text">拼接字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取字符串长度："><span class="nav-number">7.3.2.</span> <span class="nav-text">获取字符串长度：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提取子字符串"><span class="nav-number">7.3.3.</span> <span class="nav-text">提取子字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找子字符串"><span class="nav-number">7.3.4.</span> <span class="nav-text">查找子字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多"><span class="nav-number">7.3.5.</span> <span class="nav-text">更多</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">8.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管道"><span class="nav-number">9.</span> <span class="nav-text">管道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件判断"><span class="nav-number">10.</span> <span class="nav-text">条件判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制"><span class="nav-number">11.</span> <span class="nav-text">流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if_else"><span class="nav-number">11.1.</span> <span class="nav-text">if else</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if"><span class="nav-number">11.1.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if_else-1"><span class="nav-number">11.1.2.</span> <span class="nav-text">if else</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if_else-if_else"><span class="nav-number">11.1.3.</span> <span class="nav-text">if else-if else</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for_while"><span class="nav-number">11.2.</span> <span class="nav-text">for while</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#for"><span class="nav-number">11.2.1.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C风格的for"><span class="nav-number">11.2.2.</span> <span class="nav-text">C风格的for</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#while"><span class="nav-number">11.2.3.</span> <span class="nav-text">while</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无限循环"><span class="nav-number">11.2.4.</span> <span class="nav-text">无限循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#until"><span class="nav-number">11.2.5.</span> <span class="nav-text">until</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case"><span class="nav-number">11.3.</span> <span class="nav-text">case</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">12.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">12.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用"><span class="nav-number">12.2.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件包含"><span class="nav-number">13.</span> <span class="nav-text">文件包含</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户输入"><span class="nav-number">14.</span> <span class="nav-text">用户输入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行脚本时传入"><span class="nav-number">14.1.</span> <span class="nav-text">执行脚本时传入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本运行中输入"><span class="nav-number">14.2.</span> <span class="nav-text">脚本运行中输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select菜单"><span class="nav-number">14.3.</span> <span class="nav-text">select菜单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stdin和stdout"><span class="nav-number">15.</span> <span class="nav-text">stdin和stdout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的命令"><span class="nav-number">16.</span> <span class="nav-text">常用的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ps"><span class="nav-number">16.1.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">16.2.</span> <span class="nav-text">grep</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#排除grep自身"><span class="nav-number">16.2.1.</span> <span class="nav-text">排除grep自身</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找与target相邻的结果"><span class="nav-number">16.2.2.</span> <span class="nav-text">查找与target相邻的结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#awk"><span class="nav-number">16.3.</span> <span class="nav-text">awk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed"><span class="nav-number">16.4.</span> <span class="nav-text">sed</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插入"><span class="nav-number">16.4.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#替换"><span class="nav-number">16.4.2.</span> <span class="nav-text">替换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除"><span class="nav-number">16.4.3.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xargs"><span class="nav-number">16.5.</span> <span class="nav-text">xargs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#curl"><span class="nav-number">16.6.</span> <span class="nav-text">curl</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综合案例"><span class="nav-number">17.</span> <span class="nav-text">综合案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">18.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
-        </section>
-      
-
+      </div>
     </div>
-  </aside>
 
-
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner"> <div class="copyright" >
+    <div id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
   
   &copy; &nbsp; 
-  <span itemprop="copyrightYear">2015</span>
+  2015
   <span class="with-love">
-    <i class="icon-next-heart"></i>
+    <i class="icon-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Joe Zhao</span>
+  <span class="author">Joe Zhao</span>
 </div>
 
 <div class="powered-by">
@@ -661,236 +523,419 @@ done
 </div>
 
 <div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT
-  </a>
+  主题 - <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT</a>
+</div>
+
+<div class="host-info">
+  感谢 <a class="theme-link" href="https://gitcafe.com/">Gitcafe</a> 提供的免费托管空间
 </div>
 
 
- </div>
-    </footer>
+
+
+
+      </div>
+    </div>
 
     <div class="back-to-top"></div>
   </div>
 
   <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  
-  
-    
-    
-
-  
-
-
-  
   
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".fancybox").fancybox();
+    });
+  </script>
 
 
-  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+
   
 
   <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
   <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
-  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
-
-
-
-
-  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
   
-  
-<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
-
-
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 0.4 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    var $tocContent = $('.post-toc-content');
-    if (isDesktop() && CONFIG.sidebar === 'post') {
-      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-        displaySidebar();
-      }
-    }
-  });
-</script>
-
-
 
   <script type="text/javascript">
     $(document).ready(function () {
-      if (CONFIG.sidebar === 'always') {
-        displaySidebar();
+      var body = $('body');
+      var isSidebarVisible = false;
+      var sidebarToggle = $('.sidebar-toggle');
+      var sidebarToggleLine1st = $('.sidebar-toggle-line-first')
+      var sidebarToggleLine2nd = $('.sidebar-toggle-line-middle');
+      var sidebarToggleLine3rd = $('.sidebar-toggle-line-last');
+      var sidebar = $('.sidebar');
+
+      var sidebarToogleLineStatusInit = {width: '100%', opacity: 1, left: 0, rotateZ: 0, top: 0};
+
+      var sidebarToggleLine1stStatusInit = sidebarToogleLineStatusInit;
+      var sidebarToggleLine1stStatusArrow = {width: '50%', rotateZ: '-45deg', top: '2px'};
+      var sidebarToogleLine1stStatusClose = {width: '100%', rotateZ: '-45deg', top: '5px'};
+
+      var sidebarToggleLine2ndStatusInit = sidebarToogleLineStatusInit;
+      var sidebarToggleLine2ndStatusArrow = {width: '90%'};
+      var sidebarToogleLine2ndStatusClose = {opacity: 0};
+
+      var sidebarToggleLine3rdStatusInit = sidebarToogleLineStatusInit;
+      var sidebarToggleLine3rdStatusArrow = {width: '50%', rotateZ: '45deg', top: '-2px'};
+      var sidebarToogleLine3rdStatusClose = {width: '100%', rotateZ: '45deg', top: '-5px'};
+
+      sidebatToggleMotion();
+      postsListMotion();
+      backToTopMotion();
+
+      function sidebarContentMotion () {
+        $('.sidebar .motion-element').velocity(
+          'transition.slideRightIn',
+          {stagger: 50, drag: true}
+        );
       }
-      if (isMobile()) {
-        FastClick.attach(document.body);
+
+
+      function backToTopMotion () {
+        var b2top = $('.back-to-top');
+        b2top.on('click', function () {
+          body.velocity('scroll');
+        });
+      }
+
+      function sidebarShowMotion () {
+        var sidebarDisplayDuration = 300;
+        var sidebarWidth = '320px';
+
+        sidebarToggleLine1st.velocity(sidebarToogleLine1stStatusClose);
+        sidebarToggleLine2nd.velocity(sidebarToogleLine2ndStatusClose);
+        sidebarToggleLine3rd.velocity(sidebarToogleLine3rdStatusClose);
+
+        sidebar.velocity({width: sidebarWidth}, sidebarDisplayDuration);
+        isDesktop() && body.velocity({paddingRight: sidebarWidth}, sidebarDisplayDuration);
+        sidebarContentMotion();
+      }
+
+      function sidebarHideMotion () {
+        isDesktop() && body.velocity({paddingRight: 0});
+        sidebar.velocity('reverse');
+
+        sidebarToggleLine1st.velocity(sidebarToggleLine1stStatusInit);
+        sidebarToggleLine2nd.velocity(sidebarToggleLine2ndStatusInit);
+        sidebarToggleLine3rd.velocity(sidebarToggleLine3rdStatusInit);
+      };
+
+      function postsListMotion () {
+        $('.post').velocity('transition.slideDownIn', {stagger: 300, drag: true});
+      }
+
+      function sidebatToggleMotion () {
+        sidebarToggle.on('click', function () {
+          isSidebarVisible ? sidebarHideMotion() : sidebarShowMotion();
+          isSidebarVisible = !isSidebarVisible;
+        });
+        sidebarToggle.hover(function () {
+          if (isSidebarVisible) {return}
+          sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusArrow);
+          sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusArrow);
+          sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusArrow);
+        }, function () {
+          if (isSidebarVisible) {return}
+          sidebarToggleLine1st.velocity('stop').velocity(sidebarToggleLine1stStatusInit);
+          sidebarToggleLine2nd.velocity('stop').velocity(sidebarToggleLine2ndStatusInit);
+          sidebarToggleLine3rd.velocity('stop').velocity(sidebarToggleLine3rdStatusInit);
+        });
       }
     });
+
+    function isDesktop () {
+      return screen.width > 991;
+    }
+
+    function isTablet () {
+      return screen.width < 992 && screen.width > 767;
+    }
+
+    function isMobile () {
+      return screen.width < 767;
+    }
   </script>
 
   
 
   
-  
+  <script type="text/javascript" id="helpers.escapeSelector">
+    function escapeSelector (selector) {
+      return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, "\\$&")
+    }
+  </script>
 
   
-  <script type="text/javascript" src="/js/lazyload.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $("#posts").find('img').lazyload({
-        placeholder: "/images/loading.gif",
-        effect: "fadeIn"
+    <script type="text/javascript" id="post-details-motion">
+      $(document).ready(function () {
+        var html = $('html');
+
+        $('.sidebar-nav li').on('click', function () {
+          var item = $(this);
+          var activeTabClassName = 'sidebar-nav-active';
+          var activePanelClassName = 'sidebar-panel-active';
+          if (item.hasClass(activeTabClassName)) {
+            return;
+          }
+
+          var currentTarget = $('.' + activePanelClassName);
+          var target = $('.' + item.data('target'));
+
+          currentTarget.velocity('transition.slideUpOut', 200, function () {
+            target
+              .velocity('stop')
+              .velocity('transition.slideDownIn', 200)
+              .addClass(activePanelClassName);
+          });
+
+          item.siblings().removeClass(activeTabClassName);
+          item.addClass(activeTabClassName);
+        });
+
+        $('.post-toc a').on('click', function (e) {
+          e.preventDefault();
+          var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+          html.velocity('stop').velocity('scroll', {
+            offset: offset  + 'px',
+            mobileHA: false
+          });
+        });
+
+        // Expand sidebar on post detail page by default, when post has a toc.
+        if ($('.post-toc').html().trim().length > 0 && isDesktop()) {
+          setTimeout(function () {
+            $('.sidebar-toggle').trigger('click');
+          }, 800);
+        }
       });
+    </script>
+  
+
+  <script type="text/javascript" id="bootstrap.scrollspy">
+    /* ========================================================================
+    * Bootstrap: scrollspy.js v3.3.2
+    * http://getbootstrap.com/javascript/#scrollspy
+    * ========================================================================
+    * Copyright 2011-2015 Twitter, Inc.
+    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+    * ======================================================================== */
+
+
+    +function ($) {
+      'use strict';
+
+      // SCROLLSPY CLASS DEFINITION
+      // ==========================
+
+      function ScrollSpy(element, options) {
+        this.$body          = $(document.body)
+        this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+        this.options        = $.extend({}, ScrollSpy.DEFAULTS, options)
+        this.selector       = (this.options.target || '') + ' .nav li > a'
+        this.offsets        = []
+        this.targets        = []
+        this.activeTarget   = null
+        this.scrollHeight   = 0
+
+        this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+        this.refresh()
+        this.process()
+      }
+
+      ScrollSpy.VERSION  = '3.3.2'
+
+      ScrollSpy.DEFAULTS = {
+        offset: 10
+      }
+
+      ScrollSpy.prototype.getScrollHeight = function () {
+        return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+      }
+
+      ScrollSpy.prototype.refresh = function () {
+        var that          = this
+        var offsetMethod  = 'offset'
+        var offsetBase    = 0
+
+        this.offsets      = []
+        this.targets      = []
+        this.scrollHeight = this.getScrollHeight()
+
+        if (!$.isWindow(this.$scrollElement[0])) {
+          offsetMethod = 'position'
+          offsetBase   = this.$scrollElement.scrollTop()
+        }
+
+        this.$body
+          .find(this.selector)
+          .map(function () {
+            var $el   = $(this)
+            var href  = $el.data('target') || $el.attr('href')
+            var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+            return ($href
+              && $href.length
+              && $href.is(':visible')
+              && [[$href[offsetMethod]().top + offsetBase, href]]) || null
+          })
+          .sort(function (a, b) { return a[0] - b[0] })
+          .each(function () {
+            that.offsets.push(this[0])
+            that.targets.push(this[1])
+          })
+
+
+      }
+
+      ScrollSpy.prototype.process = function () {
+        var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset
+        var scrollHeight = this.getScrollHeight()
+        var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height()
+        var offsets      = this.offsets
+        var targets      = this.targets
+        var activeTarget = this.activeTarget
+        var i
+
+        if (this.scrollHeight != scrollHeight) {
+          this.refresh()
+        }
+
+        if (scrollTop >= maxScroll) {
+          return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+        }
+
+        if (activeTarget && scrollTop < offsets[0]) {
+          this.activeTarget = null
+          return this.clear()
+        }
+
+        for (i = offsets.length; i--;) {
+          activeTarget != targets[i]
+            && scrollTop >= offsets[i]
+            && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
+            && this.activate(targets[i])
+        }
+      }
+
+      ScrollSpy.prototype.activate = function (target) {
+        this.activeTarget = target
+
+        this.clear()
+
+        var selector = this.selector +
+          '[data-target="' + target + '"],' +
+          this.selector + '[href="' + target + '"]'
+
+        var active = $(selector)
+          .parents('li')
+          .addClass('active')
+
+        if (active.parent('.dropdown-menu').length) {
+          active = active
+            .closest('li.dropdown')
+            .addClass('active')
+        }
+
+        active.trigger('activate.bs.scrollspy')
+      }
+
+      ScrollSpy.prototype.clear = function () {
+        $(this.selector)
+          .parentsUntil(this.options.target, '.active')
+          .removeClass('active')
+      }
+
+
+      // SCROLLSPY PLUGIN DEFINITION
+      // ===========================
+
+      function Plugin(option) {
+        return this.each(function () {
+          var $this   = $(this)
+          var data    = $this.data('bs.scrollspy')
+          var options = typeof option == 'object' && option
+
+          if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+          if (typeof option == 'string') data[option]()
+        })
+      }
+
+      var old = $.fn.scrollspy
+
+      $.fn.scrollspy             = Plugin
+      $.fn.scrollspy.Constructor = ScrollSpy
+
+
+      // SCROLLSPY NO CONFLICT
+      // =====================
+
+      $.fn.scrollspy.noConflict = function () {
+        $.fn.scrollspy = old
+        return this
+      }
+
+
+      // SCROLLSPY DATA-API
+      // ==================
+
+      $(window).on('load.bs.scrollspy.data-api', function () {
+        $('[data-spy="scroll"]').each(function () {
+          var $spy = $(this)
+          Plugin.call($spy, $spy.data())
+        })
+      })
+
+    }(jQuery);
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('body').scrollspy({ target: '.post-toc' });
     });
   </script>
+
+
+  
+
+  
+  
+
+  
+
+
+
+    
+      
+    
+
+    <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = 'app2ex';
+      var disqus_identifier = '2015/09/shell-script-guide/';
+      var disqus_url = 'http://app2ex.com/2015/09/shell-script-guide/';
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          document.getElementById('disqus_thread').appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  
+
+
+  
+  <script type="text/javascript">
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-60713578-1');ga('send','pageview');
+  </script>
+
 </body>
 </html>
