@@ -101,7 +101,7 @@ PS：不讨论「宗教/文化」层面的「仪式感」，只是想从心理�
 &lt;span style="color:#75715e">&amp;lt;!-- 报了一个这样的错误 --&amp;gt;&lt;/span>
 `Parsing error: x-invalid-end-tag vue/no-parsing-error`
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>一路翻阅了 &lt;a href="https://github.com/vuejs/eslint-plugin-vue/blob/master/docs/rules/no-parsing-error.md">Eslint-Plugin-Vue&lt;/a> 和 &lt;a href="https://github.com/vuejs/vetur/blob/master/docs/linting-error.md#linting-for-template">Vetur&lt;/a> 的文档，终于找到了一段说明：&lt;/p>
-&lt;p>&lt;img loading="lazy" src="https://fun2ex.com/usr/uploads/2019/06/1297877056.png" alt="12FEB04B-3756-41EC-9589-0BC3D348F508.png" />
+&lt;p>&lt;img loading="lazy" src="https://fun2ex.com/resource/usr/uploads/2019/06/1297877056.png" alt="12FEB04B-3756-41EC-9589-0BC3D348F508.png" />
 &lt;/p></description></item><item><title>iperf 宽带性能测试工具</title><link>https://fun2ex.com/posts/iperf/</link><pubDate>Sun, 06 Jan 2019 18:09:38 +0800</pubDate><guid>https://fun2ex.com/posts/iperf/</guid><description>&lt;p>远程主机（服务端）：Ubuntu 18.04
 本地主机（客户端）：Mac（安装了 &lt;a href="https://brew.sh/">HomeBrew&lt;/a>）&lt;/p>
 &lt;p>原因：因为我们的本地机器不能被外网机器访问，所以服务端只能由外网机器承担，不影响性能测试结果。&lt;/p>
@@ -128,7 +128,7 @@ PS：不讨论「宗教/文化」层面的「仪式感」，只是想从心理�
 因为我用的是 systemd 来管理 caddy 进程，所以直接编辑 caddy 的 service 文件就行：
 sudo vim /etc/systemd/system/caddy.service 找到 Environment= 这一行，加上环境变量的值，如要添加多个，使用空格分割：
 ; Letsencrypt-issued certificates will be written to this directory. Environment=CADDYPATH=/etc/ssl/caddy DNSPOD_API_KEY=&amp;#39;$id,$hash_key&amp;#39; 让我们重启试试：
-sudo systemctl restart caddy sudo systemctl status caddy 未完待续…</description></item><item><title>秦殇</title><link>https://fun2ex.com/posts/prince-of-qin/</link><pubDate>Sat, 22 Sep 2018 18:09:38 +0800</pubDate><guid>https://fun2ex.com/posts/prince-of-qin/</guid><description>&lt;p>&lt;img loading="lazy" src="https://fun2ex.com/usr/uploads/2018/09/2304440361.jpg" alt="秦殇" />
+sudo systemctl restart caddy sudo systemctl status caddy 未完待续…</description></item><item><title>秦殇</title><link>https://fun2ex.com/posts/prince-of-qin/</link><pubDate>Sat, 22 Sep 2018 18:09:38 +0800</pubDate><guid>https://fun2ex.com/posts/prince-of-qin/</guid><description>&lt;p>&lt;img loading="lazy" src="https://fun2ex.com/resource/usr/uploads/2018/09/2304440361.jpg" alt="秦殇" />
 &lt;/p>
 &lt;h2 id="起源">起源&lt;/h2>
 &lt;p>「秦殇」是我非常喜爱的一款游戏。&lt;/p>

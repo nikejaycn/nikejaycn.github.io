@@ -6,5 +6,5 @@
 &lt;span style="color:#75715e">&amp;lt;!-- 报了一个这样的错误 --&amp;gt;&lt;/span>
 `Parsing error: x-invalid-end-tag vue/no-parsing-error`
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>一路翻阅了 &lt;a href="https://github.com/vuejs/eslint-plugin-vue/blob/master/docs/rules/no-parsing-error.md">Eslint-Plugin-Vue&lt;/a> 和 &lt;a href="https://github.com/vuejs/vetur/blob/master/docs/linting-error.md#linting-for-template">Vetur&lt;/a> 的文档，终于找到了一段说明：&lt;/p>
-&lt;p>&lt;img loading="lazy" src="https://fun2ex.com/usr/uploads/2019/06/1297877056.png" alt="12FEB04B-3756-41EC-9589-0BC3D348F508.png" />
+&lt;p>&lt;img loading="lazy" src="https://fun2ex.com/resource/usr/uploads/2019/06/1297877056.png" alt="12FEB04B-3756-41EC-9589-0BC3D348F508.png" />
 &lt;/p></description></item></channel></rss>
