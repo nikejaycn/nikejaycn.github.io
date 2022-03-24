@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>seafile on 跨出界</title><link>https://fun2ex.com/tags/seafile/</link><description>Recent content in seafile on 跨出界</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 04 Mar 2022 10:43:00 +0800</lastBuildDate><atom:link href="https://fun2ex.com/tags/seafile/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04</title><link>https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/</link><pubDate>Fri, 04 Mar 2022 10:43:00 +0800</pubDate><guid>https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/</guid><description>&lt;p>读完这篇文章，你应该能完成安装以下软件：&lt;/p>
+&lt;ul>
+&lt;li>python &amp;amp; python-pip&lt;/li>
+&lt;li>caddy&lt;/li>
+&lt;li>mysql-server&lt;/li>
+&lt;li>jre&lt;/li>
+&lt;li>seafile-pro ```&lt;/li>
+&lt;/ul>
+&lt;p>注意：如果你想流程的跑 Seafile，机器配置建议：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. 内存 &amp;gt;= 2GB
+2. CPU &amp;gt;= 2 Core
+&lt;/code>&lt;/pre>&lt;h2 id="环境准备">环境准备&lt;/h2>
+&lt;p>以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。&lt;/p></description></item></channel></rss>

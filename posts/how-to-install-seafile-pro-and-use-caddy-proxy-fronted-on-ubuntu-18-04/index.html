@@ -1,0 +1,310 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04 | 跨出界</title>
+<meta name=keywords content="guide,caddy,seafile">
+<meta name=description content="读完这篇文章，你应该能完成安装以下软件：
+
+python & python-pip
+caddy
+mysql-server
+jre
+seafile-pro ```
+
+注意：如果你想流程的跑 Seafile，机器配置建议：
+1. 内存 >= 2GB
+2. CPU >= 2 Core
+环境准备
+以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。">
+<meta name=author content>
+<link rel=canonical href=https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.be665b8c60300019b726f04957b895cb023e3957c11488b1b165f917de5cda62.css integrity="sha256-vmZbjGAwABm3JvBJV7iVywI+OVfBFIixsWX5F95c2mI=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://fun2ex.com/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://fun2ex.com/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://fun2ex.com/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://fun2ex.com/apple-touch-icon.png>
+<link rel=mask-icon href=https://fun2ex.com/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript><meta property="og:title" content="How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04">
+<meta property="og:description" content="读完这篇文章，你应该能完成安装以下软件：
+
+python & python-pip
+caddy
+mysql-server
+jre
+seafile-pro ```
+
+注意：如果你想流程的跑 Seafile，机器配置建议：
+1. 内存 >= 2GB
+2. CPU >= 2 Core
+环境准备
+以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-03-04T10:43:00+08:00">
+<meta property="article:modified_time" content="2022-03-04T10:43:00+08:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04">
+<meta name=twitter:description content="读完这篇文章，你应该能完成安装以下软件：
+
+python & python-pip
+caddy
+mysql-server
+jre
+seafile-pro ```
+
+注意：如果你想流程的跑 Seafile，机器配置建议：
+1. 内存 >= 2GB
+2. CPU >= 2 Core
+环境准备
+以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://fun2ex.com/posts/"},{"@type":"ListItem","position":3,"name":"How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04","item":"https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04","name":"How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04","description":"读完这篇文章，你应该能完成安装以下软件：\n python \u0026amp; python-pip caddy mysql-server jre seafile-pro ```  注意：如果你想流程的跑 Seafile，机器配置建议：\n1. 内存 \u0026gt;= 2GB 2. CPU \u0026gt;= 2 Core 环境准备 以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。\n","keywords":["guide","caddy","seafile"],"articleBody":"读完这篇文章，你应该能完成安装以下软件：\n python \u0026 python-pip caddy mysql-server jre seafile-pro ```  注意：如果你想流程的跑 Seafile，机器配置建议：\n1. 内存 = 2GB 2. CPU = 2 Core 环境准备 以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。\n以下命令没有特殊说明，请不要直接使用 root 用户执行。\n# 系统更新 sudo apt update sudo apt upgrade # Python 2.7 及其依赖安装 apt-get install python2.7 libpython2.7 python-setuptools python-pil python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache pip install pillow moviepy # 注意，在执行 pip install pillow moviepy 的时候，我这边报了一个无法安装的错误，是因为 setuptools 版本过低导致的，如果你也有类似的提示，可以尝试先执行以下代码： pip install —upgrade setuptools # install  sudo apt install default-jre # mysql install sudo apt update sudo apt install mysql-server sudo mysql_secure_installation 基本环境依赖到此就完成了。\n注：数据库安装详细内容可以点击这里前往： 「如何在 Ubuntu 18.04 安装 MySQL」\nSeafile 安装 下载 Seafile 安装文件 一、下载地址：社区版 二、下载地址：专业版\n 需要注册账号，专业版没有 license 文件的情况下，可以支持 3 个账号的长期试用。\n 差别如图，感兴趣的可以看一下。\n来源：Seafile 功能对照说明\n部署和目录设计 注：这里下载的文件名是 seafile-pro-server_7.0.9_x86-64_Ubuntu.tar.gz，实际操作中因为版本和系统的不同有所差异，请注意替换。\n因为 systemd 服务有 ProtectHome 的配置，所以为了遵循相关约定，把 seafile 的目录放在外部，如 /data/fun2ex\nsudo mkdir -p /data/fun2ex cd /data/fun2ex # 移动安装文件到安装目录下 mv ~/download/seafile-pro-server_* /data/fun2ex # 将 seafile-pro-server_* 移动到 fun2ex 目录下后 tar -xzfv seafile-pro-server_* mkdir installed mv seafile-pro-server_* installed 现在，你的目录结构大致如下：\n# tree /data/fun2ex -L 2 /data/fun2ex ├── installed │ └── seafile-pro-server_7.0.9_x86-64_Ubuntu.tar.gz └── seafile-pro-server-7.0.9 ├── reset-admin.sh ├── runtime ├── seafile ├── seafile.sh ├── seahub ├── seahub.sh ├── setup-seafile.sh └── upgrade 以下为官方说明：\n 这样设计目录的好处在于 1、和 seafile 相关的配置文件都可以放在 /data/fun2ex 目录下，便于集中管理. 2、后续升级时,你只需要解压最新的安装包到 /data/fun2ex 目录下.\n seafile 服务安装 cd seafile-pro-server-* ./setup-seafile-mysql.sh #运行安装脚本并回答预设问题 安装脚本会检测是否有遗漏的软件包，只需要根据提示一步一步操作过去就 OK 了。\n安装完成之后目录看起来如下：\n/data/fun2ex ├── ccnet │ ├── ccnet.sock │ ├── misc │ ├── mykey.peer │ └── seafile.ini ├── conf │ ├── ccnet.conf │ ├── gunicorn.conf │ ├── seafdav.conf │ ├── ... ├── installed │ └── seafile-pro-server_7.0.9_x86-64_Ubuntu.tar.gz ├── pro-data ├── seafile-data ├── seafile-pro-server-7.0.9 │ ├── ... │ ├── seafile-background-tasks.sh │ ├── seafile.sh │ ├── seaf-import.sh │ ├── seafobj_migrate.py │ ├── seahub │ ├── seahub-extra │ ├── seahub.sh │ ├── setup-seafile-mysql.py │ ├── setup-seafile-mysql.sh │ ├── setup-seafile.sh │ ├── sql │ └── upgrade ├── seafile-server-latest - seafile-pro-server-7.0.9 └── seahub-data seafile 服务管理 cd /data/fun2ex/seafile-server-lates ./seafile.sh { start | stop | restart } # Seafile 服务管理 ./seahub.sh { start | stop | restart } # 管理 Seahub 网站 （默认运行在8000端口上） 注意: 你第一次启动 seahub 时，seahub.sh 脚本会提示你创建一个 seafile 管理员帐号。\nseafile 配置完毕。\nCaddy 服务器配置 安装请直接查看这篇文章 Caddy 安装配置指南(LCMP)\nCaddyfile 配置如下：\nexample.com { proxy / localhost:8000 { transparent } gzip } example.com/seafhttp { proxy / localhost:8082 { without /seafhttp transparent } gzip } example.com/media { root /data/fun2ex/seafile-server-lates/seahub/media gzip } 然后重新启动 caddy 服务就可以了。\nsudo systemctl restart caddy  如果这里使用的是 /root/fun2ex/seafile-server-lates/seahub/media 的话，caddy 重启会报没有权限的错误。 如果使用的是 /home/someuser/fun2ex/seafile-server-lates/seahub/media 的目录，caddy 重启则会报告 ProtectHome  的错误。  解决方法有两个，第一个是修改 caddy.service 的配置。 第二种是把 sefile data 目录迁移出去，强烈推荐使用这个方法。\n—EOF—\n","wordCount":"379","inLanguage":"en","datePublished":"2022-03-04T10:43:00+08:00","dateModified":"2022-03-04T10:43:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/"},"publisher":{"@type":"Organization","name":"跨出界","logo":{"@type":"ImageObject","url":"https://fun2ex.com/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://fun2ex.com accesskey=h title="跨出界 (Alt + H)">跨出界</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://fun2ex.com/archives/ title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/game/ title=Game>
+<span>Game</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/diving/ title=Diving>
+<span>Diving</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/music/ title=Music>
+<span>Music</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://fun2ex.com>Home</a>&nbsp;»&nbsp;<a href=https://fun2ex.com/posts/>Posts</a></div>
+<h1 class=post-title>
+How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04
+</h1>
+<div class=post-meta><span title="2022-03-04 10:43:00 +0800 +0800">March 4, 2022</span>
+</div>
+</header>
+<div class=post-content><p>读完这篇文章，你应该能完成安装以下软件：</p>
+<ul>
+<li>python & python-pip</li>
+<li>caddy</li>
+<li>mysql-server</li>
+<li>jre</li>
+<li>seafile-pro ```</li>
+</ul>
+<p>注意：如果你想流程的跑 Seafile，机器配置建议：</p>
+<pre tabindex=0><code>1. 内存 &gt;= 2GB
+2. CPU &gt;= 2 Core
+</code></pre><h2 id=环境准备>环境准备<a hidden class=anchor aria-hidden=true href=#环境准备>#</a></h2>
+<p>以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。</p>
+<p>以下命令没有特殊说明，请不要直接使用 <code>root</code> 用户执行。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># 系统更新</span>
+sudo apt update
+sudo apt upgrade
+
+<span style=color:#75715e># Python 2.7 及其依赖安装</span>
+apt-get install python2.7 libpython2.7 python-setuptools python-pil python-ldap python-urllib3 ffmpeg python-pip python-mysqldb python-memcache
+pip install pillow moviepy
+
+<span style=color:#75715e># 注意，在执行 pip install pillow moviepy 的时候，我这边报了一个无法安装的错误，是因为 setuptools 版本过低导致的，如果你也有类似的提示，可以尝试先执行以下代码：</span>
+pip install —upgrade setuptools
+
+<span style=color:#75715e># install </span>
+sudo apt install default-jre
+
+<span style=color:#75715e># mysql install</span>
+sudo apt update
+sudo apt install mysql-server
+sudo mysql_secure_installation
+</code></pre></div><p>基本环境依赖到此就完成了。</p>
+<p>注：数据库安装详细内容可以点击这里前往： <a href=http://link.com>「如何在 Ubuntu 18.04 安装 MySQL」</a></p>
+<h2 id=seafile-安装>Seafile 安装<a hidden class=anchor aria-hidden=true href=#seafile-安装>#</a></h2>
+<h3 id=下载-seafile-安装文件>下载 Seafile 安装文件<a hidden class=anchor aria-hidden=true href=#下载-seafile-安装文件>#</a></h3>
+<p>一、下载地址：<a href=https://github.com/haiwen/seafile/releases>社区版</a>
+二、下载地址：<a href=https://customer.seafile.com>专业版</a></p>
+<blockquote>
+<p>需要注册账号，专业版没有 license 文件的情况下，可以支持 3 个账号的长期试用。</p>
+</blockquote>
+<p>差别如图，感兴趣的可以看一下。</p>
+<p><img loading=lazy src=https://fun2ex.com/usr/uploads/2019/12/661299325.png alt=CE1B8731-2622-4363-A3BC-EE9BE9512EB0.png>
+</p>
+<p>来源：<a href=https://www.seafile.com/product/private_server/>Seafile 功能对照说明</a></p>
+<h3 id=部署和目录设计>部署和目录设计<a hidden class=anchor aria-hidden=true href=#部署和目录设计>#</a></h3>
+<p>注：这里下载的文件名是 <code>seafile-pro-server_7.0.9_x86-64_Ubuntu.tar.gz</code>，实际操作中因为版本和系统的不同有所差异，请注意替换。</p>
+<p>因为 <code>systemd</code> 服务有 <code>ProtectHome</code> 的配置，所以为了遵循相关约定，把 seafile 的目录放在外部，如 <code>/data/fun2ex</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>sudo mkdir -p /data/fun2ex
+cd /data/fun2ex
+<span style=color:#75715e># 移动安装文件到安装目录下</span>
+mv ~/download/seafile-pro-server_* /data/fun2ex
+<span style=color:#75715e># 将 seafile-pro-server_* 移动到 fun2ex 目录下后</span>
+tar -xzfv seafile-pro-server_*
+mkdir installed
+mv seafile-pro-server_* installed
+</code></pre></div><p>现在，你的目录结构大致如下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># tree /data/fun2ex -L 2</span>
+/data/fun2ex
+├── installed
+│   └── seafile-pro-server_7.0.9_x86-64_Ubuntu.tar.gz
+└── seafile-pro-server-7.0.9
+    ├── reset-admin.sh
+    ├── runtime
+    ├── seafile
+    ├── seafile.sh
+    ├── seahub
+    ├── seahub.sh
+    ├── setup-seafile.sh
+    └── upgrade
+</code></pre></div><p>以下为官方说明：</p>
+<blockquote>
+<p><em>这样设计目录的好处在于</em>
+1、和 seafile 相关的配置文件都可以放在 <code>/data/fun2ex</code> 目录下，便于集中管理.
+2、后续升级时,你只需要解压最新的安装包到 <code>/data/fun2ex</code> 目录下.</p>
+</blockquote>
+<h3 id=seafile-服务安装>seafile 服务安装<a hidden class=anchor aria-hidden=true href=#seafile-服务安装>#</a></h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>cd seafile-pro-server-*
+./setup-seafile-mysql.sh <span style=color:#75715e>#运行安装脚本并回答预设问题</span>
+</code></pre></div><p>安装脚本会检测是否有遗漏的软件包，只需要根据提示一步一步操作过去就 OK 了。</p>
+<p>安装完成之后目录看起来如下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>/data/fun2ex
+├── ccnet
+│   ├── ccnet.sock
+│   ├── misc
+│   ├── mykey.peer
+│   └── seafile.ini
+├── conf
+│   ├── ccnet.conf
+│   ├── gunicorn.conf
+│   ├── seafdav.conf
+│   ├── ...
+├── installed
+│   └── seafile-pro-server_7.0.9_x86-64_Ubuntu.tar.gz
+├── pro-data
+├── seafile-data
+├── seafile-pro-server-7.0.9
+│   ├── ...
+│   ├── seafile-background-tasks.sh
+│   ├── seafile.sh
+│   ├── seaf-import.sh
+│   ├── seafobj_migrate.py
+│   ├── seahub
+│   ├── seahub-extra
+│   ├── seahub.sh
+│   ├── setup-seafile-mysql.py
+│   ├── setup-seafile-mysql.sh
+│   ├── setup-seafile.sh
+│   ├── sql
+│   └── upgrade
+├── seafile-server-latest -&gt; seafile-pro-server-7.0.9
+└── seahub-data
+</code></pre></div><h3 id=seafile-服务管理>seafile 服务管理<a hidden class=anchor aria-hidden=true href=#seafile-服务管理>#</a></h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>cd /data/fun2ex/seafile-server-lates
+./seafile.sh <span style=color:#f92672>{</span> start | stop | restart <span style=color:#f92672>}</span>  <span style=color:#75715e># Seafile 服务管理</span>
+./seahub.sh <span style=color:#f92672>{</span> start | stop | restart <span style=color:#f92672>}</span>   <span style=color:#75715e># 管理 Seahub 网站 （默认运行在8000端口上）</span>
+</code></pre></div><p><em>注意:</em> 你第一次启动 seahub 时，seahub.sh 脚本会提示你创建一个 seafile 管理员帐号。</p>
+<p>seafile 配置完毕。</p>
+<h2 id=caddy-服务器配置>Caddy 服务器配置<a hidden class=anchor aria-hidden=true href=#caddy-服务器配置>#</a></h2>
+<p>安装请直接查看这篇文章 <a href=https://fun2ex.com/tech/caddy-install-and-setting-guide.html>Caddy 安装配置指南(LCMP)</a></p>
+<p><code>Caddyfile</code> 配置如下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>example.com <span style=color:#f92672>{</span>
+    proxy / localhost:8000 <span style=color:#f92672>{</span>
+        transparent
+    <span style=color:#f92672>}</span>
+    gzip
+<span style=color:#f92672>}</span>
+
+example.com/seafhttp <span style=color:#f92672>{</span>
+
+    proxy / localhost:8082 <span style=color:#f92672>{</span>
+        without /seafhttp
+        transparent
+    <span style=color:#f92672>}</span>
+    gzip
+<span style=color:#f92672>}</span>
+
+example.com/media <span style=color:#f92672>{</span>
+    root /data/fun2ex/seafile-server-lates/seahub/media
+    gzip
+<span style=color:#f92672>}</span>
+</code></pre></div><p>然后重新启动 caddy 服务就可以了。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>sudo systemctl restart caddy
+</code></pre></div><ol>
+<li>如果这里使用的是 <code>/root/fun2ex/seafile-server-lates/seahub/media</code> 的话，<code>caddy</code> 重启会报没有权限的错误。</li>
+<li>如果使用的是 <code>/home/someuser/fun2ex/seafile-server-lates/seahub/media</code> 的目录，<code>caddy</code> 重启则会报告 <code>ProtectHome </code> 的错误。</li>
+</ol>
+<p>解决方法有两个，第一个是修改 <code>caddy.service</code> 的配置。
+第二种是把 sefile data 目录迁移出去，强烈推荐使用这个方法。</p>
+<p>—EOF—</p>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://fun2ex.com/tags/guide/>guide</a></li>
+<li><a href=https://fun2ex.com/tags/caddy/>caddy</a></li>
+<li><a href=https://fun2ex.com/tags/seafile/>seafile</a></li>
+</ul>
+<nav class=paginav>
+<a class=prev href=https://fun2ex.com/posts/fixed-the-unraid-umount-nfs-problem/>
+<span class=title>« Prev Page</span>
+<br>
+<span>解决 Unraid 在关机的之后无法 unmout NFS 的问题</span>
+</a>
+<a class=next href=https://fun2ex.com/posts/open-remote-login-form-win10/>
+<span class=title>Next Page »</span>
+<br>
+<span>win10 内网下如何开启远程登录</span>
+</a>
+</nav>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2022 <a href=https://fun2ex.com>跨出界</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+<div class=beian>
+<a target=_blank href=https://beian.miit.gov.cn/>粤ICP备18115339号-1</a>
+</div>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script></body>
+</html>

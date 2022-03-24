@@ -1,0 +1,179 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>解决 Unraid 在关机的之后无法 unmout NFS 的问题 | 跨出界</title>
+<meta name=keywords content>
+<meta name=description content="先说一下场景：
+ 主机安装了 unraid 6.9.2 开了一个虚拟机跑黑群晖, 并直通了一个网口+两块硬盘 unraid 通过 Unassigned Devices 来挂载黑群晖的硬盘, 使用 NFS 协议  问题： 想更换硬盘的时候, 直接点停止阵列, 等了大半天都没有停止成功。 检查了一下系统日志, 发现一直卡在 Unmounting Remote SMB/NFS Share 不成功, 并且一直在重试。
+造成这个问题的原因是因为黑群晖也是跑在 unraid 上面的, 停止阵列的操作会优先把 Docker 和虚拟机服务优先关闭掉, 导致 NFS 链接失去响应无法正常 Unmoun。
+搜索了一下发现好多人都碰到过类似的问题：NFS 服务器某些原因断网后, NFS 客户机无法 umount 直到最新的 nfsv4 都是这样子, 所以会造成进程一致卡住在重试。
+解决办法有以下两种：
+ 更换成 SAMBA, SMB 无法卸载不影响关机，不会造成假死。 在关机前, 手动在 Unassigned Devices umount 所有已经挂载的 NFS mount, 或者可以打开终端运行 umount -l /mnt/remotes/* 强制卸载所有 NFS umount.  剩下在问题就是如何把方案 2 改成自动化，不需要每次去手工执行，在 unraid forums 看到一个解决方案：">
+<meta name=author content>
+<link rel=canonical href=https://fun2ex.com/posts/fixed-the-unraid-umount-nfs-problem/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.be665b8c60300019b726f04957b895cb023e3957c11488b1b165f917de5cda62.css integrity="sha256-vmZbjGAwABm3JvBJV7iVywI+OVfBFIixsWX5F95c2mI=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://fun2ex.com/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://fun2ex.com/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://fun2ex.com/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://fun2ex.com/apple-touch-icon.png>
+<link rel=mask-icon href=https://fun2ex.com/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript><meta property="og:title" content="解决 Unraid 在关机的之后无法 unmout NFS 的问题">
+<meta property="og:description" content="先说一下场景：
+ 主机安装了 unraid 6.9.2 开了一个虚拟机跑黑群晖, 并直通了一个网口+两块硬盘 unraid 通过 Unassigned Devices 来挂载黑群晖的硬盘, 使用 NFS 协议  问题： 想更换硬盘的时候, 直接点停止阵列, 等了大半天都没有停止成功。 检查了一下系统日志, 发现一直卡在 Unmounting Remote SMB/NFS Share 不成功, 并且一直在重试。
+造成这个问题的原因是因为黑群晖也是跑在 unraid 上面的, 停止阵列的操作会优先把 Docker 和虚拟机服务优先关闭掉, 导致 NFS 链接失去响应无法正常 Unmoun。
+搜索了一下发现好多人都碰到过类似的问题：NFS 服务器某些原因断网后, NFS 客户机无法 umount 直到最新的 nfsv4 都是这样子, 所以会造成进程一致卡住在重试。
+解决办法有以下两种：
+ 更换成 SAMBA, SMB 无法卸载不影响关机，不会造成假死。 在关机前, 手动在 Unassigned Devices umount 所有已经挂载的 NFS mount, 或者可以打开终端运行 umount -l /mnt/remotes/* 强制卸载所有 NFS umount.  剩下在问题就是如何把方案 2 改成自动化，不需要每次去手工执行，在 unraid forums 看到一个解决方案：">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://fun2ex.com/posts/fixed-the-unraid-umount-nfs-problem/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-03-08T11:01:32+08:00">
+<meta property="article:modified_time" content="2022-03-08T11:01:32+08:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="解决 Unraid 在关机的之后无法 unmout NFS 的问题">
+<meta name=twitter:description content="先说一下场景：
+ 主机安装了 unraid 6.9.2 开了一个虚拟机跑黑群晖, 并直通了一个网口+两块硬盘 unraid 通过 Unassigned Devices 来挂载黑群晖的硬盘, 使用 NFS 协议  问题： 想更换硬盘的时候, 直接点停止阵列, 等了大半天都没有停止成功。 检查了一下系统日志, 发现一直卡在 Unmounting Remote SMB/NFS Share 不成功, 并且一直在重试。
+造成这个问题的原因是因为黑群晖也是跑在 unraid 上面的, 停止阵列的操作会优先把 Docker 和虚拟机服务优先关闭掉, 导致 NFS 链接失去响应无法正常 Unmoun。
+搜索了一下发现好多人都碰到过类似的问题：NFS 服务器某些原因断网后, NFS 客户机无法 umount 直到最新的 nfsv4 都是这样子, 所以会造成进程一致卡住在重试。
+解决办法有以下两种：
+ 更换成 SAMBA, SMB 无法卸载不影响关机，不会造成假死。 在关机前, 手动在 Unassigned Devices umount 所有已经挂载的 NFS mount, 或者可以打开终端运行 umount -l /mnt/remotes/* 强制卸载所有 NFS umount.  剩下在问题就是如何把方案 2 改成自动化，不需要每次去手工执行，在 unraid forums 看到一个解决方案：">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://fun2ex.com/posts/"},{"@type":"ListItem","position":3,"name":"解决 Unraid 在关机的之后无法 unmout NFS 的问题","item":"https://fun2ex.com/posts/fixed-the-unraid-umount-nfs-problem/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"解决 Unraid 在关机的之后无法 unmout NFS 的问题","name":"解决 Unraid 在关机的之后无法 unmout NFS 的问题","description":"先说一下场景：\n 主机安装了 unraid 6.9.2 开了一个虚拟机跑黑群晖, 并直通了一个网口+两块硬盘 unraid 通过 Unassigned Devices 来挂载黑群晖的硬盘, 使用 NFS 协议  问题： 想更换硬盘的时候, 直接点停止阵列, 等了大半天都没有停止成功。 检查了一下系统日志, 发现一直卡在 Unmounting Remote SMB/NFS Share 不成功, 并且一直在重试。\n造成这个问题的原因是因为黑群晖也是跑在 unraid 上面的, 停止阵列的操作会优先把 Docker 和虚拟机服务优先关闭掉, 导致 NFS 链接失去响应无法正常 Unmoun。\n搜索了一下发现好多人都碰到过类似的问题：NFS 服务器某些原因断网后, NFS 客户机无法 umount 直到最新的 nfsv4 都是这样子, 所以会造成进程一致卡住在重试。\n解决办法有以下两种：\n 更换成 SAMBA, SMB 无法卸载不影响关机，不会造成假死。 在关机前, 手动在 Unassigned Devices umount 所有已经挂载的 NFS mount, 或者可以打开终端运行 umount -l /mnt/remotes/* 强制卸载所有 NFS umount.  剩下在问题就是如何把方案 2 改成自动化，不需要每次去手工执行，在 unraid forums 看到一个解决方案：","keywords":[],"articleBody":"先说一下场景：\n 主机安装了 unraid 6.9.2 开了一个虚拟机跑黑群晖, 并直通了一个网口+两块硬盘 unraid 通过 Unassigned Devices 来挂载黑群晖的硬盘, 使用 NFS 协议  问题： 想更换硬盘的时候, 直接点停止阵列, 等了大半天都没有停止成功。 检查了一下系统日志, 发现一直卡在 Unmounting Remote SMB/NFS Share 不成功, 并且一直在重试。\n造成这个问题的原因是因为黑群晖也是跑在 unraid 上面的, 停止阵列的操作会优先把 Docker 和虚拟机服务优先关闭掉, 导致 NFS 链接失去响应无法正常 Unmoun。\n搜索了一下发现好多人都碰到过类似的问题：NFS 服务器某些原因断网后, NFS 客户机无法 umount 直到最新的 nfsv4 都是这样子, 所以会造成进程一致卡住在重试。\n解决办法有以下两种：\n 更换成 SAMBA, SMB 无法卸载不影响关机，不会造成假死。 在关机前, 手动在 Unassigned Devices umount 所有已经挂载的 NFS mount, 或者可以打开终端运行 umount -l /mnt/remotes/* 强制卸载所有 NFS umount.  剩下在问题就是如何把方案 2 改成自动化，不需要每次去手工执行，在 unraid forums 看到一个解决方案：\n  进入 Main 界面，找到 「SMB Shares | NFS Shares | ISO File Shares」 这一行，点击 nfs 服务的设置按钮，如图：   点击「默认」，在出现的 Script 里面，找到 UNMOUNT ACTION 并且在 # do your stuff here 处换行填入 umount -l /mnt/remotes/*，如图：   PS：如果你只想卸载某一个磁盘，那就要分别设置（重复 2），然后填入具体的盘符，如 umount -l /mnt/remotes/Meida_4.\n点击保存.  测试：\n Unassigned Devices mount NFS 服务 NFS 服务器关机或者断网 点击 Unassigned Devices 的 UNMOUNT 安装（如果能够正常卸载，说明就没有问题了）  –EOF–\n参考文章：\n 无法关机 阿力的解决方案①：nfs卡机造成unraid无法关机  ","wordCount":"125","inLanguage":"en","datePublished":"2022-03-08T11:01:32+08:00","dateModified":"2022-03-08T11:01:32+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/fixed-the-unraid-umount-nfs-problem/"},"publisher":{"@type":"Organization","name":"跨出界","logo":{"@type":"ImageObject","url":"https://fun2ex.com/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://fun2ex.com accesskey=h title="跨出界 (Alt + H)">跨出界</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://fun2ex.com/archives/ title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/game/ title=Game>
+<span>Game</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/diving/ title=Diving>
+<span>Diving</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/music/ title=Music>
+<span>Music</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://fun2ex.com>Home</a>&nbsp;»&nbsp;<a href=https://fun2ex.com/posts/>Posts</a></div>
+<h1 class=post-title>
+解决 Unraid 在关机的之后无法 unmout NFS 的问题
+</h1>
+<div class=post-meta><span title="2022-03-08 11:01:32 +0800 +0800">March 8, 2022</span>
+</div>
+</header>
+<div class=post-content><p>先说一下场景：</p>
+<ol>
+<li>主机安装了 <a href=https://unraid.net/>unraid 6.9.2</a></li>
+<li>开了一个虚拟机跑黑群晖, 并直通了一个网口+两块硬盘</li>
+<li><a href=https://unraid.net/>unraid</a> 通过 <a href=https://github.com/dlandon/unassigned.devices>Unassigned Devices</a> 来挂载黑群晖的硬盘, 使用 NFS 协议</li>
+</ol>
+<p>问题：
+想更换硬盘的时候, 直接点停止阵列, 等了大半天都没有停止成功。
+检查了一下系统日志, 发现一直卡在 Unmounting Remote SMB/NFS Share 不成功, 并且一直在重试。</p>
+<p>造成这个问题的原因是因为黑群晖也是跑在 <a href=https://unraid.net/>unraid</a> 上面的, 停止阵列的操作会优先把 <a href=https://www.docker.com/>Docker</a> 和虚拟机服务优先关闭掉, 导致 NFS 链接失去响应无法正常 Unmoun。</p>
+<p>搜索了一下发现好多人都碰到过类似的问题：NFS 服务器某些原因断网后, NFS 客户机无法 umount 直到最新的 nfsv4 都是这样子, 所以会造成进程一致卡住在重试。</p>
+<p>解决办法有以下两种：</p>
+<ol>
+<li>更换成 SAMBA, SMB 无法卸载不影响关机，不会造成假死。</li>
+<li>在关机前, 手动在 <a href=https://github.com/dlandon/unassigned.devices>Unassigned Devices</a> umount 所有已经挂载的 NFS mount, 或者可以打开终端运行 umount -l /mnt/remotes/* 强制卸载所有 NFS umount.</li>
+</ol>
+<p>剩下在问题就是如何把方案 2 改成自动化，不需要每次去手工执行，在 <a href=https://forums.unraid.net/topic/120207-%E9%98%BF%E5%8A%9B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%91%A0%EF%BC%9Anfs%E5%8D%A1%E6%9C%BA%E9%80%A0%E6%88%90unraid%E6%97%A0%E6%B3%95%E5%85%B3%E6%9C%BA/>unraid forums</a> 看到一个解决方案：</p>
+<ol>
+<li>
+<p>进入 Main 界面，找到 「SMB Shares | NFS Shares | ISO File Shares」 这一行，点击 nfs 服务的设置按钮，如图：
+<img loading=lazy src=https://fun2ex-com-1251632949.file.myqcloud.com/images/unraid-01.jpg alt=main>
+</p>
+</li>
+<li>
+<p>点击「默认」，在出现的 Script 里面，找到 UNMOUNT ACTION 并且在 <code># do your stuff here</code> 处换行填入 <code>umount -l /mnt/remotes/*</code>，如图：
+<img loading=lazy src=https://fun2ex-com-1251632949.file.myqcloud.com/images/unraid-2.jpg alt=setting>
+</p>
+</li>
+</ol>
+<p>PS：如果你只想卸载某一个磁盘，那就要分别设置（重复 2），然后填入具体的盘符，如 <code>umount -l /mnt/remotes/Meida_4</code>.</p>
+<ol start=3>
+<li>点击保存.</li>
+</ol>
+<p>测试：</p>
+<ol>
+<li><a href=https://github.com/dlandon/unassigned.devices>Unassigned Devices</a> mount NFS 服务</li>
+<li>NFS 服务器关机或者断网</li>
+<li>点击 <a href=https://github.com/dlandon/unassigned.devices>Unassigned Devices</a> 的 UNMOUNT 安装（如果能够正常卸载，说明就没有问题了）</li>
+</ol>
+<p>&ndash;EOF&ndash;</p>
+<p>参考文章：</p>
+<ul>
+<li><a href=https://forums.unraid.net/topic/119915-%E6%97%A0%E6%B3%95%E5%85%B3%E6%9C%BA/>无法关机</a></li>
+<li><a href=https://forums.unraid.net/topic/120207-%E9%98%BF%E5%8A%9B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%91%A0%EF%BC%9Anfs%E5%8D%A1%E6%9C%BA%E9%80%A0%E6%88%90unraid%E6%97%A0%E6%B3%95%E5%85%B3%E6%9C%BA/>阿力的解决方案①：nfs卡机造成unraid无法关机</a></li>
+</ul>
+</div>
+<footer class=post-footer>
+<nav class=paginav>
+<a class=prev href=https://fun2ex.com/posts/fixed-z370m-pro4-unraid-temperature-problem/>
+<span class=title>« Prev Page</span>
+<br>
+<span>解决华擎 Z370M-Pro4 主板在 Unraid 无法获取风扇转速</span>
+</a>
+<a class=next href=https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/>
+<span class=title>Next Page »</span>
+<br>
+<span>How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04</span>
+</a>
+</nav>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2022 <a href=https://fun2ex.com>跨出界</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+<div class=beian>
+<a target=_blank href=https://beian.miit.gov.cn/>粤ICP备18115339号-1</a>
+</div>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script></body>
+</html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>iOS on 跨出界</title><link>https://fun2ex.com/tags/ios/</link><description>Recent content in iOS on 跨出界</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 25 Mar 2020 10:39:31 +0800</lastBuildDate><atom:link href="https://fun2ex.com/tags/ios/index.xml" rel="self" type="application/rss+xml"/><item><title>Apple 微信公众号排版效果</title><link>https://fun2ex.com/posts/apple-ipad-for-wechat-article/</link><pubDate>Wed, 25 Mar 2020 10:39:31 +0800</pubDate><guid>https://fun2ex.com/posts/apple-ipad-for-wechat-article/</guid><description>&lt;p>近期到处都可以看到这个被刷屏的微信公众号案例。&lt;/p>
+&lt;p>&lt;a href="https://mp.weixin.qq.com/s/ZYfIqwPNbHVepSyJsLFk-w">https://mp.weixin.qq.com/s/ZYfIqwPNbHVepSyJsLFk-w&lt;/a>&lt;/p>
+&lt;p>我们就来聊一聊怎么实现的，说起来也不复杂，主要就是利用 SVG 的动画效果 + 创意达到了这么酷炫的效果。&lt;/p>
+&lt;p>涉及到也只有两个动画元素 &lt;code>opacity&lt;/code> 和 &lt;code>height&lt;/code> 的变化。&lt;/p>
+&lt;p>微信图文内容本质上也是一段 HTML 代码，先看一个 demo&lt;/p>
+&lt;p>这是一篇正常的图片，只不过是全图片排版的。&lt;/p></description></item></channel></rss>

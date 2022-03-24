@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>vscode on 跨出界</title><link>https://fun2ex.com/tags/vscode/</link><description>Recent content in vscode on 跨出界</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 22 Jun 2019 18:09:38 +0800</lastBuildDate><atom:link href="https://fun2ex.com/tags/vscode/index.xml" rel="self" type="application/rss+xml"/><item><title>How to fixed VS-code iView x-invalid-end-tag error</title><link>https://fun2ex.com/posts/how-to-fixed-vscode-iview-x-invalid-end-tag-error/</link><pubDate>Sat, 22 Jun 2019 18:09:38 +0800</pubDate><guid>https://fun2ex.com/posts/how-to-fixed-vscode-iview-x-invalid-end-tag-error/</guid><description>&lt;p>晚上在快乐的写代码的时候，突然碰到一个 eslint 检查器的错误：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html" data-lang="html">&lt;span style="color:#75715e">&amp;lt;!-- 这样一段代码 --&amp;gt;&lt;/span>
+&amp;lt;&lt;span style="color:#f92672">Col&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">Button&lt;/span>&amp;gt;test&amp;lt;/&lt;span style="color:#f92672">Button&lt;/span>&amp;gt;
+&amp;lt;/&lt;span style="color:#f92672">Col&lt;/span>&amp;gt;
+&lt;span style="color:#75715e">&amp;lt;!-- 报了一个这样的错误 --&amp;gt;&lt;/span>
+`Parsing error: x-invalid-end-tag vue/no-parsing-error`
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>一路翻阅了 &lt;a href="https://github.com/vuejs/eslint-plugin-vue/blob/master/docs/rules/no-parsing-error.md">Eslint-Plugin-Vue&lt;/a> 和 &lt;a href="https://github.com/vuejs/vetur/blob/master/docs/linting-error.md#linting-for-template">Vetur&lt;/a> 的文档，终于找到了一段说明：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="https://fun2ex.com/usr/uploads/2019/06/1297877056.png" alt="12FEB04B-3756-41EC-9589-0BC3D348F508.png" />
+&lt;/p></description></item></channel></rss>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>tech on 跨出界</title><link>https://fun2ex.com/categories/tech/</link><description>Recent content in tech on 跨出界</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 04 Mar 2022 10:43:00 +0800</lastBuildDate><atom:link href="https://fun2ex.com/categories/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04</title><link>https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/</link><pubDate>Fri, 04 Mar 2022 10:43:00 +0800</pubDate><guid>https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/</guid><description>&lt;p>读完这篇文章，你应该能完成安装以下软件：&lt;/p>
+&lt;ul>
+&lt;li>python &amp;amp; python-pip&lt;/li>
+&lt;li>caddy&lt;/li>
+&lt;li>mysql-server&lt;/li>
+&lt;li>jre&lt;/li>
+&lt;li>seafile-pro ```&lt;/li>
+&lt;/ul>
+&lt;p>注意：如果你想流程的跑 Seafile，机器配置建议：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. 内存 &amp;gt;= 2GB
+2. CPU &amp;gt;= 2 Core
+&lt;/code>&lt;/pre>&lt;h2 id="环境准备">环境准备&lt;/h2>
+&lt;p>以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。&lt;/p></description></item><item><title>win10 内网下如何开启远程登录</title><link>https://fun2ex.com/posts/open-remote-login-form-win10/</link><pubDate>Thu, 25 Mar 2021 10:39:53 +0800</pubDate><guid>https://fun2ex.com/posts/open-remote-login-form-win10/</guid><description>一开始找到一句这样的命令：
+wmic /node:[IP OR Domain] /user:[User] /password:[Password] PATH win32_terminalservicesetting WHERE (__Class!=&amp;#34;&amp;#34;) CALL SetAllowTSConnections 1 一直报错，没想明白是什么原因。
+一番搜寻之后大致清楚了，最终的命令如下：
+wmic /node:[IP OR Domain] /user:[User] /password:[Password] RDTOGGLE WHERE (__Class!=&amp;#34;&amp;#34;) CALL SetAllowTSConnections 1 查阅资料：
+https://www.yuque.com/waiting4/fgq227/gfi4v7 https://blog.csdn.net/Aaron_Miller/article/details/109644865</description></item><item><title>Apple 微信公众号排版效果</title><link>https://fun2ex.com/posts/apple-ipad-for-wechat-article/</link><pubDate>Wed, 25 Mar 2020 10:39:31 +0800</pubDate><guid>https://fun2ex.com/posts/apple-ipad-for-wechat-article/</guid><description>&lt;p>近期到处都可以看到这个被刷屏的微信公众号案例。&lt;/p>
+&lt;p>&lt;a href="https://mp.weixin.qq.com/s/ZYfIqwPNbHVepSyJsLFk-w">https://mp.weixin.qq.com/s/ZYfIqwPNbHVepSyJsLFk-w&lt;/a>&lt;/p>
+&lt;p>我们就来聊一聊怎么实现的，说起来也不复杂，主要就是利用 SVG 的动画效果 + 创意达到了这么酷炫的效果。&lt;/p>
+&lt;p>涉及到也只有两个动画元素 &lt;code>opacity&lt;/code> 和 &lt;code>height&lt;/code> 的变化。&lt;/p>
+&lt;p>微信图文内容本质上也是一段 HTML 代码，先看一个 demo&lt;/p>
+&lt;p>这是一篇正常的图片，只不过是全图片排版的。&lt;/p></description></item><item><title> 面试题一道</title><link>https://fun2ex.com/posts/change_json_underline_to_camp/</link><pubDate>Fri, 15 Nov 2019 10:39:11 +0800</pubDate><guid>https://fun2ex.com/posts/change_json_underline_to_camp/</guid><description>这是碰到的一道面试题，记录一下。
+问题是：如何 json 数据的所有 key 从下划线改为驼峰
+下面是答题过程中的实现方法：
+const testData = { a_bbb: 123, a_g: [1, 2, 3, 4], a_d: { s: 2, s_d: 3 }, a_f: [1, 2, 3, { a_g: 5 }], a_d_s: 1 } /** * _w 的形式转成 W */ function toCame(str) { return str.replace(/\_(\w)/g, function(a, b) { return b.toUpperCase(); }); } /** * 将一个json数据的所有key从下划线改为驼峰 * * @param {object | array} value 待处理对象或数组 * @returns {object | array} 处理后的对象或数组 */ function mapKeysToCamelCase(data) { if(data instanceof Array) { data.</description></item><item><title>SFTPGo 安装配置指南</title><link>https://fun2ex.com/posts/sftpgo-setting-and-install-guide/</link><pubDate>Mon, 19 Aug 2019 10:38:55 +0800</pubDate><guid>https://fun2ex.com/posts/sftpgo-setting-and-install-guide/</guid><description>&lt;blockquote>
+&lt;p>&lt;a href="https://github.com/drakkan/sftpgo">SFTPGo&lt;/a>
+Full featured and highly configurable SFTP server software
+一个全功能和高度可配置的SFTP服务器软件&lt;/p>
+&lt;/blockquote>
+&lt;p>这是 Github 上作者对这个软件的介绍，适用下来也名副其实，符合我的需求。但是因为官网上安装引导文档比较含糊，就记录一下自己折腾的过程。&lt;/p>
+&lt;p>以下的操作过程均基于一个全新安装的 &lt;a href="http://releases.ubuntu.com/18.04/">Ubuntu 18.04.2 LTS (Bionic Beaver)&lt;/a> 操作系统，按道理 Debian 适用。&lt;/p>
+&lt;p>因为我自己只想配置一个独立的 SFTP 服务器，利用 SFTPGo 来协助管理账号，所以没有适用 MySQL / PostreSQL 之类的数据库，而选用了 SQLite 3.x.&lt;/p>
+&lt;p>&lt;del>版本：0.9.0&lt;/del>
+版本：0.9.4-dev&lt;/p>
+&lt;h2 id="安装">安装&lt;/h2>
+&lt;h3 id="sftpgo-需要的系统环境">SFTPGo 需要的系统环境&lt;/h3>
+&lt;ol>
+&lt;li>需要 Go 1.12 版本以上&lt;/li>
+&lt;li>需要一个数据库 ( MySQL / PostreSQL / SQLite )&lt;/li>
+&lt;li>如果需要运行 cli 测试脚本，还需要 Python 环境和 Request 库。&lt;/li>
+&lt;li>Git 命令&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ sudo add-apt-repository ppa:longsleep/golang-backports
+$ sudo apt update
+$ sudo apt install golang-go sqlite3 python3 python3-pip git
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="sftpgo-安装">SFTPGo 安装&lt;/h3>
+&lt;p>很简单，只需要执行以下命令：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ go get -u github.com/drakkan/sftpgo
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后在你的 &lt;code>$GOPATH/bin/&lt;/code> 下找到 &lt;code>sftpgo&lt;/code> 命令，如果你不知道你的 &lt;code>$GOPATH&lt;/code> 目录，请执行 &lt;code>go env&lt;/code> 查看你的环境变量。&lt;/p>
+&lt;p>这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。&lt;/p></description></item><item><title>Caddy 安装配置指南(LCMP)</title><link>https://fun2ex.com/posts/caddy-install-and-setting-guide/</link><pubDate>Tue, 23 Jul 2019 10:38:29 +0800</pubDate><guid>https://fun2ex.com/posts/caddy-install-and-setting-guide/</guid><description>&lt;h2 id="0-什么是-caddy">0. 什么是 Caddy&lt;/h2>
+&lt;blockquote>
+&lt;p>Caddy 服务器是一个开源的，使用 Golang 编写，支持 HTTP/2 的 Web 服务端。它使用 Golang 标准库提供 HTTP 功能。 Caddy 一个显著的特性是默认启用HTTPS。它是第一个无需额外配置即可提供 HTTPS 特性的Web 服务器。&lt;/p>
+&lt;/blockquote>
+&lt;p>以下是基于 Ubuntu 18.04 的安装说明：&lt;/p>
+&lt;h2 id="1-安装">1. 安装&lt;/h2>
+&lt;p>你可以直接从 &lt;a href="https://caddyserver.com/download">Download Caddy&lt;/a> 这里下载，选择好的你平台和插件就可以直接下载运行了。&lt;/p>
+&lt;p>当然，我比较推崇第二种方式，就是使用 &lt;a href="https://getcaddy.com/">https://getcaddy.com/&lt;/a> 的脚本安装。
+官方不推进使用 &lt;code>root&lt;/code> 权限来安装运行 caddy，所以我们直接使用普通用户权限执行以下命令即可。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ curl https://getcaddy.com | bash -s personal
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>How to fixed VS-code iView x-invalid-end-tag error</title><link>https://fun2ex.com/posts/how-to-fixed-vscode-iview-x-invalid-end-tag-error/</link><pubDate>Sat, 22 Jun 2019 18:09:38 +0800</pubDate><guid>https://fun2ex.com/posts/how-to-fixed-vscode-iview-x-invalid-end-tag-error/</guid><description>&lt;p>晚上在快乐的写代码的时候，突然碰到一个 eslint 检查器的错误：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-html" data-lang="html">&lt;span style="color:#75715e">&amp;lt;!-- 这样一段代码 --&amp;gt;&lt;/span>
+&amp;lt;&lt;span style="color:#f92672">Col&lt;/span>&amp;gt;
+&amp;lt;&lt;span style="color:#f92672">Button&lt;/span>&amp;gt;test&amp;lt;/&lt;span style="color:#f92672">Button&lt;/span>&amp;gt;
+&amp;lt;/&lt;span style="color:#f92672">Col&lt;/span>&amp;gt;
+&lt;span style="color:#75715e">&amp;lt;!-- 报了一个这样的错误 --&amp;gt;&lt;/span>
+`Parsing error: x-invalid-end-tag vue/no-parsing-error`
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>一路翻阅了 &lt;a href="https://github.com/vuejs/eslint-plugin-vue/blob/master/docs/rules/no-parsing-error.md">Eslint-Plugin-Vue&lt;/a> 和 &lt;a href="https://github.com/vuejs/vetur/blob/master/docs/linting-error.md#linting-for-template">Vetur&lt;/a> 的文档，终于找到了一段说明：&lt;/p>
+&lt;p>&lt;img loading="lazy" src="https://fun2ex.com/usr/uploads/2019/06/1297877056.png" alt="12FEB04B-3756-41EC-9589-0BC3D348F508.png" />
+&lt;/p></description></item><item><title>Caddy 泛域名配置指南</title><link>https://fun2ex.com/posts/caddy-automatic-https-by-dns/</link><pubDate>Sat, 29 Sep 2018 12:48:38 +0800</pubDate><guid>https://fun2ex.com/posts/caddy-automatic-https-by-dns/</guid><description>从 Automatic HTTPS - Caddy 文档得知，Caddy 是支持配置 *.fun2ex.com这样的泛域名格式的。
+直接参考文档的配置，/etc/caddy/Caddyfile 初始配置如下:
+*.fun2ex.com { tls { dns dnspod } root /var/www/html } 我自己用的是 DNSPOD，具体的支持 DNS 服务商可以直接从文档查看。 接下来要设置 DNSPOD Auth Api 的环境变量，具体环境变量值可以从 Automatic HTTPS - Caddy 找到。
+因为我用的是 systemd 来管理 caddy 进程，所以直接编辑 caddy 的 service 文件就行：
+sudo vim /etc/systemd/system/caddy.service 找到 Environment= 这一行，加上环境变量的值，如要添加多个，使用空格分割：
+; Letsencrypt-issued certificates will be written to this directory. Environment=CADDYPATH=/etc/ssl/caddy DNSPOD_API_KEY=&amp;#39;$id,$hash_key&amp;#39; 让我们重启试试：
+sudo systemctl restart caddy sudo systemctl status caddy 未完待续…</description></item></channel></rss>

@@ -1,0 +1,367 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>SFTPGo 安装配置指南 | 跨出界</title>
+<meta name=keywords content="guide,linux,sftp">
+<meta name=description content="
+SFTPGo
+Full featured and highly configurable SFTP server software
+一个全功能和高度可配置的SFTP服务器软件
+
+这是 Github 上作者对这个软件的介绍，适用下来也名副其实，符合我的需求。但是因为官网上安装引导文档比较含糊，就记录一下自己折腾的过程。
+以下的操作过程均基于一个全新安装的 Ubuntu 18.04.2 LTS (Bionic Beaver) 操作系统，按道理 Debian 适用。
+因为我自己只想配置一个独立的 SFTP 服务器，利用 SFTPGo 来协助管理账号，所以没有适用 MySQL / PostreSQL 之类的数据库，而选用了 SQLite 3.x.
+版本：0.9.0
+版本：0.9.4-dev
+安装
+SFTPGo 需要的系统环境
+
+需要 Go 1.12 版本以上
+需要一个数据库 ( MySQL / PostreSQL / SQLite )
+如果需要运行 cli 测试脚本，还需要 Python 环境和 Request 库。
+Git 命令
+
+$ sudo add-apt-repository ppa:longsleep/golang-backports
+$ sudo apt update
+$ sudo apt install golang-go sqlite3 python3 python3-pip git
+SFTPGo 安装
+很简单，只需要执行以下命令：
+$ go get -u github.com/drakkan/sftpgo
+然后在你的 $GOPATH/bin/ 下找到 sftpgo 命令，如果你不知道你的 $GOPATH 目录，请执行 go env 查看你的环境变量。
+这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。">
+<meta name=author content>
+<link rel=canonical href=https://fun2ex.com/posts/sftpgo-setting-and-install-guide/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.be665b8c60300019b726f04957b895cb023e3957c11488b1b165f917de5cda62.css integrity="sha256-vmZbjGAwABm3JvBJV7iVywI+OVfBFIixsWX5F95c2mI=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://fun2ex.com/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://fun2ex.com/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://fun2ex.com/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://fun2ex.com/apple-touch-icon.png>
+<link rel=mask-icon href=https://fun2ex.com/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript><meta property="og:title" content="SFTPGo 安装配置指南">
+<meta property="og:description" content="
+SFTPGo
+Full featured and highly configurable SFTP server software
+一个全功能和高度可配置的SFTP服务器软件
+
+这是 Github 上作者对这个软件的介绍，适用下来也名副其实，符合我的需求。但是因为官网上安装引导文档比较含糊，就记录一下自己折腾的过程。
+以下的操作过程均基于一个全新安装的 Ubuntu 18.04.2 LTS (Bionic Beaver) 操作系统，按道理 Debian 适用。
+因为我自己只想配置一个独立的 SFTP 服务器，利用 SFTPGo 来协助管理账号，所以没有适用 MySQL / PostreSQL 之类的数据库，而选用了 SQLite 3.x.
+版本：0.9.0
+版本：0.9.4-dev
+安装
+SFTPGo 需要的系统环境
+
+需要 Go 1.12 版本以上
+需要一个数据库 ( MySQL / PostreSQL / SQLite )
+如果需要运行 cli 测试脚本，还需要 Python 环境和 Request 库。
+Git 命令
+
+$ sudo add-apt-repository ppa:longsleep/golang-backports
+$ sudo apt update
+$ sudo apt install golang-go sqlite3 python3 python3-pip git
+SFTPGo 安装
+很简单，只需要执行以下命令：
+$ go get -u github.com/drakkan/sftpgo
+然后在你的 $GOPATH/bin/ 下找到 sftpgo 命令，如果你不知道你的 $GOPATH 目录，请执行 go env 查看你的环境变量。
+这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://fun2ex.com/posts/sftpgo-setting-and-install-guide/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2019-08-19T10:38:55+08:00">
+<meta property="article:modified_time" content="2019-08-19T10:38:55+08:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="SFTPGo 安装配置指南">
+<meta name=twitter:description content="
+SFTPGo
+Full featured and highly configurable SFTP server software
+一个全功能和高度可配置的SFTP服务器软件
+
+这是 Github 上作者对这个软件的介绍，适用下来也名副其实，符合我的需求。但是因为官网上安装引导文档比较含糊，就记录一下自己折腾的过程。
+以下的操作过程均基于一个全新安装的 Ubuntu 18.04.2 LTS (Bionic Beaver) 操作系统，按道理 Debian 适用。
+因为我自己只想配置一个独立的 SFTP 服务器，利用 SFTPGo 来协助管理账号，所以没有适用 MySQL / PostreSQL 之类的数据库，而选用了 SQLite 3.x.
+版本：0.9.0
+版本：0.9.4-dev
+安装
+SFTPGo 需要的系统环境
+
+需要 Go 1.12 版本以上
+需要一个数据库 ( MySQL / PostreSQL / SQLite )
+如果需要运行 cli 测试脚本，还需要 Python 环境和 Request 库。
+Git 命令
+
+$ sudo add-apt-repository ppa:longsleep/golang-backports
+$ sudo apt update
+$ sudo apt install golang-go sqlite3 python3 python3-pip git
+SFTPGo 安装
+很简单，只需要执行以下命令：
+$ go get -u github.com/drakkan/sftpgo
+然后在你的 $GOPATH/bin/ 下找到 sftpgo 命令，如果你不知道你的 $GOPATH 目录，请执行 go env 查看你的环境变量。
+这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://fun2ex.com/posts/"},{"@type":"ListItem","position":3,"name":"SFTPGo 安装配置指南","item":"https://fun2ex.com/posts/sftpgo-setting-and-install-guide/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"SFTPGo 安装配置指南","name":"SFTPGo 安装配置指南","description":" SFTPGo Full featured and highly configurable SFTP server software 一个全功能和高度可配置的SFTP服务器软件\n 这是 Github 上作者对这个软件的介绍，适用下来也名副其实，符合我的需求。但是因为官网上安装引导文档比较含糊，就记录一下自己折腾的过程。\n以下的操作过程均基于一个全新安装的 Ubuntu 18.04.2 LTS (Bionic Beaver) 操作系统，按道理 Debian 适用。\n因为我自己只想配置一个独立的 SFTP 服务器，利用 SFTPGo 来协助管理账号，所以没有适用 MySQL / PostreSQL 之类的数据库，而选用了 SQLite 3.x.\n版本：0.9.0 版本：0.9.4-dev\n安装 SFTPGo 需要的系统环境  需要 Go 1.12 版本以上 需要一个数据库 ( MySQL / PostreSQL / SQLite ) 如果需要运行 cli 测试脚本，还需要 Python 环境和 Request 库。 Git 命令  $ sudo add-apt-repository ppa:longsleep/golang-backports $ sudo apt update $ sudo apt install golang-go sqlite3 python3 python3-pip git SFTPGo 安装 很简单，只需要执行以下命令：\n$ go get -u github.com/drakkan/sftpgo 然后在你的 $GOPATH/bin/ 下找到 sftpgo 命令，如果你不知道你的 $GOPATH 目录，请执行 go env 查看你的环境变量。\n这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。\n","keywords":["guide","linux","sftp"],"articleBody":" SFTPGo Full featured and highly configurable SFTP server software 一个全功能和高度可配置的SFTP服务器软件\n 这是 Github 上作者对这个软件的介绍，适用下来也名副其实，符合我的需求。但是因为官网上安装引导文档比较含糊，就记录一下自己折腾的过程。\n以下的操作过程均基于一个全新安装的 Ubuntu 18.04.2 LTS (Bionic Beaver) 操作系统，按道理 Debian 适用。\n因为我自己只想配置一个独立的 SFTP 服务器，利用 SFTPGo 来协助管理账号，所以没有适用 MySQL / PostreSQL 之类的数据库，而选用了 SQLite 3.x.\n版本：0.9.0 版本：0.9.4-dev\n安装 SFTPGo 需要的系统环境  需要 Go 1.12 版本以上 需要一个数据库 ( MySQL / PostreSQL / SQLite ) 如果需要运行 cli 测试脚本，还需要 Python 环境和 Request 库。 Git 命令  $ sudo add-apt-repository ppa:longsleep/golang-backports $ sudo apt update $ sudo apt install golang-go sqlite3 python3 python3-pip git SFTPGo 安装 很简单，只需要执行以下命令：\n$ go get -u github.com/drakkan/sftpgo 然后在你的 $GOPATH/bin/ 下找到 sftpgo 命令，如果你不知道你的 $GOPATH 目录，请执行 go env 查看你的环境变量。\n这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。\nPS：在国内的话，可能会遇到网络不通的情况，我的办法是找一个外部的机器，安装完成后把 ~/go 目录完整打包回来覆盖。\nSFTPGo 服务配置 配置文件 软链接或者移动 $GOPATH/bin/sftpgo 到 /usr/bin/ 目录，使得系统能够找到 sftpgo 命令，下面是软链的方式：\n$ sudo ln -s $GOPATH/bin/sftpgo /usr/bin/sftpgo 接着，创建配置文件夹和添加 SFTPGo 的配置：\n$ sudo mkdir -p /etc/sftpgo \u0026\u0026 cd /etc/sftpgo $ sudo wget https://raw.githubusercontent.com/drakkan/sftpgo/master/sftpgo.conf 附：sftpgo.conf 文件配置内容\n{ \"sftpd\": { \"bind_port\": 2022, \"bind_address\": \"\", \"idle_timeout\": 15, \"max_auth_tries\": 0, \"umask\": \"0022\", \"banner\": \"\", \"upload_mode\": 0, \"actions\": { \"execute_on\": [], \"command\": \"\", \"http_notification_url\": \"\" }, \"keys\": [], \"enable_scp\": false, \"kex_algorithms\": [], \"ciphers\": [], \"macs\": [], \"login_banner_file\": \"\", \"setstat_mode\": 0, \"enabled_ssh_commands\": [\"md5sum\", \"sha1sum\", \"cd\", \"pwd\"] }, \"data_provider\": { \"driver\": \"sqlite\", // 你的 sqlite 数据库路径  \"name\": \"/etc/sftpgo/sftpgo.db\", \"host\": \"\", \"port\": 5432, \"username\": \"\", \"password\": \"\", \"sslmode\": 0, \"connection_string\": \"\", \"users_table\": \"users\", \"manage_users\": 1, \"track_quota\": 2, \"pool_size\": 0, \"users_base_dir\": \"\", \"actions\": { \"execute_on\": [], \"command\": \"\", \"http_notification_url\": \"\" }, \"external_auth_program\": \"\", \"external_auth_scope\": 0 }, \"httpd\": { \"bind_port\": 8080, \"bind_address\": \"127.0.0.1\", // 以下三个配置是 0.9.4 版本新增，提供 web 控制面板  \"templates_path\": \"/var/www/sftpgo/templates\", \"static_files_path\": \"/var/www/sftpgo/static\", \"backups_path\": \"/var/www/sftpgo/backups\" } } web 控制面板配置 cd ~ git clone git@github.com:drakkan/sftpgo.git mkdir -p /var/www/sftpgo cp ~/sftpgo/templates /var/www/sftpgo/ cp ~/sftpgo/static /var/www/sftpgo/ cp ~/sftpgo/backups /var/www/sftpgo/ 数据库 添加数据库文件，可以放在任何地方，我为了方便演示，就一同放在了 /etc/sftpgo 目录下面。\n$ cd /etc/sftpgo $ sudo wget https://raw.githubusercontent.com/drakkan/sftpgo/master/sql/sqlite/20190706.sql $ sudo wget https://raw.githubusercontent.com/drakkan/sftpgo/master/sql/sqlite/20190728.sql $ sudo wget https://raw.githubusercontent.com/drakkan/sftpgo/master/sql/sqlite/20191230.sql $ sudo sqlite3 sftpgo.db .exit $ sudo sqlite3 sftpgo.db .exit $ sudo sqlite3 sftpgo.db .exit 如果是全新安装的话，直接执行下面的操作就行：\n$ cd /etc/sftpgo $ sudo rm sftpgo.db $ sudo sqlite3 sftpgo.db sqlite CREATE TABLE \"users\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"filters\" text NULL, \"username\" varchar(255) NOT NULL UNIQUE, \"password\" varchar(255) NULL, \"public_keys\" text NULL, \"home_dir\" varchar(255) NOT NULL, \"uid\" integer NOT NULL, \"gid\" integer NOT NULL, \"max_sessions\" integer NOT NULL, \"quota_size\" bigint NOT NULL, \"quota_files\" integer NOT NULL, \"permissions\" text NOT NULL, \"used_quota_size\" bigint NOT NULL, \"used_quota_files\" integer NOT NULL, \"last_quota_update\" bigint NOT NULL, \"upload_bandwidth\" integer NOT NULL, \"download_bandwidth\" integer NOT NULL, \"expiration_date\" bigint NOT NULL, \"last_login\" bigint NOT NULL, \"status\" integer NOT NULL); sqlite .table users sqlite 这样数据库就算完成了。 注：关于 SQLite 的操作说明请查看：SQLite 教程 | 菜鸟教程\n配置 SFTPGo 的 Systemd 服务 $ cd /etc/systemd/system $ sudo wget https://raw.githubusercontent.com/drakkan/sftpgo/master/init/sftpgo.service $ sudo systemctl daemon-reload $ sudo systemctl enable sftpgo.service $ sudo systemctl start sftpgo.service $ sudo systemctl status sftpgo.service 你就可以看到 sftpgo.service  的运行状态了。\n附 sftpgo.service 内容：\n[Unit] Description=SFTPGo sftp server After=network.target [Service] User=root Group=root Type=simple WorkingDirectory=/etc/sftpgo Environment=SFTPGO_CONFIG_DIR=/etc/sftpgo/ Environment=SFTPGO_LOG_FILE_PATH= EnvironmentFile=-/etc/sftpgo/sftpgo.env ExecStart=/usr/bin/sftpgo serve KillMode=mixed Restart=always RestartSec=10s [Install] WantedBy=multi-user.target 到这里，我们的 SFTPGo 软件就已经运行起来了，并且开启了一个 127.0.0.1:8080 的服务，我们可以通过它提供的 REST API 来进行 SFTP 的用户管理工作。\n注：因为安全的原因，这个服务只允许内网访问，如果想开放到外网，请自行搭建 Nginx / Caddy 等工具代理一下就行。\nSFTPGo REST API 官方没有提供操作面板，只提供了一件简单的基于 Python 的 Cli 工具，相关说明可以看这里：sftpgo_api_cli\n这里就简单演示一下：\n$ cd ~ $ sudo mkdir -p /data/sftp/ $ wget https://github.com/drakkan/sftpgo/raw/master/scripts/sftpgo_api_cli.py $ pip3 install requests $ python3 sftpgo_api_cli.py add_user test_username --password \"test_pwd\" --home_dir=\"/data/sftp/test_username\" --uid 33 --gid 1000 --max_sessions 2 --quota_size 0 --quota_files 0 --permissions * --upload_bandwidth 100 --download_bandwidth 60 $ python3 sftpgo_api_cli.py get_users 这样就简单创建了一个 test_username  ，并且把目录限制在 /data/sftp/test_username 下面。\n新版本中官方已经提供了简单的操作面板：\n本机直接访问：http://127.0.0.1:8080，可以直接在 web 界面进行用户创建删除状态查看等操作。\n可以用 SFTP 客户端 FileZilla 测试一下，是否可以正常连接和上传。\n—EOF—\n其他文档与相关配置说明：\n SFTPGo REST API CLI client ","wordCount":"558","inLanguage":"en","datePublished":"2019-08-19T10:38:55+08:00","dateModified":"2019-08-19T10:38:55+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/sftpgo-setting-and-install-guide/"},"publisher":{"@type":"Organization","name":"跨出界","logo":{"@type":"ImageObject","url":"https://fun2ex.com/favicon.ico"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://fun2ex.com accesskey=h title="跨出界 (Alt + H)">跨出界</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://fun2ex.com/archives/ title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/game/ title=Game>
+<span>Game</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/diving/ title=Diving>
+<span>Diving</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/music/ title=Music>
+<span>Music</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://fun2ex.com>Home</a>&nbsp;»&nbsp;<a href=https://fun2ex.com/posts/>Posts</a></div>
+<h1 class=post-title>
+SFTPGo 安装配置指南
+</h1>
+<div class=post-meta><span title="2019-08-19 10:38:55 +0800 +0800">August 19, 2019</span>
+</div>
+</header>
+<div class=post-content><blockquote>
+<p><a href=https://github.com/drakkan/sftpgo>SFTPGo</a>
+Full featured and highly configurable SFTP server software
+一个全功能和高度可配置的SFTP服务器软件</p>
+</blockquote>
+<p>这是 Github 上作者对这个软件的介绍，适用下来也名副其实，符合我的需求。但是因为官网上安装引导文档比较含糊，就记录一下自己折腾的过程。</p>
+<p>以下的操作过程均基于一个全新安装的 <a href=http://releases.ubuntu.com/18.04/>Ubuntu 18.04.2 LTS (Bionic Beaver)</a> 操作系统，按道理 Debian 适用。</p>
+<p>因为我自己只想配置一个独立的 SFTP 服务器，利用 SFTPGo 来协助管理账号，所以没有适用 MySQL / PostreSQL 之类的数据库，而选用了 SQLite 3.x.</p>
+<p><del>版本：0.9.0</del>
+版本：0.9.4-dev</p>
+<h2 id=安装>安装<a hidden class=anchor aria-hidden=true href=#安装>#</a></h2>
+<h3 id=sftpgo-需要的系统环境>SFTPGo 需要的系统环境<a hidden class=anchor aria-hidden=true href=#sftpgo-需要的系统环境>#</a></h3>
+<ol>
+<li>需要 Go 1.12 版本以上</li>
+<li>需要一个数据库 ( MySQL / PostreSQL / SQLite )</li>
+<li>如果需要运行 cli 测试脚本，还需要 Python 环境和 Request 库。</li>
+<li>Git 命令</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>$ sudo add-apt-repository ppa:longsleep/golang-backports
+$ sudo apt update
+$ sudo apt install golang-go sqlite3 python3 python3-pip git
+</code></pre></div><h3 id=sftpgo-安装>SFTPGo 安装<a hidden class=anchor aria-hidden=true href=#sftpgo-安装>#</a></h3>
+<p>很简单，只需要执行以下命令：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>$ go get -u github.com/drakkan/sftpgo
+</code></pre></div><p>然后在你的 <code>$GOPATH/bin/</code> 下找到 <code>sftpgo</code> 命令，如果你不知道你的 <code>$GOPATH</code> 目录，请执行 <code>go env</code> 查看你的环境变量。</p>
+<p>这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。</p>
+<p>PS：在国内的话，可能会遇到网络不通的情况，我的办法是找一个外部的机器，安装完成后把 <code>~/go</code> 目录完整打包回来覆盖。</p>
+<h3 id=sftpgo-服务配置>SFTPGo 服务配置<a hidden class=anchor aria-hidden=true href=#sftpgo-服务配置>#</a></h3>
+<h4 id=配置文件>配置文件<a hidden class=anchor aria-hidden=true href=#配置文件>#</a></h4>
+<p>软链接或者移动 <code>$GOPATH/bin/sftpgo</code> 到 <code>/usr/bin/</code> 目录，使得系统能够找到 <code>sftpgo</code> 命令，下面是软链的方式：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>$ sudo ln -s $GOPATH/bin/sftpgo /usr/bin/sftpgo
+</code></pre></div><p>接着，创建配置文件夹和添加 SFTPGo 的配置：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>$ sudo mkdir -p /etc/sftpgo <span style=color:#f92672>&amp;&amp;</span> cd /etc/sftpgo
+$ sudo wget https://raw.githubusercontent.com/drakkan/sftpgo/master/sftpgo.conf
+</code></pre></div><p>附：<code>sftpgo.conf</code> 文件配置内容</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;sftpd&#34;</span>: {
+    <span style=color:#f92672>&#34;bind_port&#34;</span>: <span style=color:#ae81ff>2022</span>,
+    <span style=color:#f92672>&#34;bind_address&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+    <span style=color:#f92672>&#34;idle_timeout&#34;</span>: <span style=color:#ae81ff>15</span>,
+    <span style=color:#f92672>&#34;max_auth_tries&#34;</span>: <span style=color:#ae81ff>0</span>,
+    <span style=color:#f92672>&#34;umask&#34;</span>: <span style=color:#e6db74>&#34;0022&#34;</span>,
+    <span style=color:#f92672>&#34;banner&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+    <span style=color:#f92672>&#34;upload_mode&#34;</span>: <span style=color:#ae81ff>0</span>,
+    <span style=color:#f92672>&#34;actions&#34;</span>: {
+      <span style=color:#f92672>&#34;execute_on&#34;</span>: [],
+      <span style=color:#f92672>&#34;command&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+      <span style=color:#f92672>&#34;http_notification_url&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    },
+    <span style=color:#f92672>&#34;keys&#34;</span>: [],
+    <span style=color:#f92672>&#34;enable_scp&#34;</span>: <span style=color:#66d9ef>false</span>,
+    <span style=color:#f92672>&#34;kex_algorithms&#34;</span>: [],
+    <span style=color:#f92672>&#34;ciphers&#34;</span>: [],
+    <span style=color:#f92672>&#34;macs&#34;</span>: [],
+    <span style=color:#f92672>&#34;login_banner_file&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+    <span style=color:#f92672>&#34;setstat_mode&#34;</span>: <span style=color:#ae81ff>0</span>,
+    <span style=color:#f92672>&#34;enabled_ssh_commands&#34;</span>: [<span style=color:#e6db74>&#34;md5sum&#34;</span>, <span style=color:#e6db74>&#34;sha1sum&#34;</span>, <span style=color:#e6db74>&#34;cd&#34;</span>, <span style=color:#e6db74>&#34;pwd&#34;</span>]
+  },
+  <span style=color:#f92672>&#34;data_provider&#34;</span>: {
+    <span style=color:#f92672>&#34;driver&#34;</span>: <span style=color:#e6db74>&#34;sqlite&#34;</span>,
+    <span style=color:#75715e>// 你的 sqlite 数据库路径
+</span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;/etc/sftpgo/sftpgo.db&#34;</span>,
+    <span style=color:#f92672>&#34;host&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+    <span style=color:#f92672>&#34;port&#34;</span>: <span style=color:#ae81ff>5432</span>,
+    <span style=color:#f92672>&#34;username&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+    <span style=color:#f92672>&#34;password&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+    <span style=color:#f92672>&#34;sslmode&#34;</span>: <span style=color:#ae81ff>0</span>,
+    <span style=color:#f92672>&#34;connection_string&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+    <span style=color:#f92672>&#34;users_table&#34;</span>: <span style=color:#e6db74>&#34;users&#34;</span>,
+    <span style=color:#f92672>&#34;manage_users&#34;</span>: <span style=color:#ae81ff>1</span>,
+    <span style=color:#f92672>&#34;track_quota&#34;</span>: <span style=color:#ae81ff>2</span>,
+    <span style=color:#f92672>&#34;pool_size&#34;</span>: <span style=color:#ae81ff>0</span>,
+    <span style=color:#f92672>&#34;users_base_dir&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+    <span style=color:#f92672>&#34;actions&#34;</span>: {
+      <span style=color:#f92672>&#34;execute_on&#34;</span>: [],
+      <span style=color:#f92672>&#34;command&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+      <span style=color:#f92672>&#34;http_notification_url&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>
+    },
+    <span style=color:#f92672>&#34;external_auth_program&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+    <span style=color:#f92672>&#34;external_auth_scope&#34;</span>: <span style=color:#ae81ff>0</span>
+  },
+  <span style=color:#f92672>&#34;httpd&#34;</span>: {
+    <span style=color:#f92672>&#34;bind_port&#34;</span>: <span style=color:#ae81ff>8080</span>,
+    <span style=color:#f92672>&#34;bind_address&#34;</span>: <span style=color:#e6db74>&#34;127.0.0.1&#34;</span>,
+    <span style=color:#75715e>// 以下三个配置是 0.9.4 版本新增，提供 web 控制面板
+</span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;templates_path&#34;</span>: <span style=color:#e6db74>&#34;/var/www/sftpgo/templates&#34;</span>,
+    <span style=color:#f92672>&#34;static_files_path&#34;</span>: <span style=color:#e6db74>&#34;/var/www/sftpgo/static&#34;</span>,
+    <span style=color:#f92672>&#34;backups_path&#34;</span>: <span style=color:#e6db74>&#34;/var/www/sftpgo/backups&#34;</span>
+  }
+}
+</code></pre></div><h4 id=web-控制面板配置>web 控制面板配置<a hidden class=anchor aria-hidden=true href=#web-控制面板配置>#</a></h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>cd ~
+git clone git@github.com:drakkan/sftpgo.git
+mkdir -p /var/www/sftpgo
+cp ~/sftpgo/templates /var/www/sftpgo/
+cp ~/sftpgo/static /var/www/sftpgo/
+cp ~/sftpgo/backups /var/www/sftpgo/
+</code></pre></div><h4 id=数据库>数据库<a hidden class=anchor aria-hidden=true href=#数据库>#</a></h4>
+<p>添加数据库文件，可以放在任何地方，我为了方便演示，就一同放在了 <code>/etc/sftpgo</code> 目录下面。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>$ cd /etc/sftpgo
+$ sudo wget https://raw.githubusercontent.com/drakkan/sftpgo/master/sql/sqlite/20190706.sql
+$ sudo wget https://raw.githubusercontent.com/drakkan/sftpgo/master/sql/sqlite/20190728.sql
+$ sudo wget https://raw.githubusercontent.com/drakkan/sftpgo/master/sql/sqlite/20191230.sql
+$ sudo sqlite3 sftpgo.db &lt; 20190706.sql
+sqlite&gt; .exit
+$ sudo sqlite3 sftpgo.db &lt; 20190728.sql
+sqlite&gt; .exit
+$ sudo sqlite3 sftpgo.db &lt; 20191230.sql
+sqlite&gt; .exit
+</code></pre></div><p>如果是全新安装的话，直接执行下面的操作就行：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>$ cd /etc/sftpgo
+$ sudo rm sftpgo.db
+$ sudo sqlite3 sftpgo.db
+sqlite&gt; CREATE TABLE <span style=color:#e6db74>&#34;users&#34;</span> <span style=color:#f92672>(</span><span style=color:#e6db74>&#34;id&#34;</span> integer NOT NULL PRIMARY KEY AUTOINCREMENT, <span style=color:#e6db74>&#34;filters&#34;</span> text NULL, <span style=color:#e6db74>&#34;username&#34;</span> varchar<span style=color:#f92672>(</span>255<span style=color:#f92672>)</span> NOT NULL UNIQUE, <span style=color:#e6db74>&#34;password&#34;</span> varchar<span style=color:#f92672>(</span>255<span style=color:#f92672>)</span> NULL, <span style=color:#e6db74>&#34;public_keys&#34;</span> text NULL, <span style=color:#e6db74>&#34;home_dir&#34;</span> varchar<span style=color:#f92672>(</span>255<span style=color:#f92672>)</span> NOT NULL, <span style=color:#e6db74>&#34;uid&#34;</span> integer NOT NULL, <span style=color:#e6db74>&#34;gid&#34;</span> integer NOT NULL, <span style=color:#e6db74>&#34;max_sessions&#34;</span> integer NOT NULL, <span style=color:#e6db74>&#34;quota_size&#34;</span> bigint NOT NULL, <span style=color:#e6db74>&#34;quota_files&#34;</span> integer NOT NULL, <span style=color:#e6db74>&#34;permissions&#34;</span> text NOT NULL, <span style=color:#e6db74>&#34;used_quota_size&#34;</span> bigint NOT NULL, <span style=color:#e6db74>&#34;used_quota_files&#34;</span> integer NOT NULL, <span style=color:#e6db74>&#34;last_quota_update&#34;</span> bigint NOT NULL, <span style=color:#e6db74>&#34;upload_bandwidth&#34;</span> integer NOT NULL, <span style=color:#e6db74>&#34;download_bandwidth&#34;</span> integer NOT NULL, <span style=color:#e6db74>&#34;expiration_date&#34;</span> bigint NOT NULL, <span style=color:#e6db74>&#34;last_login&#34;</span> bigint NOT NULL, <span style=color:#e6db74>&#34;status&#34;</span> integer NOT NULL<span style=color:#f92672>)</span>;
+sqlite&gt; .table
+users
+sqlite&gt;
+</code></pre></div><p>这样数据库就算完成了。
+注：关于 SQLite 的操作说明请查看：<a href=https://www.runoob.com/sqlite/sqlite-tutorial.html>SQLite 教程 | 菜鸟教程</a></p>
+<h4 id=配置-sftpgo-的-systemd-服务>配置 SFTPGo 的 Systemd 服务<a hidden class=anchor aria-hidden=true href=#配置-sftpgo-的-systemd-服务>#</a></h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>$ cd /etc/systemd/system
+$ sudo wget https://raw.githubusercontent.com/drakkan/sftpgo/master/init/sftpgo.service
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable sftpgo.service
+$ sudo systemctl start sftpgo.service
+$ sudo systemctl status sftpgo.service
+</code></pre></div><p>你就可以看到 <code>sftpgo.service </code> 的运行状态了。</p>
+<p>附 <code>sftpgo.service</code> 内容：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#f92672>[</span>Unit<span style=color:#f92672>]</span>
+Description<span style=color:#f92672>=</span>SFTPGo sftp server
+After<span style=color:#f92672>=</span>network.target
+
+<span style=color:#f92672>[</span>Service<span style=color:#f92672>]</span>
+User<span style=color:#f92672>=</span>root
+Group<span style=color:#f92672>=</span>root
+Type<span style=color:#f92672>=</span>simple
+WorkingDirectory<span style=color:#f92672>=</span>/etc/sftpgo
+Environment<span style=color:#f92672>=</span>SFTPGO_CONFIG_DIR<span style=color:#f92672>=</span>/etc/sftpgo/
+Environment<span style=color:#f92672>=</span>SFTPGO_LOG_FILE_PATH<span style=color:#f92672>=</span>
+EnvironmentFile<span style=color:#f92672>=</span>-/etc/sftpgo/sftpgo.env
+ExecStart<span style=color:#f92672>=</span>/usr/bin/sftpgo serve
+KillMode<span style=color:#f92672>=</span>mixed
+Restart<span style=color:#f92672>=</span>always
+RestartSec<span style=color:#f92672>=</span>10s
+
+<span style=color:#f92672>[</span>Install<span style=color:#f92672>]</span>
+WantedBy<span style=color:#f92672>=</span>multi-user.target
+</code></pre></div><p>到这里，我们的 SFTPGo 软件就已经运行起来了，并且开启了一个 <code>127.0.0.1:8080</code> 的服务，我们可以通过它提供的 <em>REST API</em> 来进行 SFTP 的用户管理工作。</p>
+<p>注：因为安全的原因，这个服务只允许内网访问，如果想开放到外网，请自行搭建 Nginx / Caddy 等工具代理一下就行。</p>
+<h2 id=sftpgo-rest-api>SFTPGo REST API<a hidden class=anchor aria-hidden=true href=#sftpgo-rest-api>#</a></h2>
+<p><del>官方没有提供操作面板，只提供了一件简单的基于 Python 的 Cli 工具，相关说明可以看这里：<a href=https://github.com/drakkan/sftpgo/tree/master/scripts>sftpgo_api_cli</a></del></p>
+<p><del>这里就简单演示一下：</del></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>$ cd ~
+$ sudo mkdir -p /data/sftp/
+$ wget https://github.com/drakkan/sftpgo/raw/master/scripts/sftpgo_api_cli.py
+$ pip3 install requests
+$ python3 sftpgo_api_cli.py add_user test_username --password <span style=color:#e6db74>&#34;test_pwd&#34;</span> --home_dir<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/data/sftp/test_username&#34;</span> --uid <span style=color:#ae81ff>33</span> --gid <span style=color:#ae81ff>1000</span> --max_sessions <span style=color:#ae81ff>2</span> --quota_size <span style=color:#ae81ff>0</span> --quota_files <span style=color:#ae81ff>0</span> --permissions * --upload_bandwidth <span style=color:#ae81ff>100</span> --download_bandwidth <span style=color:#ae81ff>60</span>
+$ python3 sftpgo_api_cli.py get_users
+</code></pre></div><p><del>这样就简单创建了一个 <code>test_username </code> ，并且把目录限制在 <code>/data/sftp/test_username</code> 下面。</del></p>
+<p><strong>新版本中官方已经提供了简单的操作面板：</strong></p>
+<p>本机直接访问：http://127.0.0.1:8080，可以直接在 web 界面进行用户创建删除状态查看等操作。</p>
+<p>可以用 SFTP 客户端 <a href=https://filezilla-project.org/>FileZilla</a> 测试一下，是否可以正常连接和上传。</p>
+<p>—EOF—</p>
+<p>其他文档与相关配置说明：</p>
+<ul>
+<li><a href=https://github.com/drakkan/sftpgo/blob/master/README.md>SFTPGo</a></li>
+<li><a href=https://github.com/drakkan/sftpgo/blob/master/scripts/README.md>REST API CLI client</a></li>
+</ul>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://fun2ex.com/tags/guide/>guide</a></li>
+<li><a href=https://fun2ex.com/tags/linux/>linux</a></li>
+<li><a href=https://fun2ex.com/tags/sftp/>sftp</a></li>
+</ul>
+<nav class=paginav>
+<a class=prev href=https://fun2ex.com/posts/change_json_underline_to_camp/>
+<span class=title>« Prev Page</span>
+<br>
+<span> 面试题一道</span>
+</a>
+<a class=next href=https://fun2ex.com/posts/caddy-install-and-setting-guide/>
+<span class=title>Next Page »</span>
+<br>
+<span>Caddy 安装配置指南(LCMP)</span>
+</a>
+</nav>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2022 <a href=https://fun2ex.com>跨出界</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+<div class=beian>
+<a target=_blank href=https://beian.miit.gov.cn/>粤ICP备18115339号-1</a>
+</div>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script></body>
+</html>

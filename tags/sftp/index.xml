@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>sftp on 跨出界</title><link>https://fun2ex.com/tags/sftp/</link><description>Recent content in sftp on 跨出界</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Aug 2019 10:38:55 +0800</lastBuildDate><atom:link href="https://fun2ex.com/tags/sftp/index.xml" rel="self" type="application/rss+xml"/><item><title>SFTPGo 安装配置指南</title><link>https://fun2ex.com/posts/sftpgo-setting-and-install-guide/</link><pubDate>Mon, 19 Aug 2019 10:38:55 +0800</pubDate><guid>https://fun2ex.com/posts/sftpgo-setting-and-install-guide/</guid><description>&lt;blockquote>
+&lt;p>&lt;a href="https://github.com/drakkan/sftpgo">SFTPGo&lt;/a>
+Full featured and highly configurable SFTP server software
+一个全功能和高度可配置的SFTP服务器软件&lt;/p>
+&lt;/blockquote>
+&lt;p>这是 Github 上作者对这个软件的介绍，适用下来也名副其实，符合我的需求。但是因为官网上安装引导文档比较含糊，就记录一下自己折腾的过程。&lt;/p>
+&lt;p>以下的操作过程均基于一个全新安装的 &lt;a href="http://releases.ubuntu.com/18.04/">Ubuntu 18.04.2 LTS (Bionic Beaver)&lt;/a> 操作系统，按道理 Debian 适用。&lt;/p>
+&lt;p>因为我自己只想配置一个独立的 SFTP 服务器，利用 SFTPGo 来协助管理账号，所以没有适用 MySQL / PostreSQL 之类的数据库，而选用了 SQLite 3.x.&lt;/p>
+&lt;p>&lt;del>版本：0.9.0&lt;/del>
+版本：0.9.4-dev&lt;/p>
+&lt;h2 id="安装">安装&lt;/h2>
+&lt;h3 id="sftpgo-需要的系统环境">SFTPGo 需要的系统环境&lt;/h3>
+&lt;ol>
+&lt;li>需要 Go 1.12 版本以上&lt;/li>
+&lt;li>需要一个数据库 ( MySQL / PostreSQL / SQLite )&lt;/li>
+&lt;li>如果需要运行 cli 测试脚本，还需要 Python 环境和 Request 库。&lt;/li>
+&lt;li>Git 命令&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ sudo add-apt-repository ppa:longsleep/golang-backports
+$ sudo apt update
+$ sudo apt install golang-go sqlite3 python3 python3-pip git
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="sftpgo-安装">SFTPGo 安装&lt;/h3>
+&lt;p>很简单，只需要执行以下命令：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ go get -u github.com/drakkan/sftpgo
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后在你的 &lt;code>$GOPATH/bin/&lt;/code> 下找到 &lt;code>sftpgo&lt;/code> 命令，如果你不知道你的 &lt;code>$GOPATH&lt;/code> 目录，请执行 &lt;code>go env&lt;/code> 查看你的环境变量。&lt;/p>
+&lt;p>这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。&lt;/p></description></item></channel></rss>
