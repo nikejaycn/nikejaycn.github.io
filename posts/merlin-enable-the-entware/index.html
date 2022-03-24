@@ -10,14 +10,14 @@ Entware-ng 是一个适用于嵌入式系统的软件包库，使用 opkg 包管
 原先计划用自带的 ipkg，无奈包太古老。
 官网地址：Entware">
 <meta name=author content>
-<link rel=canonical href=/posts/merlin-enable-the-entware/>
+<link rel=canonical href=https://fun2ex.com/posts/merlin-enable-the-entware/>
 <link crossorigin=anonymous href=/assets/css/stylesheet.min.be665b8c60300019b726f04957b895cb023e3957c11488b1b165f917de5cda62.css integrity="sha256-vmZbjGAwABm3JvBJV7iVywI+OVfBFIixsWX5F95c2mI=" rel="preload stylesheet" as=style>
 <script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
-<link rel=icon href=favicon.ico>
-<link rel=icon type=image/png sizes=16x16 href=favicon-16x16.png>
-<link rel=icon type=image/png sizes=32x32 href=favicon-32x32.png>
-<link rel=apple-touch-icon href=apple-touch-icon.png>
-<link rel=mask-icon href=safari-pinned-tab.svg>
+<link rel=icon href=https://fun2ex.com/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://fun2ex.com/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://fun2ex.com/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://fun2ex.com/apple-touch-icon.png>
+<link rel=mask-icon href=https://fun2ex.com/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
 <noscript>
@@ -29,7 +29,7 @@ Entware-ng 是一个适用于嵌入式系统的软件包库，使用 opkg 包管
 原先计划用自带的 ipkg，无奈包太古老。
 官网地址：Entware">
 <meta property="og:type" content="article">
-<meta property="og:url" content="/posts/merlin-enable-the-entware/"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://fun2ex.com/posts/merlin-enable-the-entware/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2019-01-06T18:09:38+08:00">
 <meta property="article:modified_time" content="2019-01-06T18:09:38+08:00">
 <meta name=twitter:card content="summary">
@@ -38,15 +38,15 @@ Entware-ng 是一个适用于嵌入式系统的软件包库，使用 opkg 包管
 Entware-ng 是一个适用于嵌入式系统的软件包库，使用 opkg 包管理系统进行管理，现在在官方的源上已经有超过 2000 个软件包了。
 原先计划用自带的 ipkg，无奈包太古老。
 官网地址：Entware">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"/posts/"},{"@type":"ListItem","position":3,"name":"梅林（Merlin）开启 Entware","item":"/posts/merlin-enable-the-entware/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"梅林（Merlin）开启 Entware","name":"梅林（Merlin）开启 Entware","description":"什么是 Entware Entware-ng 是一个适用于嵌入式系统的软件包库，使用 opkg 包管理系统进行管理，现在在官方的源上已经有超过 2000 个软件包了。\n原先计划用自带的 ipkg，无奈包太古老。\n官网地址：Entware\n","keywords":["router"],"articleBody":"什么是 Entware Entware-ng 是一个适用于嵌入式系统的软件包库，使用 opkg 包管理系统进行管理，现在在官方的源上已经有超过 2000 个软件包了。\n原先计划用自带的 ipkg，无奈包太古老。\n官网地址：Entware\n前置条件 路由器本身的空间其实很小，无论要开启 ipkg还是 opkg，都可以外置一个移动硬盘（U 盘）。\n当然，如果你路由硬盘足够大，可以忽略。\nU盘、硬盘格式化与挂载 # 插上你的U盘后，进入SSH $ df -h Filesystem Size Used Available Use% Mounted on /dev/root 28.3M 28.3M 0 100% / devtmpfs 124.7M 0 124.7M 0% /dev tmpfs 124.8M 1.2M 123.6M 1% /tmp /dev/mtdblock4 62.8M 21.3M 41.5M 34% /jffs /dev/sda1 916.9G 240.0G 630.3G 28% /tmp/mnt/sda1 # 找到你的磁盘那行，记下 Filesystem 和 Mounted o n两个参数； # 我的是 `/dev/sda1` 和 `/tmp/mnt/sda1` # --- # 首先卸载该磁盘 $ umount /tmp/mnt/sda1 # 卸载成功后，执行格式化操作（ext3），所有询问的地方可以输入 y $ mkfs.ext3 /dev/sda1 # 格式化完成后，需要手工创建文件夹和挂载磁盘 $ mkdir -p /tmp/mnt/sda1 $ mount /dev/sda1 /tmp/mnt/sda1 # 这样就完成了格式化操作。 # 下面是添加虚拟内存的命令，如果有需要的话。如果需要其它大小，请参考 256Mb：count=262148；512Mb：count=524292；1024Mb：count=1024004 $ dd if=/dev/zero of=/tmp/mnt/sda1/swapfile bs=1024 count=524292 $ mkswap /tmp/mnt/sda1/swapfile $ chmod 600 /tmp/mnt/sda1/swapfile $ swapon /tmp/mnt/sda1/swapfile 安装 Entware Merlin 内置了 Entware 的安装脚本，直接执行 entware-setup.sh 就可以完成安装，如下：\n$ entware-setup.sh # 然后会提示你选择哪个分区，就选择刚才挂载的那个 ···省略 Info: Looking for available partitions... [1] -- /tmp/mnt/sda1 = Please enter partition number or 0 to exit [0-1]: 1 # 选1回车 ···省略 # 跑完之后只要不提示错误，就是安装成功了 使用 Entware 与 Ubuntu/Debian 使用的 apt-get 类似，Entware 使用的是 opkg。\n# 查看帮助 $ opkg -h 比如我要安装 git\n$ opkg install git –EOF–\n引用：\n 在梅林上使用 Entware ","wordCount":"177","inLanguage":"en","datePublished":"2019-01-06T18:09:38+08:00","dateModified":"2019-01-06T18:09:38+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/posts/merlin-enable-the-entware/"},"publisher":{"@type":"Organization","name":"跨出界","logo":{"@type":"ImageObject","url":"favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://fun2ex.com/posts/"},{"@type":"ListItem","position":3,"name":"梅林（Merlin）开启 Entware","item":"https://fun2ex.com/posts/merlin-enable-the-entware/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"梅林（Merlin）开启 Entware","name":"梅林（Merlin）开启 Entware","description":"什么是 Entware Entware-ng 是一个适用于嵌入式系统的软件包库，使用 opkg 包管理系统进行管理，现在在官方的源上已经有超过 2000 个软件包了。\n原先计划用自带的 ipkg，无奈包太古老。\n官网地址：Entware\n","keywords":["router"],"articleBody":"什么是 Entware Entware-ng 是一个适用于嵌入式系统的软件包库，使用 opkg 包管理系统进行管理，现在在官方的源上已经有超过 2000 个软件包了。\n原先计划用自带的 ipkg，无奈包太古老。\n官网地址：Entware\n前置条件 路由器本身的空间其实很小，无论要开启 ipkg还是 opkg，都可以外置一个移动硬盘（U 盘）。\n当然，如果你路由硬盘足够大，可以忽略。\nU盘、硬盘格式化与挂载 # 插上你的U盘后，进入SSH $ df -h Filesystem Size Used Available Use% Mounted on /dev/root 28.3M 28.3M 0 100% / devtmpfs 124.7M 0 124.7M 0% /dev tmpfs 124.8M 1.2M 123.6M 1% /tmp /dev/mtdblock4 62.8M 21.3M 41.5M 34% /jffs /dev/sda1 916.9G 240.0G 630.3G 28% /tmp/mnt/sda1 # 找到你的磁盘那行，记下 Filesystem 和 Mounted o n两个参数； # 我的是 `/dev/sda1` 和 `/tmp/mnt/sda1` # --- # 首先卸载该磁盘 $ umount /tmp/mnt/sda1 # 卸载成功后，执行格式化操作（ext3），所有询问的地方可以输入 y $ mkfs.ext3 /dev/sda1 # 格式化完成后，需要手工创建文件夹和挂载磁盘 $ mkdir -p /tmp/mnt/sda1 $ mount /dev/sda1 /tmp/mnt/sda1 # 这样就完成了格式化操作。 # 下面是添加虚拟内存的命令，如果有需要的话。如果需要其它大小，请参考 256Mb：count=262148；512Mb：count=524292；1024Mb：count=1024004 $ dd if=/dev/zero of=/tmp/mnt/sda1/swapfile bs=1024 count=524292 $ mkswap /tmp/mnt/sda1/swapfile $ chmod 600 /tmp/mnt/sda1/swapfile $ swapon /tmp/mnt/sda1/swapfile 安装 Entware Merlin 内置了 Entware 的安装脚本，直接执行 entware-setup.sh 就可以完成安装，如下：\n$ entware-setup.sh # 然后会提示你选择哪个分区，就选择刚才挂载的那个 ···省略 Info: Looking for available partitions... [1] -- /tmp/mnt/sda1 = Please enter partition number or 0 to exit [0-1]: 1 # 选1回车 ···省略 # 跑完之后只要不提示错误，就是安装成功了 使用 Entware 与 Ubuntu/Debian 使用的 apt-get 类似，Entware 使用的是 opkg。\n# 查看帮助 $ opkg -h 比如我要安装 git\n$ opkg install git –EOF–\n引用：\n 在梅林上使用 Entware ","wordCount":"177","inLanguage":"en","datePublished":"2019-01-06T18:09:38+08:00","dateModified":"2019-01-06T18:09:38+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/merlin-enable-the-entware/"},"publisher":{"@type":"Organization","name":"跨出界","logo":{"@type":"ImageObject","url":"https://fun2ex.com/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href accesskey=h title="跨出界 (Alt + H)">跨出界</a>
+<a href=https://fun2ex.com accesskey=h title="跨出界 (Alt + H)">跨出界</a>
 <span class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -54,27 +54,27 @@ Entware-ng 是一个适用于嵌入式系统的软件包库，使用 opkg 包管
 </div>
 <ul id=menu>
 <li>
-<a href=archives/ title=Archive>
+<a href=https://fun2ex.com/archives/ title=Archive>
 <span>Archive</span>
 </a>
 </li>
 <li>
-<a href=game/ title=Game>
+<a href=https://fun2ex.com/game/ title=Game>
 <span>Game</span>
 </a>
 </li>
 <li>
-<a href=diving/ title=Diving>
+<a href=https://fun2ex.com/diving/ title=Diving>
 <span>Diving</span>
 </a>
 </li>
 <li>
-<a href=music/ title=Music>
+<a href=https://fun2ex.com/music/ title=Music>
 <span>Music</span>
 </a>
 </li>
 <li>
-<a href=tags/ title=Tags>
+<a href=https://fun2ex.com/tags/ title=Tags>
 <span>Tags</span>
 </a>
 </li>
@@ -84,7 +84,7 @@ Entware-ng 是一个适用于嵌入式系统的软件包库，使用 opkg 包管
 <main class=main>
 <article class=post-single>
 <header class=post-header>
-<div class=breadcrumbs><a href>Home</a>&nbsp;»&nbsp;<a href=/posts/>Posts</a></div>
+<div class=breadcrumbs><a href=https://fun2ex.com>Home</a>&nbsp;»&nbsp;<a href=https://fun2ex.com/posts/>Posts</a></div>
 <h1 class=post-title>
 梅林（Merlin）开启 Entware
 </h1>
@@ -152,15 +152,15 @@ $ opkg -h
 </div>
 <footer class=post-footer>
 <ul class=post-tags>
-<li><a href=/tags/router/>router</a></li>
+<li><a href=https://fun2ex.com/tags/router/>router</a></li>
 </ul>
 <nav class=paginav>
-<a class=prev href=/posts/iperf/>
+<a class=prev href=https://fun2ex.com/posts/iperf/>
 <span class=title>« Prev Page</span>
 <br>
 <span>iperf 宽带性能测试工具</span>
 </a>
-<a class=next href=/posts/caddy-automatic-https-by-dns/>
+<a class=next href=https://fun2ex.com/posts/caddy-automatic-https-by-dns/>
 <span class=title>Next Page »</span>
 <br>
 <span>Caddy 泛域名配置指南</span>
@@ -170,7 +170,7 @@ $ opkg -h
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href>跨出界</a></span>
+<span>&copy; 2022 <a href=https://fun2ex.com>跨出界</a></span>
 <span>
 Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>linux on 跨出界</title><link>/tags/linux/</link><description>Recent content in linux on 跨出界</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Aug 2019 10:38:55 +0800</lastBuildDate><atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>SFTPGo 安装配置指南</title><link>/posts/sftpgo-setting-and-install-guide/</link><pubDate>Mon, 19 Aug 2019 10:38:55 +0800</pubDate><guid>/posts/sftpgo-setting-and-install-guide/</guid><description>&lt;blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>linux on 跨出界</title><link>https://fun2ex.com/tags/linux/</link><description>Recent content in linux on 跨出界</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Aug 2019 10:38:55 +0800</lastBuildDate><atom:link href="https://fun2ex.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>SFTPGo 安装配置指南</title><link>https://fun2ex.com/posts/sftpgo-setting-and-install-guide/</link><pubDate>Mon, 19 Aug 2019 10:38:55 +0800</pubDate><guid>https://fun2ex.com/posts/sftpgo-setting-and-install-guide/</guid><description>&lt;blockquote>
 &lt;p>&lt;a href="https://github.com/drakkan/sftpgo">SFTPGo&lt;/a>
 Full featured and highly configurable SFTP server software
 一个全功能和高度可配置的SFTP服务器软件&lt;/p>
@@ -23,7 +23,7 @@ $ sudo apt install golang-go sqlite3 python3 python3-pip git
 &lt;p>很简单，只需要执行以下命令：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">$ go get -u github.com/drakkan/sftpgo
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>然后在你的 &lt;code>$GOPATH/bin/&lt;/code> 下找到 &lt;code>sftpgo&lt;/code> 命令，如果你不知道你的 &lt;code>$GOPATH&lt;/code> 目录，请执行 &lt;code>go env&lt;/code> 查看你的环境变量。&lt;/p>
-&lt;p>这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。&lt;/p></description></item><item><title>iperf 宽带性能测试工具</title><link>/posts/iperf/</link><pubDate>Sun, 06 Jan 2019 18:09:38 +0800</pubDate><guid>/posts/iperf/</guid><description>&lt;p>远程主机（服务端）：Ubuntu 18.04
+&lt;p>这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。&lt;/p></description></item><item><title>iperf 宽带性能测试工具</title><link>https://fun2ex.com/posts/iperf/</link><pubDate>Sun, 06 Jan 2019 18:09:38 +0800</pubDate><guid>https://fun2ex.com/posts/iperf/</guid><description>&lt;p>远程主机（服务端）：Ubuntu 18.04
 本地主机（客户端）：Mac（安装了 &lt;a href="https://brew.sh/">HomeBrew&lt;/a>）&lt;/p>
 &lt;p>原因：因为我们的本地机器不能被外网机器访问，所以服务端只能由外网机器承担，不影响性能测试结果。&lt;/p>
 &lt;h2 id="安装">安装&lt;/h2>

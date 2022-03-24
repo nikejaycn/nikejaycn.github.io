@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>caddy on 跨出界</title><link>/tags/caddy/</link><description>Recent content in caddy on 跨出界</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 04 Mar 2022 10:43:00 +0800</lastBuildDate><atom:link href="/tags/caddy/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04</title><link>/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/</link><pubDate>Fri, 04 Mar 2022 10:43:00 +0800</pubDate><guid>/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/</guid><description>&lt;p>读完这篇文章，你应该能完成安装以下软件：&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>caddy on 跨出界</title><link>https://fun2ex.com/tags/caddy/</link><description>Recent content in caddy on 跨出界</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 04 Mar 2022 10:43:00 +0800</lastBuildDate><atom:link href="https://fun2ex.com/tags/caddy/index.xml" rel="self" type="application/rss+xml"/><item><title>How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04</title><link>https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/</link><pubDate>Fri, 04 Mar 2022 10:43:00 +0800</pubDate><guid>https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/</guid><description>&lt;p>读完这篇文章，你应该能完成安装以下软件：&lt;/p>
 &lt;ul>
 &lt;li>python &amp;amp; python-pip&lt;/li>
 &lt;li>caddy&lt;/li>
@@ -10,7 +10,7 @@
 &lt;pre tabindex="0">&lt;code>1. 内存 &amp;gt;= 2GB
 2. CPU &amp;gt;= 2 Core
 &lt;/code>&lt;/pre>&lt;h2 id="环境准备">环境准备&lt;/h2>
-&lt;p>以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。&lt;/p></description></item><item><title>Caddy 安装配置指南(LCMP)</title><link>/posts/caddy-install-and-setting-guide/</link><pubDate>Tue, 23 Jul 2019 10:38:29 +0800</pubDate><guid>/posts/caddy-install-and-setting-guide/</guid><description>&lt;h2 id="0-什么是-caddy">0. 什么是 Caddy&lt;/h2>
+&lt;p>以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。&lt;/p></description></item><item><title>Caddy 安装配置指南(LCMP)</title><link>https://fun2ex.com/posts/caddy-install-and-setting-guide/</link><pubDate>Tue, 23 Jul 2019 10:38:29 +0800</pubDate><guid>https://fun2ex.com/posts/caddy-install-and-setting-guide/</guid><description>&lt;h2 id="0-什么是-caddy">0. 什么是 Caddy&lt;/h2>
 &lt;blockquote>
 &lt;p>Caddy 服务器是一个开源的，使用 Golang 编写，支持 HTTP/2 的 Web 服务端。它使用 Golang 标准库提供 HTTP 功能。 Caddy 一个显著的特性是默认启用HTTPS。它是第一个无需额外配置即可提供 HTTPS 特性的Web 服务器。&lt;/p>
 &lt;/blockquote>
@@ -20,7 +20,7 @@
 &lt;p>当然，我比较推崇第二种方式，就是使用 &lt;a href="https://getcaddy.com/">https://getcaddy.com/&lt;/a> 的脚本安装。
 官方不推进使用 &lt;code>root&lt;/code> 权限来安装运行 caddy，所以我们直接使用普通用户权限执行以下命令即可。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ curl https://getcaddy.com | bash -s personal
-&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Caddy 泛域名配置指南</title><link>/posts/caddy-automatic-https-by-dns/</link><pubDate>Sat, 29 Sep 2018 12:48:38 +0800</pubDate><guid>/posts/caddy-automatic-https-by-dns/</guid><description>从 Automatic HTTPS - Caddy 文档得知，Caddy 是支持配置 *.fun2ex.com这样的泛域名格式的。
+&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Caddy 泛域名配置指南</title><link>https://fun2ex.com/posts/caddy-automatic-https-by-dns/</link><pubDate>Sat, 29 Sep 2018 12:48:38 +0800</pubDate><guid>https://fun2ex.com/posts/caddy-automatic-https-by-dns/</guid><description>从 Automatic HTTPS - Caddy 文档得知，Caddy 是支持配置 *.fun2ex.com这样的泛域名格式的。
 直接参考文档的配置，/etc/caddy/Caddyfile 初始配置如下:
 *.fun2ex.com { tls { dns dnspod } root /var/www/html } 我自己用的是 DNSPOD，具体的支持 DNS 服务商可以直接从文档查看。 接下来要设置 DNSPOD Auth Api 的环境变量，具体环境变量值可以从 Automatic HTTPS - Caddy 找到。
 因为我用的是 systemd 来管理 caddy 进程，所以直接编辑 caddy 的 service 文件就行：
