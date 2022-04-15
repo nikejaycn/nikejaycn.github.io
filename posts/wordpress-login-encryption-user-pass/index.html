@@ -1,0 +1,198 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>WordPress 如何禁止明文传输用户名密码，防止中间人攻击 | 跨出界</title>
+<meta name=keywords content="wordpress,php">
+<meta name=description content="虽然全站已经 HTTPS 了，但是因为某些原因，不允许明文传输用户名密码，也就意味着需要在客户端做一层加密，然后在服务端解密。 了解下来只能选择 RSA 的方式了。
+准备工作，首先需要生成秘钥：
+# 生成 1024 位的 RSA 私钥 openssl genrsa -out key.pem 1024 # 导出相对应的公钥 openssl rsa -in key.pem -pubout -out pubkey.pem # 复制出来备用 cat key.pem cat pubkey.pem 打开 wp-login.php 文件，将以下代码补充到 loginform 后面，我是放在 $login_script 后面。 主要是为了捕获登录表单，在 submit 的时候，把 user_login 和 user_pass 各自加密后再发送到服务端。
+<script src=&#34;https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js&#34; type=&#34;text/javascript&#34;></script> <script type=&#34;text/javascript&#34;> (function($) { var user_pass = $(&#34;#user_pass&#34;); var user_login = $(&#34;#user_login&#34;); var loginform = $(&#34;#loginform&#34;); var sign = '公钥'; var encrypt = new JSEncrypt(); encrypt.">
+<meta name=author content>
+<link rel=canonical href=https://fun2ex.com/posts/wordpress-login-encryption-user-pass/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.be665b8c60300019b726f04957b895cb023e3957c11488b1b165f917de5cda62.css integrity="sha256-vmZbjGAwABm3JvBJV7iVywI+OVfBFIixsWX5F95c2mI=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://static.fun2ex.com/upload/a2.png/w128>
+<link rel=icon type=image/png sizes=16x16 href=https://static.fun2ex.com/upload/a2.png/w16>
+<link rel=icon type=image/png sizes=32x32 href=https://static.fun2ex.com/upload/a2.png/w32>
+<link rel=apple-touch-icon href=https://static.fun2ex.com/upload/a2.png/w128>
+<link rel=mask-icon href=https://static.fun2ex.com/upload/a2.png/w240>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript><meta property="og:title" content="WordPress 如何禁止明文传输用户名密码，防止中间人攻击">
+<meta property="og:description" content="虽然全站已经 HTTPS 了，但是因为某些原因，不允许明文传输用户名密码，也就意味着需要在客户端做一层加密，然后在服务端解密。 了解下来只能选择 RSA 的方式了。
+准备工作，首先需要生成秘钥：
+# 生成 1024 位的 RSA 私钥 openssl genrsa -out key.pem 1024 # 导出相对应的公钥 openssl rsa -in key.pem -pubout -out pubkey.pem # 复制出来备用 cat key.pem cat pubkey.pem 打开 wp-login.php 文件，将以下代码补充到 loginform 后面，我是放在 $login_script 后面。 主要是为了捕获登录表单，在 submit 的时候，把 user_login 和 user_pass 各自加密后再发送到服务端。
+<script src=&#34;https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js&#34; type=&#34;text/javascript&#34;></script> <script type=&#34;text/javascript&#34;> (function($) { var user_pass = $(&#34;#user_pass&#34;); var user_login = $(&#34;#user_login&#34;); var loginform = $(&#34;#loginform&#34;); var sign = '公钥'; var encrypt = new JSEncrypt(); encrypt.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://fun2ex.com/posts/wordpress-login-encryption-user-pass/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-15T13:01:33+08:00">
+<meta property="article:modified_time" content="2022-04-15T13:01:33+08:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="WordPress 如何禁止明文传输用户名密码，防止中间人攻击">
+<meta name=twitter:description content="虽然全站已经 HTTPS 了，但是因为某些原因，不允许明文传输用户名密码，也就意味着需要在客户端做一层加密，然后在服务端解密。 了解下来只能选择 RSA 的方式了。
+准备工作，首先需要生成秘钥：
+# 生成 1024 位的 RSA 私钥 openssl genrsa -out key.pem 1024 # 导出相对应的公钥 openssl rsa -in key.pem -pubout -out pubkey.pem # 复制出来备用 cat key.pem cat pubkey.pem 打开 wp-login.php 文件，将以下代码补充到 loginform 后面，我是放在 $login_script 后面。 主要是为了捕获登录表单，在 submit 的时候，把 user_login 和 user_pass 各自加密后再发送到服务端。
+<script src=&#34;https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js&#34; type=&#34;text/javascript&#34;></script> <script type=&#34;text/javascript&#34;> (function($) { var user_pass = $(&#34;#user_pass&#34;); var user_login = $(&#34;#user_login&#34;); var loginform = $(&#34;#loginform&#34;); var sign = '公钥'; var encrypt = new JSEncrypt(); encrypt.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://fun2ex.com/posts/"},{"@type":"ListItem","position":3,"name":"WordPress 如何禁止明文传输用户名密码，防止中间人攻击","item":"https://fun2ex.com/posts/wordpress-login-encryption-user-pass/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"WordPress 如何禁止明文传输用户名密码，防止中间人攻击","name":"WordPress 如何禁止明文传输用户名密码，防止中间人攻击","description":"虽然全站已经 HTTPS 了，但是因为某些原因，不允许明文传输用户名密码，也就意味着需要在客户端做一层加密，然后在服务端解密。 了解下来只能选择 RSA 的方式了。\n准备工作，首先需要生成秘钥：\n# 生成 1024 位的 RSA 私钥 openssl genrsa -out key.pem 1024 # 导出相对应的公钥 openssl rsa -in key.pem -pubout -out pubkey.pem # 复制出来备用 cat key.pem cat pubkey.pem 打开 wp-login.php 文件，将以下代码补充到 loginform 后面，我是放在 $login_script 后面。 主要是为了捕获登录表单，在 submit 的时候，把 user_login 和 user_pass 各自加密后再发送到服务端。\n\u0026lt;script src=\u0026#34;https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js\u0026#34; type=\u0026#34;text/javascript\u0026#34;\u0026gt;\u0026lt;/script\u0026gt; \u0026lt;script type=\u0026#34;text/javascript\u0026#34;\u0026gt; (function($) { var user_pass = $(\u0026#34;#user_pass\u0026#34;); var user_login = $(\u0026#34;#user_login\u0026#34;); var loginform = $(\u0026#34;#loginform\u0026#34;); var sign = \u0026#39;公钥\u0026#39;; var encrypt = new JSEncrypt(); encrypt.","keywords":["wordpress","php"],"articleBody":"虽然全站已经 HTTPS 了，但是因为某些原因，不允许明文传输用户名密码，也就意味着需要在客户端做一层加密，然后在服务端解密。 了解下来只能选择 RSA 的方式了。\n准备工作，首先需要生成秘钥：\n# 生成 1024 位的 RSA 私钥 openssl genrsa -out key.pem 1024 # 导出相对应的公钥 openssl rsa -in key.pem -pubout -out pubkey.pem # 复制出来备用 cat key.pem cat pubkey.pem 打开 wp-login.php 文件，将以下代码补充到 loginform 后面，我是放在 $login_script 后面。 主要是为了捕获登录表单，在 submit 的时候，把 user_login 和 user_pass 各自加密后再发送到服务端。\nscript src=\"https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js\" type=\"text/javascript\"script script type=\"text/javascript\" (function($) { var user_pass = $(\"#user_pass\"); var user_login = $(\"#user_login\"); var loginform = $(\"#loginform\"); var sign = '公钥'; var encrypt = new JSEncrypt(); encrypt.setPublicKey(sign); // encrypt loginform user_pass  loginform.submit(function(e) { e.preventDefault(); // get user_login \u0026 user_pass value  var user_login_val = user_login.val(); var user_pass_val = user_pass.val(); // encrypt user_login \u0026 user_pass  var user_login_encrypted = encrypt.encrypt(user_login_val); var user_pass_encrypted = encrypt.encrypt(domprops); // set user_login \u0026 user_pass  user_login.val(user_login_encrypted); user_pass.val(user_pass_encrypted); loginform.unbind('submit').submit(); }); })(jQuery); script 对应的，服务端拿到加密的 user_login 和 user_pass，需要解密后才能继续走下面的流程。 WordPress 的登录方式在放在 wp-includes/pluggable.php 文件里面。 打开 pluggable.php 找到 wp_authenticate 方法，并修改成类似下面的方式：\nfunction wp_authenticate( $username, $password ) { $username = sanitize_user( $username ); $password = trim( $password ); // -- 开始增加代码 --  $private_key = \"私钥\"; $decrypt_data_user = ''; $decrypt_data_pass = ''; // 判断私钥是否是可用的，可用返回资源id  $pi_key = openssl_pkey_get_private($private_key); // 解密数据, 这里要进行 base64 解码是因为浏览器会默认帮你的数据进行编码  // 用户名  openssl_private_decrypt(base64_decode($username), $decrypt_data_user, $private_key); $username = $decrypt_data_user; // 密码  openssl_private_decrypt(base64_decode($password), $decrypt_data_pass, $private_key); $password = $decrypt_data_pass; // -- 增加代码结束 --  // 后续原有代码  // ... } 这样就能完成一次完成的加密解密了，推荐公钥私钥不要硬编码，最好通过配置的形式读进来（题外话，安全建议）。\n–EOF–\n","wordCount":"200","inLanguage":"en","datePublished":"2022-04-15T13:01:33+08:00","dateModified":"2022-04-15T13:01:33+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/wordpress-login-encryption-user-pass/"},"publisher":{"@type":"Organization","name":"跨出界","logo":{"@type":"ImageObject","url":"https://static.fun2ex.com/upload/a2.png/w128"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://fun2ex.com accesskey=h title="跨出界 (Alt + H)">跨出界</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://fun2ex.com/archives/ title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/game/ title=Game>
+<span>Game</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/diving/ title=Diving>
+<span>Diving</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/music/ title=Music>
+<span>Music</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://fun2ex.com>Home</a>&nbsp;»&nbsp;<a href=https://fun2ex.com/posts/>Posts</a></div>
+<h1 class=post-title>
+WordPress 如何禁止明文传输用户名密码，防止中间人攻击
+</h1>
+<div class=post-meta><span title="2022-04-15 13:01:33 +0800 +0800">April 15, 2022</span>
+</div>
+</header>
+<div class=post-content><p>虽然全站已经 HTTPS 了，但是因为某些原因，不允许明文传输用户名密码，也就意味着需要在客户端做一层加密，然后在服务端解密。
+了解下来只能选择 RSA 的方式了。</p>
+<p>准备工作，首先需要生成秘钥：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># 生成 1024 位的 RSA 私钥</span>
+openssl genrsa -out key.pem <span style=color:#ae81ff>1024</span>
+<span style=color:#75715e># 导出相对应的公钥</span>
+openssl rsa -in key.pem -pubout -out pubkey.pem
+
+<span style=color:#75715e># 复制出来备用</span>
+cat key.pem
+cat pubkey.pem
+</code></pre></div><p>打开 wp-login.php 文件，将以下代码补充到 loginform 后面，我是放在 <code>$login_script</code> 后面。
+主要是为了捕获登录表单，在 submit 的时候，把 user_login 和 user_pass 各自加密后再发送到服务端。</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js&#34;</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/javascript&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+&lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/javascript&#34;</span>&gt;
+(<span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>$</span>) {
+    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>user_pass</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;#user_pass&#34;</span>);
+    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>user_login</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;#user_login&#34;</span>);
+    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>loginform</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>$</span>(<span style=color:#e6db74>&#34;#loginform&#34;</span>);
+    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>sign</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;公钥&#39;</span>;
+    <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>encrypt</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>JSEncrypt</span>();
+    <span style=color:#a6e22e>encrypt</span>.<span style=color:#a6e22e>setPublicKey</span>(<span style=color:#a6e22e>sign</span>);
+    
+    <span style=color:#75715e>// encrypt loginform user_pass
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>loginform</span>.<span style=color:#a6e22e>submit</span>(<span style=color:#66d9ef>function</span>(<span style=color:#a6e22e>e</span>) {
+        <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+        <span style=color:#75715e>// get user_login &amp; user_pass value
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>user_login_val</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>user_login</span>.<span style=color:#a6e22e>val</span>();
+        <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>user_pass_val</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>user_pass</span>.<span style=color:#a6e22e>val</span>();
+    
+        <span style=color:#75715e>// encrypt user_login &amp; user_pass
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>user_login_encrypted</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>encrypt</span>.<span style=color:#a6e22e>encrypt</span>(<span style=color:#a6e22e>user_login_val</span>);
+        <span style=color:#66d9ef>var</span> <span style=color:#a6e22e>user_pass_encrypted</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>encrypt</span>.<span style=color:#a6e22e>encrypt</span>(<span style=color:#a6e22e>domprops</span>);
+
+        <span style=color:#75715e>// set user_login &amp; user_pass
+</span><span style=color:#75715e></span>        <span style=color:#a6e22e>user_login</span>.<span style=color:#a6e22e>val</span>(<span style=color:#a6e22e>user_login_encrypted</span>);
+        <span style=color:#a6e22e>user_pass</span>.<span style=color:#a6e22e>val</span>(<span style=color:#a6e22e>user_pass_encrypted</span>);
+
+        <span style=color:#a6e22e>loginform</span>.<span style=color:#a6e22e>unbind</span>(<span style=color:#e6db74>&#39;submit&#39;</span>).<span style=color:#a6e22e>submit</span>();
+    });
+
+})(<span style=color:#a6e22e>jQuery</span>);
+&lt;/<span style=color:#f92672>script</span>&gt;
+</code></pre></div><p>对应的，服务端拿到加密的 user_login 和 user_pass，需要解密后才能继续走下面的流程。
+WordPress 的登录方式在放在 <code>wp-includes/pluggable.php</code> 文件里面。
+打开 <code>pluggable.php</code> 找到 wp_authenticate 方法，并修改成类似下面的方式：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>wp_authenticate</span>( $username, $password ) {
+    $username <span style=color:#f92672>=</span> <span style=color:#a6e22e>sanitize_user</span>( $username );
+    $password <span style=color:#f92672>=</span> <span style=color:#a6e22e>trim</span>( $password );
+    
+    <span style=color:#75715e>// -- 开始增加代码 --
+</span><span style=color:#75715e></span>    $private_key <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;私钥&#34;</span>;
+    $decrypt_data_user <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+    $decrypt_data_pass <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>;
+    <span style=color:#75715e>// 判断私钥是否是可用的，可用返回资源id
+</span><span style=color:#75715e></span>    $pi_key <span style=color:#f92672>=</span>  <span style=color:#a6e22e>openssl_pkey_get_private</span>($private_key);
+    <span style=color:#75715e>// 解密数据, 这里要进行 base64 解码是因为浏览器会默认帮你的数据进行编码
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// 用户名
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>openssl_private_decrypt</span>(<span style=color:#a6e22e>base64_decode</span>($username), $decrypt_data_user, $private_key);
+    $username <span style=color:#f92672>=</span> $decrypt_data_user;
+
+    <span style=color:#75715e>// 密码
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>openssl_private_decrypt</span>(<span style=color:#a6e22e>base64_decode</span>($password), $decrypt_data_pass, $private_key);
+    $password <span style=color:#f92672>=</span> $decrypt_data_pass;
+
+    <span style=color:#75715e>// -- 增加代码结束 --
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// 后续原有代码
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>}
+</code></pre></div><p>这样就能完成一次完成的加密解密了，推荐公钥私钥不要硬编码，最好通过配置的形式读进来（题外话，安全建议）。</p>
+<p>&ndash;EOF&ndash;</p>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://fun2ex.com/tags/wordpress/>wordpress</a></li>
+<li><a href=https://fun2ex.com/tags/php/>php</a></li>
+</ul>
+<nav class=paginav>
+<a class=next href=https://fun2ex.com/posts/corn-check-network-for-unraid/>
+<span class=title>Next Page »</span>
+<br>
+<span>定时检查 unraid 网络情况，并重启</span>
+</a>
+</nav>
+</footer><script src=https://utteranc.es/client.js repo=nikejaycn/nikejaycn.github.io issue-term=pathname label=✨💬✨ theme=photon-dark crossorigin=anonymous async></script>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2022 <a href=https://fun2ex.com>跨出界</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+<div class=beian>
+<a target=_blank href=https://beian.miit.gov.cn/>粤ICP备18115339号-1</a>
+</div>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script></body>
+</html>

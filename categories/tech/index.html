@@ -74,6 +74,20 @@
 </header>
 <article class="post-entry tag-entry">
 <header class=entry-header>
+<h2>WordPress 如何禁止明文传输用户名密码，防止中间人攻击
+</h2>
+</header>
+<section class=entry-content>
+<p>虽然全站已经 HTTPS 了，但是因为某些原因，不允许明文传输用户名密码，也就意味着需要在客户端做一层加密，然后在服务端解密。 了解下来只能选择 RSA 的方式了。
+准备工作，首先需要生成秘钥：
+# 生成 1024 位的 RSA 私钥 openssl genrsa -out key.pem 1024 # 导出相对应的公钥 openssl rsa -in key.pem -pubout -out pubkey.pem # 复制出来备用 cat key.pem cat pubkey.pem 打开 wp-login.php 文件，将以下代码补充到 loginform 后面，我是放在 $login_script 后面。 主要是为了捕获登录表单，在 submit 的时候，把 user_login 和 user_pass 各自加密后再发送到服务端。
+&lt;script src="https://cdn.jsdelivr.net/npm/jsencrypt@3.2.1/bin/jsencrypt.min.js" type="text/javascript">&lt;/script> &lt;script type="text/javascript"> (function($) { var user_pass = $("#user_pass"); var user_login = $("#user_login"); var loginform = $("#loginform"); var sign = '公钥'; var encrypt = new JSEncrypt(); encrypt....</p>
+</section>
+<footer class=entry-footer><span title="2022-04-15 13:01:33 +0800 +0800">April 15, 2022</span></footer>
+<a class=entry-link aria-label="post link to WordPress 如何禁止明文传输用户名密码，防止中间人攻击" href=https://fun2ex.com/posts/wordpress-login-encryption-user-pass/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
 <h2>定时检查 unraid 网络情况，并重启
 </h2>
 </header>
@@ -211,23 +225,11 @@ $ curl https://getcaddy.com | bash -s personal ...</p>
 <footer class=entry-footer><span title="2019-06-22 18:09:38 +0800 +0800">June 22, 2019</span></footer>
 <a class=entry-link aria-label="post link to How to fixed VS-code iView x-invalid-end-tag error" href=https://fun2ex.com/posts/how-to-fixed-vscode-iview-x-invalid-end-tag-error/></a>
 </article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>Caddy 泛域名配置指南
-</h2>
-</header>
-<section class=entry-content>
-<p>从 Automatic HTTPS - Caddy 文档得知，Caddy 是支持配置 *.fun2ex.com这样的泛域名格式的。
-直接参考文档的配置，/etc/caddy/Caddyfile 初始配置如下:
-*.fun2ex.com { tls { dns dnspod } root /var/www/html } 我自己用的是 DNSPOD，具体的支持 DNS 服务商可以直接从文档查看。 接下来要设置 DNSPOD Auth Api 的环境变量，具体环境变量值可以从 Automatic HTTPS - Caddy 找到。
-因为我用的是 systemd 来管理 caddy 进程，所以直接编辑 caddy 的 service 文件就行：
-sudo vim /etc/systemd/system/caddy.service 找到 Environment= 这一行，加上环境变量的值，如要添加多个，使用空格分割：
-; Letsencrypt-issued certificates will be written to this directory. Environment=CADDYPATH=/etc/ssl/caddy DNSPOD_API_KEY='$id,$hash_key' 让我们重启试试：
-sudo systemctl restart caddy sudo systemctl status caddy 未完待续…...</p>
-</section>
-<footer class=entry-footer><span title="2018-09-29 12:48:38 +0800 +0800">September 29, 2018</span></footer>
-<a class=entry-link aria-label="post link to Caddy 泛域名配置指南" href=https://fun2ex.com/posts/caddy-automatic-https-by-dns/></a>
-</article>
+<footer class=page-footer>
+<nav class=pagination>
+<a class=next href=https://fun2ex.com/categories/tech/page/2/>Next Page »</a>
+</nav>
+</footer>
 </main>
 <footer class=footer>
 <span>&copy; 2022 <a href=https://fun2ex.com>跨出界</a></span>

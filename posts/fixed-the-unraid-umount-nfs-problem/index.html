@@ -117,13 +117,11 @@
 <ol>
 <li>
 <p>进入 Main 界面，找到 「SMB Shares | NFS Shares | ISO File Shares」 这一行，点击 nfs 服务的设置按钮，如图：
-<img loading=lazy src=https://fun2ex-com-1251632949.file.myqcloud.com/images/unraid-01.jpg alt=main>
-</p>
+<img loading=lazy src=https://fun2ex-com-1251632949.file.myqcloud.com/images/unraid-01.jpg alt=main></p>
 </li>
 <li>
 <p>点击「默认」，在出现的 Script 里面，找到 UNMOUNT ACTION 并且在 <code># do your stuff here</code> 处换行填入 <code>umount -l /mnt/remotes/*</code>，如图：
-<img loading=lazy src=https://fun2ex-com-1251632949.file.myqcloud.com/images/unraid-2.jpg alt=setting>
-</p>
+<img loading=lazy src=https://fun2ex-com-1251632949.file.myqcloud.com/images/unraid-2.jpg alt=setting></p>
 </li>
 </ol>
 <p>PS：如果你只想卸载某一个磁盘，那就要分别设置（重复 2），然后填入具体的盘符，如 <code>umount -l /mnt/remotes/Meida_4</code>.</p>
