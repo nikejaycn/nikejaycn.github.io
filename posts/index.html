@@ -75,6 +75,22 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Rust 基本知识
+</h2>
+</header>
+<section class=entry-content>
+<p>更多是从一个前端开发者的角度，来比较一下两门语言的区别，以助于更方便的入门。
+基本类型（DataType） 多数情况下，基本类型直接代表了最底层的语言实现。
+JavaScript 是弱类型，基本数据类型有以下 7 种：
+String Number BigInt Boolean Symbol ( ECMAScript 2016 新增 ) null undefined Rust 是 静态类型 ( statically typed ) 语言，也就是说在编译时就必须知道所有变量的类型。每一个值都属于某一个 数据类型 ( data type )，这告诉 Rust 它被指定为何种数据，以便明确数据处理方式。基本都属于两类数据类型子集：标量（scalar）和复合（compound）。
+Integer （整数类型）
+位长度 有符号 无符号 8-bit i8 u8 16-bit i16 u16 32-bit i32 u32 64-bit i64 u64 128-bit i128 u128 arch isize usize 每一个有符号的变体可以储存包含从 $-(2^{n-1})$ 到 $2^{n-1}-1$ 在内的数字，这里 $n$ 是变体使用的位数。所以 i8可以储存从 $-(2^7)$ 到 $2^7-1$ 在内的数字，也就是从 $-128$ 到 $127$ 。无符号的变体可以储存从 $0$ 到 $2^n-1$ 的数字，所以 u8 可以储存从 $0$ 到 $2^8-1$ 的数字，也就是从 $0$ 到 $255$。...</p>
+</section>
+<footer class=entry-footer><span title="2022-07-14 13:41:53 +0800 +0800">July 14, 2022</span></footer>
+<a class=entry-link aria-label="post link to Rust 基本知识" href=https://fun2ex.com/posts/rust-guide-01/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>WordPress 如何禁止明文传输用户名密码，防止中间人攻击
 </h2>
 </header>
@@ -214,21 +230,6 @@ $ go get -u github.com/drakkan/sftpgo 然后在你的 $GOPATH/bin/ 下找到 sft
 </section>
 <footer class=entry-footer><span title="2019-08-19 10:38:55 +0800 +0800">August 19, 2019</span></footer>
 <a class=entry-link aria-label="post link to SFTPGo 安装配置指南" href=https://fun2ex.com/posts/sftpgo-setting-and-install-guide/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Caddy 安装配置指南(LCMP)
-</h2>
-</header>
-<section class=entry-content>
-<p>0. 什么是 Caddy Caddy 服务器是一个开源的，使用 Golang 编写，支持 HTTP/2 的 Web 服务端。它使用 Golang 标准库提供 HTTP 功能。 Caddy 一个显著的特性是默认启用HTTPS。它是第一个无需额外配置即可提供 HTTPS 特性的Web 服务器。
-以下是基于 Ubuntu 18.04 的安装说明：
-1. 安装 你可以直接从 Download Caddy 这里下载，选择好的你平台和插件就可以直接下载运行了。
-当然，我比较推崇第二种方式，就是使用 https://getcaddy.com/ 的脚本安装。 官方不推进使用 root 权限来安装运行 caddy，所以我们直接使用普通用户权限执行以下命令即可。
-$ curl https://getcaddy.com | bash -s personal ...</p>
-</section>
-<footer class=entry-footer><span title="2019-07-23 10:38:29 +0800 +0800">July 23, 2019</span></footer>
-<a class=entry-link aria-label="post link to Caddy 安装配置指南(LCMP)" href=https://fun2ex.com/posts/caddy-install-and-setting-guide/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
