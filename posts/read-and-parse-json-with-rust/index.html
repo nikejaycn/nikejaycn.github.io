@@ -1,0 +1,229 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Read and Parse JSON With Rust | 跨出界</title>
+<meta name=keywords content="rust,guide">
+<meta name=description content="主要讲讲 Rust 是如何处理 JSON 格式/文件的。
+我的需求主要如下：
+ 从一个远程地址下载 JSON 文件，保存到本地 读取这个 JSON 文件 对这个 JSON 文件内容进行搜索匹配 返回搜索结果  本文章的内容主要是集中讲讲第 2 步的内容。 首先需要解析 JSON 格式如下：
+{ &#34;0100000011D90000&#34;: { &#34;bannerUrl&#34;: &#34;https://img.../37fdb...f83a.jpg&#34;, &#34;category&#34;: [ &#34;Adventure&#34;, &#34;RPG&#34; ], &#34;description&#34;: &#34;Welcome to the Sinnoh region! &#34;, &#34;developer&#34;: null, &#34;id&#34;: &#34;0100000011D90000&#34;, &#34;isDemo&#34;: false, &#34;language&#34;: &#34;en&#34;, &#34;name&#34;: &#34;Pok\u00e9mon\u2122 Brilliant Diamond&#34;, &#34;nsuId&#34;: 70010000039950, &#34;numberOfPlayers&#34;: 1, &#34;publisher&#34;: &#34;Nintendo&#34;, &#34;rank&#34;: 30712, &#34;ratingContent&#34;: [ &#34;Mild Cartoon Violence&#34;, &#34;Users Interact&#34;, &#34;In-Game Purchases&#34; ], &#34;size&#34;: 7334789120, &#34;version&#34;: 0 }, .">
+<meta name=author content>
+<link rel=canonical href=https://fun2ex.com/posts/read-and-parse-json-with-rust/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.be665b8c60300019b726f04957b895cb023e3957c11488b1b165f917de5cda62.css integrity="sha256-vmZbjGAwABm3JvBJV7iVywI+OVfBFIixsWX5F95c2mI=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://static.fun2ex.com/upload/a2.png/w128>
+<link rel=icon type=image/png sizes=16x16 href=https://static.fun2ex.com/upload/a2.png/w16>
+<link rel=icon type=image/png sizes=32x32 href=https://static.fun2ex.com/upload/a2.png/w32>
+<link rel=apple-touch-icon href=https://static.fun2ex.com/upload/a2.png/w128>
+<link rel=mask-icon href=https://static.fun2ex.com/upload/a2.png/w240>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css integrity=sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC crossorigin=anonymous>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js integrity=sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:!0},{left:'\\[',right:'\\]',display:!0},{left:'$',right:'$',display:!1},{left:'\\(',right:'\\)',display:!1}]})"></script>
+<meta property="og:title" content="Read and Parse JSON With Rust">
+<meta property="og:description" content="主要讲讲 Rust 是如何处理 JSON 格式/文件的。
+我的需求主要如下：
+ 从一个远程地址下载 JSON 文件，保存到本地 读取这个 JSON 文件 对这个 JSON 文件内容进行搜索匹配 返回搜索结果  本文章的内容主要是集中讲讲第 2 步的内容。 首先需要解析 JSON 格式如下：
+{ &#34;0100000011D90000&#34;: { &#34;bannerUrl&#34;: &#34;https://img.../37fdb...f83a.jpg&#34;, &#34;category&#34;: [ &#34;Adventure&#34;, &#34;RPG&#34; ], &#34;description&#34;: &#34;Welcome to the Sinnoh region! &#34;, &#34;developer&#34;: null, &#34;id&#34;: &#34;0100000011D90000&#34;, &#34;isDemo&#34;: false, &#34;language&#34;: &#34;en&#34;, &#34;name&#34;: &#34;Pok\u00e9mon\u2122 Brilliant Diamond&#34;, &#34;nsuId&#34;: 70010000039950, &#34;numberOfPlayers&#34;: 1, &#34;publisher&#34;: &#34;Nintendo&#34;, &#34;rank&#34;: 30712, &#34;ratingContent&#34;: [ &#34;Mild Cartoon Violence&#34;, &#34;Users Interact&#34;, &#34;In-Game Purchases&#34; ], &#34;size&#34;: 7334789120, &#34;version&#34;: 0 }, .">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://fun2ex.com/posts/read-and-parse-json-with-rust/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-07-19T10:31:22+08:00">
+<meta property="article:modified_time" content="2022-07-19T10:31:22+08:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Read and Parse JSON With Rust">
+<meta name=twitter:description content="主要讲讲 Rust 是如何处理 JSON 格式/文件的。
+我的需求主要如下：
+ 从一个远程地址下载 JSON 文件，保存到本地 读取这个 JSON 文件 对这个 JSON 文件内容进行搜索匹配 返回搜索结果  本文章的内容主要是集中讲讲第 2 步的内容。 首先需要解析 JSON 格式如下：
+{ &#34;0100000011D90000&#34;: { &#34;bannerUrl&#34;: &#34;https://img.../37fdb...f83a.jpg&#34;, &#34;category&#34;: [ &#34;Adventure&#34;, &#34;RPG&#34; ], &#34;description&#34;: &#34;Welcome to the Sinnoh region! &#34;, &#34;developer&#34;: null, &#34;id&#34;: &#34;0100000011D90000&#34;, &#34;isDemo&#34;: false, &#34;language&#34;: &#34;en&#34;, &#34;name&#34;: &#34;Pok\u00e9mon\u2122 Brilliant Diamond&#34;, &#34;nsuId&#34;: 70010000039950, &#34;numberOfPlayers&#34;: 1, &#34;publisher&#34;: &#34;Nintendo&#34;, &#34;rank&#34;: 30712, &#34;ratingContent&#34;: [ &#34;Mild Cartoon Violence&#34;, &#34;Users Interact&#34;, &#34;In-Game Purchases&#34; ], &#34;size&#34;: 7334789120, &#34;version&#34;: 0 }, .">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://fun2ex.com/posts/"},{"@type":"ListItem","position":3,"name":"Read and Parse JSON With Rust","item":"https://fun2ex.com/posts/read-and-parse-json-with-rust/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Read and Parse JSON With Rust","name":"Read and Parse JSON With Rust","description":"主要讲讲 Rust 是如何处理 JSON 格式/文件的。\n我的需求主要如下：\n 从一个远程地址下载 JSON 文件，保存到本地 读取这个 JSON 文件 对这个 JSON 文件内容进行搜索匹配 返回搜索结果  本文章的内容主要是集中讲讲第 2 步的内容。 首先需要解析 JSON 格式如下：\n{ \u0026#34;0100000011D90000\u0026#34;: { \u0026#34;bannerUrl\u0026#34;: \u0026#34;https://img.../37fdb...f83a.jpg\u0026#34;, \u0026#34;category\u0026#34;: [ \u0026#34;Adventure\u0026#34;, \u0026#34;RPG\u0026#34; ], \u0026#34;description\u0026#34;: \u0026#34;Welcome to the Sinnoh region! \u0026#34;, \u0026#34;developer\u0026#34;: null, \u0026#34;id\u0026#34;: \u0026#34;0100000011D90000\u0026#34;, \u0026#34;isDemo\u0026#34;: false, \u0026#34;language\u0026#34;: \u0026#34;en\u0026#34;, \u0026#34;name\u0026#34;: \u0026#34;Pok\\u00e9mon\\u2122 Brilliant Diamond\u0026#34;, \u0026#34;nsuId\u0026#34;: 70010000039950, \u0026#34;numberOfPlayers\u0026#34;: 1, \u0026#34;publisher\u0026#34;: \u0026#34;Nintendo\u0026#34;, \u0026#34;rank\u0026#34;: 30712, \u0026#34;ratingContent\u0026#34;: [ \u0026#34;Mild Cartoon Violence\u0026#34;, \u0026#34;Users Interact\u0026#34;, \u0026#34;In-Game Purchases\u0026#34; ], \u0026#34;size\u0026#34;: 7334789120, \u0026#34;version\u0026#34;: 0 }, .","keywords":["rust","guide"],"articleBody":"主要讲讲 Rust 是如何处理 JSON 格式/文件的。\n我的需求主要如下：\n 从一个远程地址下载 JSON 文件，保存到本地 读取这个 JSON 文件 对这个 JSON 文件内容进行搜索匹配 返回搜索结果  本文章的内容主要是集中讲讲第 2 步的内容。 首先需要解析 JSON 格式如下：\n{ \"0100000011D90000\": { \"bannerUrl\": \"https://img.../37fdb...f83a.jpg\", \"category\": [ \"Adventure\", \"RPG\" ], \"description\": \"Welcome to the Sinnoh region! \", \"developer\": null, \"id\": \"0100000011D90000\", \"isDemo\": false, \"language\": \"en\", \"name\": \"Pok\\u00e9mon\\u2122 Brilliant Diamond\", \"nsuId\": 70010000039950, \"numberOfPlayers\": 1, \"publisher\": \"Nintendo\", \"rank\": 30712, \"ratingContent\": [ \"Mild Cartoon Violence\", \"Users Interact\", \"In-Game Purchases\" ], \"size\": 7334789120, \"version\": 0 }, ... } 主要会使用到 serde 和 serde_json 这两个库。\n先在 Cargo.toml 的 dependencies 中分别引入\n[dependencies] serde = { version = \"1.0\", features = [\"derive\"] } serde_json = \"1.0\" 建立数据模型 - struct 为了能够使 rust 识别数据结构，需要先创建 struct Game 的数据模型来模仿 JSON 的响应。\nrust 使用 struct 来描述数据模型，这里我们派生了 serde 的 Serialize / Deserialize（允许系列化和反序列化） ，需要在头部使用关键词引入 use serde::{ Deserialize, Serialize }\n代码如下：\n#[derive(Debug, Serialize, Deserialize)] #[serde(rename_all = \"camelCase\")] struct Game { pub banner_url: OptionJsonValue, pub category: OptionVecJsonValue, pub description: OptionJsonValue, pub developer: OptionJsonValue, pub id: OptionJsonValue, pub is_demo: OptionJsonValue, pub language: OptionJsonValue, pub name: OptionJsonValue, pub nsu_id: Optionusize, pub number_of_players: Optionusize, pub publisher: OptionJsonValue, pub rank: OptionJsonValue, pub rating_content: OptionVecJsonValue, pub size: OptionJsonValue, pub version: OptionJsonValue, } PS: 在 Game 结构体中原始 JSON banner_url 中 bannerUrl 的命名约定会有细微差别，前一个命名为驼峰式 (Camel-Case)，第二个命名为蛇形 (snake_case)，rust 默认更喜欢蛇形命名 (snake_case)。 所以，需要派生了 #[serde(rename_all = \"camelCase\")]，这里描述了结构体命名的特征，需要重命名 camelCase 中的所有内容。\n读取文件 这是一个简单的读取文章的示例\nuse std::fs::File; fn main() { // 读取 demo.json 文件，并输入文件大小  let demo_file_path = Path::new(\"appdata/demo.json\"); let file = File::open(demo_file_path)?; // get file metadata  let metadata = file.metadata()?; println!(\"The File Size is: {:?} Bytes\", metadata.len()); } 要读取文件，请使用 std::fs::File 模块并使用随文件路径传递的 Open 方法。\n解析数据 let content: HashMapString, Game = match serde_json::from_reader(\u0026file) { Ok(content) = { println!(\"file loaed success\"); content }, Err(e) = { println!(\"file loaed error: {}\", e); Err(e)? } }; 这里我们使用 serde_json 中的 from_reader 方法读取文件数据并将其解析为 Game 结构体的格式。如果 JSON 的结构有错误，程序将退出，并出现 Err(e) 部分中提到的错误。\n顺便提一下，如果我们想读取 HashMap 的值，可以通过 get 方法，例如：\nprintln!(\"{:?}\", content.unwrap().get(\"0100000000010000\").unwrap().name); 感谢阅读。\n本篇文章的源码可以在这里查看 read-and-parse-json-with-rust\n–EOF–\n","wordCount":"291","inLanguage":"en","datePublished":"2022-07-19T10:31:22+08:00","dateModified":"2022-07-19T10:31:22+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/read-and-parse-json-with-rust/"},"publisher":{"@type":"Organization","name":"跨出界","logo":{"@type":"ImageObject","url":"https://static.fun2ex.com/upload/a2.png/w128"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://fun2ex.com accesskey=h title="跨出界 (Alt + H)">跨出界</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://fun2ex.com/archives/ title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/game/ title=Game>
+<span>Game</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/diving/ title=Diving>
+<span>Diving</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/music/ title=Music>
+<span>Music</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://fun2ex.com>Home</a>&nbsp;»&nbsp;<a href=https://fun2ex.com/posts/>Posts</a></div>
+<h1 class=post-title>
+Read and Parse JSON With Rust
+</h1>
+<div class=post-meta><span title="2022-07-19 10:31:22 +0800 +0800">July 19, 2022</span>
+</div>
+</header>
+<div class=post-content><p>主要讲讲 Rust 是如何处理 JSON 格式/文件的。</p>
+<p>我的需求主要如下：</p>
+<ol>
+<li>从一个远程地址下载 JSON 文件，保存到本地</li>
+<li>读取这个 JSON 文件</li>
+<li>对这个 JSON 文件内容进行搜索匹配</li>
+<li>返回搜索结果</li>
+</ol>
+<p>本文章的内容主要是集中讲讲第 2 步的内容。
+首先需要解析 JSON 格式如下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+    <span style=color:#f92672>&#34;0100000011D90000&#34;</span>: {
+        <span style=color:#f92672>&#34;bannerUrl&#34;</span>: <span style=color:#e6db74>&#34;https://img.../37fdb...f83a.jpg&#34;</span>,
+        <span style=color:#f92672>&#34;category&#34;</span>: [
+            <span style=color:#e6db74>&#34;Adventure&#34;</span>,
+            <span style=color:#e6db74>&#34;RPG&#34;</span>
+        ],
+        <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Welcome to the Sinnoh region! &#34;</span>,
+        <span style=color:#f92672>&#34;developer&#34;</span>: <span style=color:#66d9ef>null</span>,
+        <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;0100000011D90000&#34;</span>,
+        <span style=color:#f92672>&#34;isDemo&#34;</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#f92672>&#34;language&#34;</span>: <span style=color:#e6db74>&#34;en&#34;</span>,
+        <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Pok\u00e9mon\u2122 Brilliant Diamond&#34;</span>,
+        <span style=color:#f92672>&#34;nsuId&#34;</span>: <span style=color:#ae81ff>70010000039950</span>,
+        <span style=color:#f92672>&#34;numberOfPlayers&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;publisher&#34;</span>: <span style=color:#e6db74>&#34;Nintendo&#34;</span>,
+        <span style=color:#f92672>&#34;rank&#34;</span>: <span style=color:#ae81ff>30712</span>,
+        <span style=color:#f92672>&#34;ratingContent&#34;</span>: [
+            <span style=color:#e6db74>&#34;Mild Cartoon Violence&#34;</span>,
+            <span style=color:#e6db74>&#34;Users Interact&#34;</span>,
+            <span style=color:#e6db74>&#34;In-Game Purchases&#34;</span>
+        ],
+        <span style=color:#f92672>&#34;size&#34;</span>: <span style=color:#ae81ff>7334789120</span>,
+        <span style=color:#f92672>&#34;version&#34;</span>: <span style=color:#ae81ff>0</span>
+    },
+    <span style=color:#960050;background-color:#1e0010>...</span>
+}
+</code></pre></div><p>主要会使用到 <a href=https://serde.rs/>serde</a> 和 <a href=https://docs.rs/serde_json/latest/serde_json/>serde_json</a> 这两个库。</p>
+<p>先在 <code>Cargo.toml</code> 的 dependencies 中分别引入</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml>[<span style=color:#a6e22e>dependencies</span>]
+<span style=color:#a6e22e>serde</span> = { <span style=color:#a6e22e>version</span> = <span style=color:#e6db74>&#34;1.0&#34;</span>, <span style=color:#a6e22e>features</span> = [<span style=color:#e6db74>&#34;derive&#34;</span>] }
+<span style=color:#a6e22e>serde_json</span> = <span style=color:#e6db74>&#34;1.0&#34;</span>
+</code></pre></div><h2 id=建立数据模型---struct>建立数据模型 - struct<a hidden class=anchor aria-hidden=true href=#建立数据模型---struct>#</a></h2>
+<p>为了能够使 rust 识别数据结构，需要先创建 <code>struct Game</code> 的数据模型来模仿 JSON 的响应。</p>
+<p>rust 使用 <code>struct</code> 来描述数据模型，这里我们派生了 serde 的 Serialize / Deserialize（允许系列化和反序列化） ，需要在头部使用关键词引入 <code>use serde::{ Deserialize, Serialize }</code></p>
+<p>代码如下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#75715e>#[derive(Debug, Serialize, Deserialize)]</span>
+<span style=color:#75715e>#[serde(rename_all = </span><span style=color:#e6db74>&#34;camelCase&#34;</span><span style=color:#75715e>)]</span>
+<span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Game</span> {
+    <span style=color:#66d9ef>pub</span> banner_url: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> category: Option<span style=color:#f92672>&lt;</span>Vec<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;&gt;</span>,
+    <span style=color:#66d9ef>pub</span> description: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> developer: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> id: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> is_demo: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> language: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> name: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> nsu_id: Option<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>usize</span><span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> number_of_players: Option<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>usize</span><span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> publisher: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> rank: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> rating_content: Option<span style=color:#f92672>&lt;</span>Vec<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;&gt;</span>,
+    <span style=color:#66d9ef>pub</span> size: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+    <span style=color:#66d9ef>pub</span> version: Option<span style=color:#f92672>&lt;</span>JsonValue<span style=color:#f92672>&gt;</span>,
+}
+</code></pre></div><p>PS: 在 Game 结构体中原始 JSON banner_url 中 bannerUrl 的命名约定会有细微差别，前一个命名为驼峰式 (Camel-Case)，第二个命名为蛇形 (snake_case)，rust 默认更喜欢蛇形命名 (snake_case)。
+所以，需要派生了 <code>#[serde(rename_all = "camelCase")]</code>，这里描述了结构体命名的特征，需要重命名 camelCase 中的所有内容。</p>
+<h2 id=读取文件>读取文件<a hidden class=anchor aria-hidden=true href=#读取文件>#</a></h2>
+<p>这是一个简单的读取文章的示例</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>use</span> std::fs::File;
+
+<span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>main</span>() {
+    <span style=color:#75715e>// 读取 demo.json 文件，并输入文件大小
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>let</span> demo_file_path <span style=color:#f92672>=</span> Path::new(<span style=color:#e6db74>&#34;appdata/demo.json&#34;</span>);
+    <span style=color:#66d9ef>let</span> file <span style=color:#f92672>=</span> File::open(demo_file_path)<span style=color:#f92672>?</span>;
+    <span style=color:#75715e>// get file metadata
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>let</span> metadata <span style=color:#f92672>=</span> file.metadata()<span style=color:#f92672>?</span>;
+    println!(<span style=color:#e6db74>&#34;The File Size is: {:?} Bytes&#34;</span>, metadata.len());
+}
+
+</code></pre></div><p>要读取文件，请使用 <code>std::fs::File</code> 模块并使用随文件路径传递的 Open 方法。</p>
+<h2 id=解析数据>解析数据<a hidden class=anchor aria-hidden=true href=#解析数据>#</a></h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust><span style=color:#66d9ef>let</span> content: <span style=color:#a6e22e>HashMap</span><span style=color:#f92672>&lt;</span>String, Game<span style=color:#f92672>&gt;</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>match</span> serde_json::from_reader(<span style=color:#f92672>&amp;</span>file) {
+    Ok(content) <span style=color:#f92672>=&gt;</span> {
+        println!(<span style=color:#e6db74>&#34;file loaed success&#34;</span>);
+        content
+    },
+    Err(e) <span style=color:#f92672>=&gt;</span> {
+        println!(<span style=color:#e6db74>&#34;file loaed error: {}&#34;</span>, e);
+        Err(e)<span style=color:#f92672>?</span>
+    }
+};
+</code></pre></div><p>这里我们使用 serde_json 中的 from_reader 方法读取文件数据并将其解析为 Game 结构体的格式。如果 JSON 的结构有错误，程序将退出，并出现 <code>Err(e)</code> 部分中提到的错误。</p>
+<p>顺便提一下，如果我们想读取 HashMap 的值，可以通过 get 方法，例如：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-rust data-lang=rust>println!(<span style=color:#e6db74>&#34;{:?}&#34;</span>, content.unwrap().get(<span style=color:#e6db74>&#34;0100000000010000&#34;</span>).unwrap().name);
+</code></pre></div><p>感谢阅读。</p>
+<p>本篇文章的源码可以在这里查看 <a href=https://github.com/nikejaycn/read-and-parse-json-with-rust>read-and-parse-json-with-rust</a></p>
+<p>&ndash;EOF&ndash;</p>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://fun2ex.com/tags/rust/>rust</a></li>
+<li><a href=https://fun2ex.com/tags/guide/>guide</a></li>
+</ul>
+<nav class=paginav>
+<a class=next href=https://fun2ex.com/posts/rust-guide-01/>
+<span class=title>Next Page »</span>
+<br>
+<span>Rust 基本知识</span>
+</a>
+</nav>
+</footer><script src=https://utteranc.es/client.js repo=nikejaycn/nikejaycn.github.io issue-term=pathname label=✨💬✨ theme=photon-dark crossorigin=anonymous async></script>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2022 <a href=https://fun2ex.com>跨出界</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+<div class=beian>
+<a target=_blank href=https://beian.miit.gov.cn/>粤ICP备18115339号-1</a>
+</div>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script></body>
+</html>
