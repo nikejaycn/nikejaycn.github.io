@@ -8,7 +8,7 @@
 <meta name=description content>
 <meta name=author content>
 <link rel=canonical href=https://fun2ex.com/tags/guide/>
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.52983f1a74dcce35d8b2ed33add97f1d33aca443e98699c0a85e5f8bc04d1218.css integrity="sha256-Upg/GnTczjXYsu0zrdl/HTOspEPphpnAqF5fi8BNEhg=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/assets/css/stylesheet.965ee809247c56adc8031e7468de947fe8e51f1819963a7ba7e95e3007661d8b.css integrity="sha256-ll7oCSR8Vq3IAx50aN6Uf+jlHxgZljp7p+leMAdmHYs=" rel="preload stylesheet" as=style>
 <link rel=icon href=https://static.fun2ex.com/upload/a2.png/w128>
 <link rel=icon type=image/png sizes=16x16 href=https://static.fun2ex.com/upload/a2.png/w16>
 <link rel=icon type=image/png sizes=32x32 href=https://static.fun2ex.com/upload/a2.png/w32>
@@ -16,7 +16,6 @@
 <link rel=mask-icon href=https://static.fun2ex.com/upload/a2.png/w240>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.91.2">
 <link rel=alternate type=application/rss+xml href=https://fun2ex.com/tags/guide/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -35,10 +34,10 @@
 <nav class=nav>
 <div class=logo>
 <a href=https://fun2ex.com accesskey=h title="跨出界 (Alt + H)">跨出界</a>
-<span class=logo-switches>
-<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<div class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
-</span>
+</div>
 </div>
 <ul id=menu>
 <li>
@@ -71,19 +70,21 @@
 </header>
 <main class=main>
 <header class=page-header><div class=breadcrumbs><a href=https://fun2ex.com>Home</a>&nbsp;»&nbsp;<a href=https://fun2ex.com/tags/>Tags</a></div>
-<h1>guide</h1>
+<h1>
+guide
+</h1>
 </header>
 <article class="post-entry tag-entry">
 <header class=entry-header>
 <h2>Read and Parse JSON With Rust
 </h2>
 </header>
-<section class=entry-content>
+<div class=entry-content>
 <p>主要讲讲 Rust 是如何处理 JSON 格式/文件的。
 我的需求主要如下：
 从一个远程地址下载 JSON 文件，保存到本地 读取这个 JSON 文件 对这个 JSON 文件内容进行搜索匹配 返回搜索结果 本文章的内容主要是集中讲讲第 2 步的内容。 首先需要解析 JSON 格式如下：
 { "0100000011D90000": { "bannerUrl": "https://img.../37fdb...f83a.jpg", "category": [ "Adventure", "RPG" ], "description": "Welcome to the Sinnoh region! ", "developer": null, "id": "0100000011D90000", "isDemo": false, "language": "en", "name": "Pok\u00e9mon\u2122 Brilliant Diamond", "nsuId": 70010000039950, "numberOfPlayers": 1, "publisher": "Nintendo", "rank": 30712, "ratingContent": [ "Mild Cartoon Violence", "Users Interact", "In-Game Purchases" ], "size": 7334789120, "version": 0 }, ....</p>
-</section>
+</div>
 <footer class=entry-footer><span title="2022-07-19 10:31:22 +0800 +0800">July 19, 2022</span></footer>
 <a class=entry-link aria-label="post link to Read and Parse JSON With Rust" href=https://fun2ex.com/posts/read-and-parse-json-with-rust/></a>
 </article>
@@ -92,14 +93,14 @@
 <h2>Rust 基本知识
 </h2>
 </header>
-<section class=entry-content>
+<div class=entry-content>
 <p>更多是从一个前端开发者的角度，来比较一下两门语言的区别，以助于更方便的入门。
 基本类型（DataType） 多数情况下，基本类型直接代表了最底层的语言实现。
 JavaScript 是弱类型，基本数据类型有以下 7 种：
 String Number BigInt Boolean Symbol ( ECMAScript 2016 新增 ) null undefined Rust 是 静态类型 ( statically typed ) 语言，也就是说在编译时就必须知道所有变量的类型。每一个值都属于某一个 数据类型 ( data type )，这告诉 Rust 它被指定为何种数据，以便明确数据处理方式。基本都属于两类数据类型子集：标量（scalar）和复合（compound）。
 Integer （整数类型）
 位长度 有符号 无符号 8-bit i8 u8 16-bit i16 u16 32-bit i32 u32 64-bit i64 u64 128-bit i128 u128 arch isize usize 每一个有符号的变体可以储存包含从 $-(2^{n-1})$ 到 $2^{n-1}-1$ 在内的数字，这里 $n$ 是变体使用的位数。所以 i8可以储存从 $-(2^7)$ 到 $2^7-1$ 在内的数字，也就是从 $-128$ 到 $127$ 。无符号的变体可以储存从 $0$ 到 $2^n-1$ 的数字，所以 u8 可以储存从 $0$ 到 $2^8-1$ 的数字，也就是从 $0$ 到 $255$。...</p>
-</section>
+</div>
 <footer class=entry-footer><span title="2022-07-14 13:41:53 +0800 +0800">July 14, 2022</span></footer>
 <a class=entry-link aria-label="post link to Rust 基本知识" href=https://fun2ex.com/posts/rust-guide-01/></a>
 </article>
@@ -108,7 +109,7 @@ Integer （整数类型）
 <h2>解决华擎 Z370M-Pro4 主板在 Unraid 无法获取风扇转速
 </h2>
 </header>
-<section class=entry-content>
+<div class=entry-content>
 <p>主板型号：华擎 Z370M-pro4
 安装了「Dynamix System Temperature」却发现怎样也获取不了主板的温度和风扇的转速。
 经过一番资料搜索，大致确定问题如下：
@@ -117,7 +118,7 @@ $ modprobe coretemp $ modprobe -r nct6683 $ modprobe nct6683 force=1 然后回�
 –EOF–
 参考资料：
 温度检测插件无法检测到主板风扇的转速 Unraid插件篇—重点解决ITE IT8686E芯片驱动无法获取阵列风扇信息 </p>
-</section>
+</div>
 <footer class=entry-footer><span title="2022-03-16 10:27:05 +0800 +0800">March 16, 2022</span></footer>
 <a class=entry-link aria-label="post link to 解决华擎 Z370M-Pro4 主板在 Unraid 无法获取风扇转速" href=https://fun2ex.com/posts/fixed-z370m-pro4-unraid-temperature-problem/></a>
 </article>
@@ -126,12 +127,12 @@ $ modprobe coretemp $ modprobe -r nct6683 $ modprobe nct6683 force=1 然后回�
 <h2>How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04
 </h2>
 </header>
-<section class=entry-content>
+<div class=entry-content>
 <p>读完这篇文章，你应该能完成安装以下软件：
 python & python-pip caddy mysql-server jre seafile-pro ``` 注意：如果你想流程的跑 Seafile，机器配置建议：
 1. 内存 >= 2GB 2. CPU >= 2 Core 环境准备 以下只针对 ubuntu 18.04 系统，在下一个 LTS 版本出来之前，应该都不会更新。
 ...</p>
-</section>
+</div>
 <footer class=entry-footer><span title="2022-03-04 10:43:00 +0800 +0800">March 4, 2022</span></footer>
 <a class=entry-link aria-label="post link to How to Install Seafile Pro and Use Caddy Proxy Fronted on Ubuntu 18.04" href=https://fun2ex.com/posts/how-to-install-seafile-pro-and-use-caddy-proxy-fronted-on-ubuntu-18-04/></a>
 </article>
@@ -140,13 +141,13 @@ python & python-pip caddy mysql-server jre seafile-pro ``` 注意：如果你想
 <h2>win10 内网下如何开启远程登录
 </h2>
 </header>
-<section class=entry-content>
+<div class=entry-content>
 <p>一开始找到一句这样的命令：
 wmic /node:[IP OR Domain] /user:[User] /password:[Password] PATH win32_terminalservicesetting WHERE (__Class!="") CALL SetAllowTSConnections 1 一直报错，没想明白是什么原因。
 一番搜寻之后大致清楚了，最终的命令如下：
 wmic /node:[IP OR Domain] /user:[User] /password:[Password] RDTOGGLE WHERE (__Class!="") CALL SetAllowTSConnections 1 查阅资料：
 https://www.yuque.com/waiting4/fgq227/gfi4v7 https://blog.csdn.net/Aaron_Miller/article/details/109644865 </p>
-</section>
+</div>
 <footer class=entry-footer><span title="2021-03-25 10:39:53 +0800 +0800">March 25, 2021</span></footer>
 <a class=entry-link aria-label="post link to win10 内网下如何开启远程登录" href=https://fun2ex.com/posts/open-remote-login-form-win10/></a>
 </article>
@@ -155,7 +156,7 @@ https://www.yuque.com/waiting4/fgq227/gfi4v7 https://blog.csdn.net/Aaron_Miller/
 <h2>Apple 微信公众号排版效果
 </h2>
 </header>
-<section class=entry-content>
+<div class=entry-content>
 <p>近期到处都可以看到这个被刷屏的微信公众号案例。
 https://mp.weixin.qq.com/s/ZYfIqwPNbHVepSyJsLFk-w
 我们就来聊一聊怎么实现的，说起来也不复杂，主要就是利用 SVG 的动画效果 + 创意达到了这么酷炫的效果。
@@ -163,7 +164,7 @@ https://mp.weixin.qq.com/s/ZYfIqwPNbHVepSyJsLFk-w
 微信图文内容本质上也是一段 HTML 代码，先看一个 demo
 这是一篇正常的图片，只不过是全图片排版的。
 ...</p>
-</section>
+</div>
 <footer class=entry-footer><span title="2020-03-25 10:39:31 +0800 +0800">March 25, 2020</span></footer>
 <a class=entry-link aria-label="post link to Apple 微信公众号排版效果" href=https://fun2ex.com/posts/apple-ipad-for-wechat-article/></a>
 </article>
@@ -172,7 +173,7 @@ https://mp.weixin.qq.com/s/ZYfIqwPNbHVepSyJsLFk-w
 <h2>SFTPGo 安装配置指南
 </h2>
 </header>
-<section class=entry-content>
+<div class=entry-content>
 <p> SFTPGo Full featured and highly configurable SFTP server software 一个全功能和高度可配置的SFTP服务器软件
 这是 Github 上作者对这个软件的介绍，适用下来也名副其实，符合我的需求。但是因为官网上安装引导文档比较含糊，就记录一下自己折腾的过程。
 以下的操作过程均基于一个全新安装的 Ubuntu 18.04.2 LTS (Bionic Beaver) 操作系统，按道理 Debian 适用。
@@ -182,7 +183,7 @@ https://mp.weixin.qq.com/s/ZYfIqwPNbHVepSyJsLFk-w
 $ go get -u github.com/drakkan/sftpgo 然后在你的 $GOPATH/bin/ 下找到 sftpgo 命令，如果你不知道你的 $GOPATH 目录，请执行 go env 查看你的环境变量。
 这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。
 ...</p>
-</section>
+</div>
 <footer class=entry-footer><span title="2019-08-19 10:38:55 +0800 +0800">August 19, 2019</span></footer>
 <a class=entry-link aria-label="post link to SFTPGo 安装配置指南" href=https://fun2ex.com/posts/sftpgo-setting-and-install-guide/></a>
 </article>
@@ -191,13 +192,13 @@ $ go get -u github.com/drakkan/sftpgo 然后在你的 $GOPATH/bin/ 下找到 sft
 <h2>Caddy 安装配置指南(LCMP)
 </h2>
 </header>
-<section class=entry-content>
+<div class=entry-content>
 <p>0. 什么是 Caddy Caddy 服务器是一个开源的，使用 Golang 编写，支持 HTTP/2 的 Web 服务端。它使用 Golang 标准库提供 HTTP 功能。 Caddy 一个显著的特性是默认启用HTTPS。它是第一个无需额外配置即可提供 HTTPS 特性的Web 服务器。
 以下是基于 Ubuntu 18.04 的安装说明：
 1. 安装 你可以直接从 Download Caddy 这里下载，选择好的你平台和插件就可以直接下载运行了。
 当然，我比较推崇第二种方式，就是使用 https://getcaddy.com/ 的脚本安装。 官方不推进使用 root 权限来安装运行 caddy，所以我们直接使用普通用户权限执行以下命令即可。
 $ curl https://getcaddy.com | bash -s personal ...</p>
-</section>
+</div>
 <footer class=entry-footer><span title="2019-07-23 10:38:29 +0800 +0800">July 23, 2019</span></footer>
 <a class=entry-link aria-label="post link to Caddy 安装配置指南(LCMP)" href=https://fun2ex.com/posts/caddy-install-and-setting-guide/></a>
 </article>
@@ -206,7 +207,7 @@ $ curl https://getcaddy.com | bash -s personal ...</p>
 <h2>Caddy 泛域名配置指南
 </h2>
 </header>
-<section class=entry-content>
+<div class=entry-content>
 <p>从 Automatic HTTPS - Caddy 文档得知，Caddy 是支持配置 *.fun2ex.com这样的泛域名格式的。
 直接参考文档的配置，/etc/caddy/Caddyfile 初始配置如下:
 *.fun2ex.com { tls { dns dnspod } root /var/www/html } 我自己用的是 DNSPOD，具体的支持 DNS 服务商可以直接从文档查看。 接下来要设置 DNSPOD Auth Api 的环境变量，具体环境变量值可以从 Automatic HTTPS - Caddy 找到。
@@ -214,7 +215,7 @@ $ curl https://getcaddy.com | bash -s personal ...</p>
 sudo vim /etc/systemd/system/caddy.service 找到 Environment= 这一行，加上环境变量的值，如要添加多个，使用空格分割：
 ; Letsencrypt-issued certificates will be written to this directory. Environment=CADDYPATH=/etc/ssl/caddy DNSPOD_API_KEY='$id,$hash_key' 让我们重启试试：
 sudo systemctl restart caddy sudo systemctl status caddy 未完待续…...</p>
-</section>
+</div>
 <footer class=entry-footer><span title="2018-09-29 12:48:38 +0800 +0800">September 29, 2018</span></footer>
 <a class=entry-link aria-label="post link to Caddy 泛域名配置指南" href=https://fun2ex.com/posts/caddy-automatic-https-by-dns/></a>
 </article>
