@@ -24,7 +24,10 @@
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
-</noscript><meta property="og:title" content="WordPress 如何禁止明文传输用户名密码，防止中间人攻击">
+</noscript>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css>
+<style>body{font-family:lxgw wenkai lite,sans-serif}</style>
+<meta property="og:title" content="WordPress 如何禁止明文传输用户名密码，防止中间人攻击">
 <meta property="og:description" content="虽然全站已经 HTTPS 了，但是因为某些原因，不允许明文传输用户名密码，也就意味着需要在客户端做一层加密，然后在服务端解密。 了解下来只能选择 RSA 的方式了。
 准备工作，首先需要生成秘钥：
 # 生成 1024 位的 RSA 私钥 openssl genrsa -out key.pem 1024 # 导出相对应的公钥 openssl rsa -in key.pem -pubout -out pubkey.pem # 复制出来备用 cat key.pem cat pubkey.pem 打开 wp-login.php 文件，将以下代码补充到 loginform 后面，我是放在 $login_script 后面。 主要是为了捕获登录表单，在 submit 的时候，把 user_login 和 user_pass 各自加密后再发送到服务端。
@@ -185,7 +188,7 @@ WordPress 的登录方式在放在 <code>wp-includes/pluggable.php</code> 文件
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=https://fun2ex.com>跨出界</a></span>
+<span>&copy; 2023 <a href=https://fun2ex.com>跨出界</a></span>
 <span>
 Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &

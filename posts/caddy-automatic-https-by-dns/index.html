@@ -27,7 +27,10 @@ sudo systemctl restart caddy sudo systemctl status caddy 未完待续…">
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
-</noscript><meta property="og:title" content="Caddy 泛域名配置指南">
+</noscript>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css>
+<style>body{font-family:lxgw wenkai lite,sans-serif}</style>
+<meta property="og:title" content="Caddy 泛域名配置指南">
 <meta property="og:description" content="从 Automatic HTTPS - Caddy 文档得知，Caddy 是支持配置 *.fun2ex.com这样的泛域名格式的。
 直接参考文档的配置，/etc/caddy/Caddyfile 初始配置如下:
 *.fun2ex.com { tls { dns dnspod } root /var/www/html } 我自己用的是 DNSPOD，具体的支持 DNS 服务商可以直接从文档查看。 接下来要设置 DNSPOD Auth Api 的环境变量，具体环境变量值可以从 Automatic HTTPS - Caddy 找到。
@@ -147,7 +150,7 @@ sudo systemctl status caddy
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2022 <a href=https://fun2ex.com>跨出界</a></span>
+<span>&copy; 2023 <a href=https://fun2ex.com>跨出界</a></span>
 <span>
 Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
