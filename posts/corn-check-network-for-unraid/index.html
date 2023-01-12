@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>定时检查 unraid 网络情况，并重启 | 跨出界</title>
+<title>定时检查 unraid 网络情况，并重启 | 跨出界 - 技术分享</title>
 <meta name=keywords content="unraid">
 <meta name=description content="主要是为了解决机器不知道为啥突然掉 ip 的问题，就写了一个简单地监测脚本。
 这是一个简单的小技巧，直接使用 unraid CA 的 User Scripts Plugin 即可。
@@ -46,14 +46,14 @@
 #!/bin/bash ping fun2ex.com -c 1 >/dev/null if [ $? -ne 0 ];then # powerdown -r echo `date` powerdown restart >> /tmp/powerdown_logs.txt fi 检查时间选手动，按照 cron 的规则添加即可，考虑到阵列关机的时间，我这里设定了 30 分钟检查一次。
 # cron setting */30 * * * * &ndash;EOF&ndash;">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://fun2ex.com/posts/"},{"@type":"ListItem","position":3,"name":"定时检查 unraid 网络情况，并重启","item":"https://fun2ex.com/posts/corn-check-network-for-unraid/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"定时检查 unraid 网络情况，并重启","name":"定时检查 unraid 网络情况，并重启","description":"主要是为了解决机器不知道为啥突然掉 ip 的问题，就写了一个简单地监测脚本。\n这是一个简单的小技巧，直接使用 unraid CA 的 User Scripts Plugin 即可。\n新建一个 Script, 名字简介随便填，Script 内容如下：\n#!/bin/bash ping fun2ex.com -c 1 \u0026gt;/dev/null if [ $? -ne 0 ];then # powerdown -r echo `date` powerdown restart \u0026gt;\u0026gt; /tmp/powerdown_logs.txt fi 检查时间选手动，按照 cron 的规则添加即可，考虑到阵列关机的时间，我这里设定了 30 分钟检查一次。\n# cron setting */30 * * * * \u0026ndash;EOF\u0026ndash;","keywords":["unraid"],"articleBody":"主要是为了解决机器不知道为啥突然掉 ip 的问题，就写了一个简单地监测脚本。\n这是一个简单的小技巧，直接使用 unraid CA 的 User Scripts Plugin 即可。\n新建一个 Script, 名字简介随便填，Script 内容如下：\n#!/bin/bash ping fun2ex.com -c 1 /dev/null if [ $? -ne 0 ];then # powerdown -r echo `date` powerdown restart  /tmp/powerdown_logs.txt fi 检查时间选手动，按照 cron 的规则添加即可，考虑到阵列关机的时间，我这里设定了 30 分钟检查一次。\n# cron setting */30 * * * * –EOF–\n","wordCount":"51","inLanguage":"en","datePublished":"2022-03-24T15:39:11+08:00","dateModified":"2022-03-24T15:39:11+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/corn-check-network-for-unraid/"},"publisher":{"@type":"Organization","name":"跨出界","logo":{"@type":"ImageObject","url":"https://static.fun2ex.com/upload/a2.png/w128"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"定时检查 unraid 网络情况，并重启","name":"定时检查 unraid 网络情况，并重启","description":"主要是为了解决机器不知道为啥突然掉 ip 的问题，就写了一个简单地监测脚本。\n这是一个简单的小技巧，直接使用 unraid CA 的 User Scripts Plugin 即可。\n新建一个 Script, 名字简介随便填，Script 内容如下：\n#!/bin/bash ping fun2ex.com -c 1 \u0026gt;/dev/null if [ $? -ne 0 ];then # powerdown -r echo `date` powerdown restart \u0026gt;\u0026gt; /tmp/powerdown_logs.txt fi 检查时间选手动，按照 cron 的规则添加即可，考虑到阵列关机的时间，我这里设定了 30 分钟检查一次。\n# cron setting */30 * * * * \u0026ndash;EOF\u0026ndash;","keywords":["unraid"],"articleBody":"主要是为了解决机器不知道为啥突然掉 ip 的问题，就写了一个简单地监测脚本。\n这是一个简单的小技巧，直接使用 unraid CA 的 User Scripts Plugin 即可。\n新建一个 Script, 名字简介随便填，Script 内容如下：\n#!/bin/bash ping fun2ex.com -c 1 /dev/null if [ $? -ne 0 ];then # powerdown -r echo `date` powerdown restart  /tmp/powerdown_logs.txt fi 检查时间选手动，按照 cron 的规则添加即可，考虑到阵列关机的时间，我这里设定了 30 分钟检查一次。\n# cron setting */30 * * * * –EOF–\n","wordCount":"51","inLanguage":"en","datePublished":"2022-03-24T15:39:11+08:00","dateModified":"2022-03-24T15:39:11+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/corn-check-network-for-unraid/"},"publisher":{"@type":"Organization","name":"跨出界 - 技术分享","logo":{"@type":"ImageObject","url":"https://static.fun2ex.com/upload/a2.png/w128"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://fun2ex.com accesskey=h title="跨出界 (Alt + H)">跨出界</a>
+<a href=https://fun2ex.com accesskey=h title="跨出界 - 技术分享 (Alt + H)">跨出界 - 技术分享</a>
 <span class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -134,7 +134,7 @@ echo <span style=color:#e6db74>`</span>date<span style=color:#e6db74>`</span> po
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2023 <a href=https://fun2ex.com>跨出界</a></span>
+<span>&copy; 2023 <a href=https://fun2ex.com>跨出界 - 技术分享</a></span>
 <span>
 Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &

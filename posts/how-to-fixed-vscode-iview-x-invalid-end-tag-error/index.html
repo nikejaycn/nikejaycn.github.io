@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>How to fixed VS-code iView x-invalid-end-tag error | 跨出界</title>
+<title>How to fixed VS-code iView x-invalid-end-tag error | 跨出界 - 技术分享</title>
 <meta name=keywords content="javascript,vscode">
 <meta name=description content="晚上在快乐的写代码的时候，突然碰到一个 eslint 检查器的错误：
 <!-- 这样一段代码 -->
@@ -61,14 +61,14 @@
 一路翻阅了 Eslint-Plugin-Vue 和 Vetur 的文档，终于找到了一段说明：
 ![12FEB04B-3756-41EC-9589-0BC3D348F508.png](/resource/usr/uploads/2019/06/1297877056.png]">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://fun2ex.com/posts/"},{"@type":"ListItem","position":3,"name":"How to fixed VS-code iView x-invalid-end-tag error","item":"https://fun2ex.com/posts/how-to-fixed-vscode-iview-x-invalid-end-tag-error/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to fixed VS-code iView x-invalid-end-tag error","name":"How to fixed VS-code iView x-invalid-end-tag error","description":"晚上在快乐的写代码的时候，突然碰到一个 eslint 检查器的错误：\n\u0026lt;!-- 这样一段代码 --\u0026gt; \u0026lt;Col\u0026gt; \u0026lt;Button\u0026gt;test\u0026lt;/Button\u0026gt; \u0026lt;/Col\u0026gt; \u0026lt;!-- 报了一个这样的错误 --\u0026gt; `Parsing error: x-invalid-end-tag vue/no-parsing-error` 一路翻阅了 Eslint-Plugin-Vue 和 Vetur 的文档，终于找到了一段说明：\n![12FEB04B-3756-41EC-9589-0BC3D348F508.png](/resource/usr/uploads/2019/06/1297877056.png]\n","keywords":["javascript","vscode"],"articleBody":"晚上在快乐的写代码的时候，突然碰到一个 eslint 检查器的错误：\n Col ButtontestButton Col  `Parsing error: x-invalid-end-tag vue/no-parsing-error` 一路翻阅了 Eslint-Plugin-Vue 和 Vetur 的文档，终于找到了一段说明：\n![12FEB04B-3756-41EC-9589-0BC3D348F508.png](/resource/usr/uploads/2019/06/1297877056.png]\n步骤如下：\n 打开 VS Code 的设置，搜索 vetur.validation.template关闭掉（ set to false） 修改 .eslintrc 文件的 rules，如果你之前没有安装过，需要重新安装 eslint-plugin-vue ，确保提示是来自于 .eslintrc 文件。 .eslintrc 配置如下：  { \"extends\": [ \"eslint:recommended\", \"plugin:vue/recommended\" ], \"rules\": { \"vue/html-self-closing\": \"off\", \"vue/no-parsing-error\": [ 2, { \"x-invalid-end-tag\": false }] } } 最后重启 VS Code，大功告成！\n下面是查阅过的文章资料：\n https://github.com/vuejs/eslint-plugin-vue/blob/master/docs/rules/no-parsing-error.md https://github.com/vuejs/vetur/blob/master/docs/linting-error.md#linting-for-template https://github.com/iview/iview/issues/2828 vs code 里面 如何 去掉 invalid-end-tag 的lint错误 .eslintrc.js rules: - Pastebin.com  —EOF—\n","wordCount":"79","inLanguage":"en","datePublished":"2019-06-22T18:09:38+08:00","dateModified":"2019-06-22T18:09:38+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/how-to-fixed-vscode-iview-x-invalid-end-tag-error/"},"publisher":{"@type":"Organization","name":"跨出界","logo":{"@type":"ImageObject","url":"https://static.fun2ex.com/upload/a2.png/w128"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to fixed VS-code iView x-invalid-end-tag error","name":"How to fixed VS-code iView x-invalid-end-tag error","description":"晚上在快乐的写代码的时候，突然碰到一个 eslint 检查器的错误：\n\u0026lt;!-- 这样一段代码 --\u0026gt; \u0026lt;Col\u0026gt; \u0026lt;Button\u0026gt;test\u0026lt;/Button\u0026gt; \u0026lt;/Col\u0026gt; \u0026lt;!-- 报了一个这样的错误 --\u0026gt; `Parsing error: x-invalid-end-tag vue/no-parsing-error` 一路翻阅了 Eslint-Plugin-Vue 和 Vetur 的文档，终于找到了一段说明：\n![12FEB04B-3756-41EC-9589-0BC3D348F508.png](/resource/usr/uploads/2019/06/1297877056.png]\n","keywords":["javascript","vscode"],"articleBody":"晚上在快乐的写代码的时候，突然碰到一个 eslint 检查器的错误：\n Col ButtontestButton Col  `Parsing error: x-invalid-end-tag vue/no-parsing-error` 一路翻阅了 Eslint-Plugin-Vue 和 Vetur 的文档，终于找到了一段说明：\n![12FEB04B-3756-41EC-9589-0BC3D348F508.png](/resource/usr/uploads/2019/06/1297877056.png]\n步骤如下：\n 打开 VS Code 的设置，搜索 vetur.validation.template关闭掉（ set to false） 修改 .eslintrc 文件的 rules，如果你之前没有安装过，需要重新安装 eslint-plugin-vue ，确保提示是来自于 .eslintrc 文件。 .eslintrc 配置如下：  { \"extends\": [ \"eslint:recommended\", \"plugin:vue/recommended\" ], \"rules\": { \"vue/html-self-closing\": \"off\", \"vue/no-parsing-error\": [ 2, { \"x-invalid-end-tag\": false }] } } 最后重启 VS Code，大功告成！\n下面是查阅过的文章资料：\n https://github.com/vuejs/eslint-plugin-vue/blob/master/docs/rules/no-parsing-error.md https://github.com/vuejs/vetur/blob/master/docs/linting-error.md#linting-for-template https://github.com/iview/iview/issues/2828 vs code 里面 如何 去掉 invalid-end-tag 的lint错误 .eslintrc.js rules: - Pastebin.com  —EOF—\n","wordCount":"79","inLanguage":"en","datePublished":"2019-06-22T18:09:38+08:00","dateModified":"2019-06-22T18:09:38+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/how-to-fixed-vscode-iview-x-invalid-end-tag-error/"},"publisher":{"@type":"Organization","name":"跨出界 - 技术分享","logo":{"@type":"ImageObject","url":"https://static.fun2ex.com/upload/a2.png/w128"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=https://fun2ex.com accesskey=h title="跨出界 (Alt + H)">跨出界</a>
+<a href=https://fun2ex.com accesskey=h title="跨出界 - 技术分享 (Alt + H)">跨出界 - 技术分享</a>
 <span class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -172,7 +172,7 @@ How to fixed VS-code iView x-invalid-end-tag error
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2023 <a href=https://fun2ex.com>跨出界</a></span>
+<span>&copy; 2023 <a href=https://fun2ex.com>跨出界 - 技术分享</a></span>
 <span>
 Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
