@@ -79,6 +79,20 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2> 面试题一道
+</h2>
+</header>
+<section class=entry-content>
+<p>这是碰到的一道面试题，记录一下。
+问题是：如何 json 数据的所有 key 从下划线改为驼峰
+下面是答题过程中的实现方法：
+const testData = { a_bbb: 123, a_g: [1, 2, 3, 4], a_d: { s: 2, s_d: 3 }, a_f: [1, 2, 3, { a_g: 5 }], a_d_s: 1 } /** * _w 的形式转成 W */ function toCame(str) { return str.replace(/\_(\w)/g, function(a, b) { return b.toUpperCase(); }); } /** * 将一个json数据的所有key从下划线改为驼峰 * * @param {object | array} value 待处理对象或数组 * @returns {object | array} 处理后的对象或数组 */ function mapKeysToCamelCase(data) { if(data instanceof Array) { data....</p>
+</section>
+<footer class=entry-footer><span title="2019-11-15 10:39:11 +0800 +0800">November 15, 2019</span></footer>
+<a class=entry-link aria-label="post link to  面试题一道" href=https://fun2ex.com/posts/change_json_underline_to_camp/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>SFTPGo 安装配置指南
 </h2>
 </header>

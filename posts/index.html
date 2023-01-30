@@ -79,6 +79,22 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Switch Emulators Guide
+</h2>
+</header>
+<section class=entry-content>
+<p>Ryujinx 指引 该指南将分为几个部分。您可以使用目录轻松找到您需要的部分。
+如果想要更详细的内容，可以直接参考 Ryujinx 的官方文档 here
+如果按照本指南进行操作后仍有问题并需要帮助，请加入我们的 Discord 服务器提问.
+你可以在这里加入： Discord
+下载说明（重要） 您下载的大部分（不是全部）内容都将采用压缩格式 (例如 .7zip, .zip or .rar). 你需要安装解压缩软件才可以使用。例如 7zip 和 WinRAR
+目录 一、安装模拟器 二、安装 Keys 和固件（Firmware） Keys Firmware 三、安装游戏、更新以及DLC Loading Games into Ryujinx Loading Updates and DLCs 四、模拟器性能优化 Settings for all GPUs Nvidia GPU settings AMD GPU settings Intel GPU settings 五、安装模组（Mods）、存档（Saves）和着色器（Shaders） Mods Shaders Saves 六、杂项 Fixes for errors 一、安装模拟器 (可选) 你可以在 https://ryujinx....</p>
+</section>
+<footer class=entry-footer><span title="2023-01-18 15:30:14 +0800 +0800">January 18, 2023</span></footer>
+<a class=entry-link aria-label="post link to Switch Emulators Guide" href=https://fun2ex.com/posts/switch-emulators-guide/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Read and Parse JSON With Rust
 </h2>
 </header>
@@ -215,20 +231,6 @@ https://mp.weixin.qq.com/s/ZYfIqwPNbHVepSyJsLFk-w
 </section>
 <footer class=entry-footer><span title="2020-03-25 10:39:31 +0800 +0800">March 25, 2020</span></footer>
 <a class=entry-link aria-label="post link to Apple 微信公众号排版效果" href=https://fun2ex.com/posts/apple-ipad-for-wechat-article/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2> 面试题一道
-</h2>
-</header>
-<section class=entry-content>
-<p>这是碰到的一道面试题，记录一下。
-问题是：如何 json 数据的所有 key 从下划线改为驼峰
-下面是答题过程中的实现方法：
-const testData = { a_bbb: 123, a_g: [1, 2, 3, 4], a_d: { s: 2, s_d: 3 }, a_f: [1, 2, 3, { a_g: 5 }], a_d_s: 1 } /** * _w 的形式转成 W */ function toCame(str) { return str.replace(/\_(\w)/g, function(a, b) { return b.toUpperCase(); }); } /** * 将一个json数据的所有key从下划线改为驼峰 * * @param {object | array} value 待处理对象或数组 * @returns {object | array} 处理后的对象或数组 */ function mapKeysToCamelCase(data) { if(data instanceof Array) { data....</p>
-</section>
-<footer class=entry-footer><span title="2019-11-15 10:39:11 +0800 +0800">November 15, 2019</span></footer>
-<a class=entry-link aria-label="post link to  面试题一道" href=https://fun2ex.com/posts/change_json_underline_to_camp/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

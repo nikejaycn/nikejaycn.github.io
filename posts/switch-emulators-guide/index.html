@@ -1,0 +1,269 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Switch Emulators Guide | 跨出界 - 技术分享</title>
+<meta name=keywords content>
+<meta name=description content="Ryujinx 指引 该指南将分为几个部分。您可以使用目录轻松找到您需要的部分。
+如果想要更详细的内容，可以直接参考 Ryujinx 的官方文档 here
+如果按照本指南进行操作后仍有问题并需要帮助，请加入我们的 Discord 服务器提问.
+你可以在这里加入： Discord
+下载说明（重要） 您下载的大部分（不是全部）内容都将采用压缩格式 (例如 .7zip, .zip or .rar). 你需要安装解压缩软件才可以使用。例如 7zip 和 WinRAR
+ 目录  一、安装模拟器 二、安装 Keys 和固件（Firmware）  Keys Firmware   三、安装游戏、更新以及DLC  Loading Games into Ryujinx Loading Updates and DLCs   四、模拟器性能优化  Settings for all GPUs Nvidia GPU settings AMD GPU settings Intel GPU settings   五、安装模组（Mods）、存档（Saves）和着色器（Shaders）  Mods Shaders Saves   六、杂项  Fixes for errors     一、安装模拟器 (可选) 你可以在 https://ryujinx.">
+<meta name=author content>
+<link rel=canonical href=https://fun2ex.com/posts/switch-emulators-guide/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.52983f1a74dcce35d8b2ed33add97f1d33aca443e98699c0a85e5f8bc04d1218.css integrity="sha256-Upg/GnTczjXYsu0zrdl/HTOspEPphpnAqF5fi8BNEhg=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://static.fun2ex.com/upload/a2.png/w128>
+<link rel=icon type=image/png sizes=16x16 href=https://static.fun2ex.com/upload/a2.png/w16>
+<link rel=icon type=image/png sizes=32x32 href=https://static.fun2ex.com/upload/a2.png/w32>
+<link rel=apple-touch-icon href=https://static.fun2ex.com/upload/a2.png/w128>
+<link rel=mask-icon href=https://static.fun2ex.com/upload/a2.png/w240>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.91.2">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css>
+<style>body{font-family:lxgw wenkai lite,sans-serif}code{font-family:consolas,monospace,lxgw wenkai lite,sans-serif}</style>
+<meta property="og:title" content="Switch Emulators Guide">
+<meta property="og:description" content="Ryujinx 指引 该指南将分为几个部分。您可以使用目录轻松找到您需要的部分。
+如果想要更详细的内容，可以直接参考 Ryujinx 的官方文档 here
+如果按照本指南进行操作后仍有问题并需要帮助，请加入我们的 Discord 服务器提问.
+你可以在这里加入： Discord
+下载说明（重要） 您下载的大部分（不是全部）内容都将采用压缩格式 (例如 .7zip, .zip or .rar). 你需要安装解压缩软件才可以使用。例如 7zip 和 WinRAR
+ 目录  一、安装模拟器 二、安装 Keys 和固件（Firmware）  Keys Firmware   三、安装游戏、更新以及DLC  Loading Games into Ryujinx Loading Updates and DLCs   四、模拟器性能优化  Settings for all GPUs Nvidia GPU settings AMD GPU settings Intel GPU settings   五、安装模组（Mods）、存档（Saves）和着色器（Shaders）  Mods Shaders Saves   六、杂项  Fixes for errors     一、安装模拟器 (可选) 你可以在 https://ryujinx.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://fun2ex.com/posts/switch-emulators-guide/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2023-01-18T15:30:14+08:00">
+<meta property="article:modified_time" content="2023-01-18T15:30:14+08:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Switch Emulators Guide">
+<meta name=twitter:description content="Ryujinx 指引 该指南将分为几个部分。您可以使用目录轻松找到您需要的部分。
+如果想要更详细的内容，可以直接参考 Ryujinx 的官方文档 here
+如果按照本指南进行操作后仍有问题并需要帮助，请加入我们的 Discord 服务器提问.
+你可以在这里加入： Discord
+下载说明（重要） 您下载的大部分（不是全部）内容都将采用压缩格式 (例如 .7zip, .zip or .rar). 你需要安装解压缩软件才可以使用。例如 7zip 和 WinRAR
+ 目录  一、安装模拟器 二、安装 Keys 和固件（Firmware）  Keys Firmware   三、安装游戏、更新以及DLC  Loading Games into Ryujinx Loading Updates and DLCs   四、模拟器性能优化  Settings for all GPUs Nvidia GPU settings AMD GPU settings Intel GPU settings   五、安装模组（Mods）、存档（Saves）和着色器（Shaders）  Mods Shaders Saves   六、杂项  Fixes for errors     一、安装模拟器 (可选) 你可以在 https://ryujinx.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"Posts","item":"https://fun2ex.com/posts/"},{"@type":"ListItem","position":3,"name":"Switch Emulators Guide","item":"https://fun2ex.com/posts/switch-emulators-guide/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Switch Emulators Guide","name":"Switch Emulators Guide","description":"Ryujinx 指引 该指南将分为几个部分。您可以使用目录轻松找到您需要的部分。\n如果想要更详细的内容，可以直接参考 Ryujinx 的官方文档 here\n如果按照本指南进行操作后仍有问题并需要帮助，请加入我们的 Discord 服务器提问.\n你可以在这里加入： Discord\n下载说明（重要） 您下载的大部分（不是全部）内容都将采用压缩格式 (例如 .7zip, .zip or .rar). 你需要安装解压缩软件才可以使用。例如 7zip 和 WinRAR\n 目录  一、安装模拟器 二、安装 Keys 和固件（Firmware）  Keys Firmware   三、安装游戏、更新以及DLC  Loading Games into Ryujinx Loading Updates and DLCs   四、模拟器性能优化  Settings for all GPUs Nvidia GPU settings AMD GPU settings Intel GPU settings   五、安装模组（Mods）、存档（Saves）和着色器（Shaders）  Mods Shaders Saves   六、杂项  Fixes for errors     一、安装模拟器 (可选) 你可以在 https://ryujinx.","keywords":[],"articleBody":"Ryujinx 指引 该指南将分为几个部分。您可以使用目录轻松找到您需要的部分。\n如果想要更详细的内容，可以直接参考 Ryujinx 的官方文档 here\n如果按照本指南进行操作后仍有问题并需要帮助，请加入我们的 Discord 服务器提问.\n你可以在这里加入： Discord\n下载说明（重要） 您下载的大部分（不是全部）内容都将采用压缩格式 (例如 .7zip, .zip or .rar). 你需要安装解压缩软件才可以使用。例如 7zip 和 WinRAR\n 目录  一、安装模拟器 二、安装 Keys 和固件（Firmware）  Keys Firmware   三、安装游戏、更新以及DLC  Loading Games into Ryujinx Loading Updates and DLCs   四、模拟器性能优化  Settings for all GPUs Nvidia GPU settings AMD GPU settings Intel GPU settings   五、安装模组（Mods）、存档（Saves）和着色器（Shaders）  Mods Shaders Saves   六、杂项  Fixes for errors     一、安装模拟器 (可选) 你可以在 https://ryujinx.org/download 下载到最新的稳定发行版本.\n(可选) Github Source (手工编译): https://github.com/Ryujinx/Ryujinx\n下载发行版后，只需将其解压缩并运行 Ryujinx 可执行文件即可。或者您可以通过在下载的 Ryujinx 文件夹中创建一个名为「portable」的子文件夹，以便携模式运行 Ryujinx。\n 二、安装 Keys 和固件（Firmware） Keys 第一次启动 Ryujinx 时，会弹出缺少组件的错误。要解决这个问题，您需要下载 prod.keys，并放到对应的目录。\nKeys: 查看\nPS： 新的 prod.keys 会包含较旧的密钥。因此只需要只下载最新版即可，并使用 7zip 或 WinRAR 解压缩存档。如果您下载的内容还包含 title.keys，删除即可，不需要用到。\n下载 prod.keys 后，打开 Ryujinx，转到左上角并单击「文件」，然后单击「打开 Ryujinx 文件夹」。找到 system 并将（仅）prod.keys 文件放入该文件夹中。\n重新启动 Ryujinx，你应该不会再收到错误了。\nFirmware Firmware: 查看\n打开 Ryujinx，转到左上角并单击「工具」，然后在「安装固件」下单击「从 XCI 或 ZIP 安装固件」。导航到固件 zip 文件并单击打开。当系统提示「您是否要安装固件」时，单击「是」。\n安装密钥（prod.keys）和固件（firmware）后，您就完成了此步骤。\n 三、安装游戏、更新以及 DLC 现在开始安装游戏。下面是一些可信赖的网站列表，可从中获取 Switch 游戏、更新和 DLC。\n https://nxbrew.com/ https://nsw2u.xyz/ https://nswgame.com/category/switch/ https://www.ziperto.com/nintendo-switch-nsp/  PS： 建议在访问任何这些网站之前安装广告拦截器，例如：https://ublockorigin.com/\nPS： 下载时，您可能会看到三种文件类型。 NSP、XCI 和 NSZ。 Yuzu 和 Ryujinx 都不支持 NSZ，所以不要下载。 XCI 已将更新文件合并到游戏文件中，因此您只需下载一个文件。 NSP 有不同的游戏和更新文件，更容易更新。看你自己习惯，喜欢那个就下载哪个。\nRyujinx 加载游戏 下载游戏后，将其放入您希望保存所有 Switch 游戏的文件夹中（仅放置游戏文件，而不放置更新或 DLC 文件）。\n打开 Ryujinx 并点击「选项」，然后点击「设置」。在「常规」选项卡下，找到「游戏目录」并单击「添加」按钮。找到到游戏文件夹所在的位置，然后单击「添加」。最后，点击右下角的「保存」。\n加载游戏更新文件 和 DLCs 打开 Ryujinx。右键单击您要更新或安装 DLC 的游戏。单击「管理标题更新」或「管理 DLC」。然后使用「添加」按钮选择要安装的更新/DLC 文件。如果安装正确，它应该会在游戏旁边显示更新版本。\n 四、模拟器性能优化 Ryujinx 不需要很多优化，您只需转到控制选项卡并设置您的控制器（手柄或者键盘，推荐使用 Switch 手柄，减少适配问题）。 Vulkan 是首选，但如果游戏无法在 Vulkan 上运行，请尝试 OpenGL。\nPS： 您现在可以开始玩玩游戏，因为所有必需的步骤都已完成。\n接下来的部分是可选的，即安装存档（saves）、模组（mods）、着色器（shaders）和一些错误修复。\n五、安装模组（Mods）、存档（Saves）和着色器（Shaders） Mods 您可以从以下站点获得一些 Switch Mods：\n Our Collection TheBoy181’s GitHub Official Yuzu mods page  要安装 Mods，请右键单击要为其安装 Mods 的游戏，单击「打开 Mods 目录」并将 Mods 文件夹粘贴到那里。您必须放置您下载的 mod 文件夹，而不仅仅是其中的文件。\n要安装为真实硬件制作的 atmosphere mods，请右键单击游戏，然后单击「打开 Atmosphere Mods 目」并将 Mods 文件夹粘贴到那里。\nShaders 你可以从我们的 GitHub 找到一些 shader 缓存。\nShaders: https://github.com/JENOVAAbsolute/128BB-Shaders\n安装 shaders：\n 右键单击一个游戏，单击「缓存管理」，然后「打开着色器缓存目录」，并将其替换为您的缓存。  Saves 你可以在这里找到一些游戏存档：\nOur collection: https://drive.google.com/drive/folders/1G2gHYZn7Dbx_X9iYUgpOfCBiWCixBTWU?usp=sharing\nAlternative: https://www.homebrewgeneral.net/2020/03/switch-games-save.html\n安装存档：\n 右键单击您要安装存档的游戏，单击「打开应用存档目录」并将存档文件放进去（或者替换）。  备份缓存文件：\nIf you ever need to reinstall Ryujinx, back up your saves folder by going to %AppData%\\Ryujinx\\bis\\user\\save and backing up that folder. Replace %AppData%\\Ryujinx with your portable folder if using portable mode.\n如果你需要重新安装 Ryujinx，请转到「%AppData%\\Ryujinx\\bis\\user\\save」并备份应用存档文件夹。 如果使用便携模式，请将「%AppData%\\Ryujinx」替换为便携文件夹。\n 六、杂项 错误或者其他问题修复 BKTR Error: 当你启动一个更新，而不是实际的游戏时，你会得到这个错误。\nVideo Core Error: Vulkan驱动程序已经过时了。\n 如果使用的是 Nvidia GPU, 安装这个文件：https://developer.nvidia.com/vulkan-beta-45836-windows-10-dch 对于 AMD GPU 的，只需在 AMD 软件面板中更新到最新的 *** 可选 *** 驱动程序。  “NCA Header key could not be found” error: 密钥已过期，更新秘钥即可。\nCrypto revision error: 密钥已过期（同上）\nUpdates or DLC failing to install: 密钥已过期（同上）\nGames not appearing in your game list\n 确保游戏文件放入了游戏目录，并且只有游戏文件（更新/存档/Mods 需要放到对应的目录） 您在游戏文件夹中放置了游戏更新而不是游戏。 通过查看文件名来检查这一点。 您将看到[v0]或[v357534]。 [v0]永远都是游戏。 否则就是更新。 游戏文件损坏。  –EOF–\n Source: https://github.com/Abd-007/Switch-Emulators-Guide/blob/main/Ryujinx.md  ","wordCount":"324","inLanguage":"en","datePublished":"2023-01-18T15:30:14+08:00","dateModified":"2023-01-18T15:30:14+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://fun2ex.com/posts/switch-emulators-guide/"},"publisher":{"@type":"Organization","name":"跨出界 - 技术分享","logo":{"@type":"ImageObject","url":"https://static.fun2ex.com/upload/a2.png/w128"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://fun2ex.com accesskey=h title="跨出界 - 技术分享 (Alt + H)">跨出界 - 技术分享</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://fun2ex.com/archives/ title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/game/ title=Games>
+<span>Games</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/diving/ title=Diving>
+<span>Diving</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/link/ title=Links>
+<span>Links</span>
+</a>
+</li>
+<li>
+<a href=https://fun2ex.com/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://fun2ex.com>Home</a>&nbsp;»&nbsp;<a href=https://fun2ex.com/posts/>Posts</a></div>
+<h1 class=post-title>
+Switch Emulators Guide
+</h1>
+<div class=post-meta><span title="2023-01-18 15:30:14 +0800 +0800">January 18, 2023</span>
+</div>
+</header>
+<div class=post-content><h1 id=ryujinx-指引>Ryujinx 指引<a hidden class=anchor aria-hidden=true href=#ryujinx-指引>#</a></h1>
+<p><em><strong>该指南将分为几个部分。您可以使用目录轻松找到您需要的部分。</strong></em></p>
+<p><em><strong>如果想要更详细的内容，可以直接参考 Ryujinx 的官方文档 <a href=https://github.com/Ryujinx/Ryujinx/wiki/Ryujinx-Setup-&-Configuration-Guide>here</a></strong></em></p>
+<p><em><strong>如果按照本指南进行操作后仍有问题并需要帮助，请加入我们的 Discord 服务器提问.</strong></em></p>
+<p><em><strong>你可以在这里加入： <a href=https://discord.gg/87bsZWwF3X>Discord</a></strong></em></p>
+<h1 id=下载说明重要>下载说明（重要）<a hidden class=anchor aria-hidden=true href=#下载说明重要>#</a></h1>
+<p>您下载的大部分（不是全部）内容都将采用压缩格式 (例如 .7zip, .zip or .rar). 你需要安装解压缩软件才可以使用。例如 <a href=https://www.7-zip.org>7zip</a> 和 <a href="https://www.win-rar.com/download.html?&L=0">WinRAR</a></p>
+<hr>
+<h3 id=目录>目录<a hidden class=anchor aria-hidden=true href=#目录>#</a></h3>
+<ul>
+<li><a href=#%E4%B8%80%E5%AE%89%E8%A3%85%E6%A8%A1%E6%8B%9F%E5%99%A8>一、安装模拟器</a></li>
+<li><a href=#%E4%BA%8C%E5%AE%89%E8%A3%85-keys-%E5%92%8C%E5%9B%BA%E4%BB%B6firmware>二、安装 Keys 和固件（Firmware）</a>
+<ul>
+<li><a href=#keys>Keys</a></li>
+<li><a href=#firmware>Firmware</a></li>
+</ul>
+</li>
+<li><a href=#%E4%B8%89%E5%AE%89%E8%A3%85%E6%B8%B8%E6%88%8F%E6%9B%B4%E6%96%B0%E4%BB%A5%E5%8F%8Adlc>三、安装游戏、更新以及DLC</a>
+<ul>
+<li><a href=#loading-games-into-ryujinx>Loading Games into Ryujinx</a></li>
+<li><a href=#loading-updates-and-dlcs>Loading Updates and DLCs</a></li>
+</ul>
+</li>
+<li><a href=#%E5%9B%9B%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96>四、模拟器性能优化</a>
+<ul>
+<li><a href=#settings-for-all-gpus>Settings for all GPUs</a></li>
+<li><a href=#nvidia-gpu-settings>Nvidia GPU settings</a></li>
+<li><a href=#amd-gpu-settings>AMD GPU settings</a></li>
+<li><a href=#intel-gpu-settings>Intel GPU settings</a></li>
+</ul>
+</li>
+<li><a href=#%E4%BA%94%E5%AE%89%E8%A3%85%E6%A8%A1%E7%BB%84mods%E5%AD%98%E6%A1%A3saves%E5%92%8C%E7%9D%80%E8%89%B2%E5%99%A8shaders>五、安装模组（Mods）、存档（Saves）和着色器（Shaders）</a>
+<ul>
+<li><a href=#mods>Mods</a></li>
+<li><a href=#shaders>Shaders</a></li>
+<li><a href=#saves>Saves</a></li>
+</ul>
+</li>
+<li><a href=#%E5%85%AD%E6%9D%82%E9%A1%B9>六、杂项</a>
+<ul>
+<li><a href=#fixes-for-errors>Fixes for errors</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id=一安装模拟器>一、安装模拟器<a hidden class=anchor aria-hidden=true href=#一安装模拟器>#</a></h2>
+<p><strong>(可选)</strong> 你可以在 <a href=https://ryujinx.org/download>https://ryujinx.org/download</a> 下载到最新的稳定发行版本.</p>
+<p><strong>(可选) Github Source (手工编译):</strong> <a href=https://github.com/Ryujinx/Ryujinx>https://github.com/Ryujinx/Ryujinx</a></p>
+<p>下载发行版后，只需将其解压缩并运行 Ryujinx 可执行文件即可。或者您可以通过在下载的 Ryujinx 文件夹中创建一个名为「portable」的子文件夹，以便携模式运行 Ryujinx。</p>
+<hr>
+<h2 id=二安装-keys-和固件firmware>二、安装 Keys 和固件（Firmware）<a hidden class=anchor aria-hidden=true href=#二安装-keys-和固件firmware>#</a></h2>
+<h3 id=keys>Keys<a hidden class=anchor aria-hidden=true href=#keys>#</a></h3>
+<p>第一次启动 Ryujinx 时，会弹出缺少组件的错误。要解决这个问题，您需要下载 prod.keys，并放到对应的目录。</p>
+<p><strong>Keys:</strong> <a href="https://drive.google.com/drive/folders/1KAym-RpGIDuJiSmMLmpCtGVbhLm4VjTZ?usp=sharing">查看</a></p>
+<p><strong>PS：</strong> 新的 <code>prod.keys</code> 会包含较旧的密钥。因此只需要只下载最新版即可，并使用 7zip 或 WinRAR 解压缩存档。如果您下载的内容还包含 title.keys，删除即可，不需要用到。</p>
+<p>下载 <code>prod.keys</code> 后，打开 Ryujinx，转到左上角并单击「文件」，然后单击「打开 Ryujinx 文件夹」。找到 <code>system</code> 并将（仅）<code>prod.keys</code> 文件放入该文件夹中。</p>
+<p>重新启动 Ryujinx，你应该不会再收到错误了。</p>
+<h3 id=firmware>Firmware<a hidden class=anchor aria-hidden=true href=#firmware>#</a></h3>
+<p><strong>Firmware:</strong> <a href=https://darthsternie.net/switch-firmwares/>查看</a></p>
+<p>打开 Ryujinx，转到左上角并单击「工具」，然后在「安装固件」下单击「从 XCI 或 ZIP 安装固件」。导航到固件 zip 文件并单击打开。当系统提示「您是否要安装固件」时，单击「是」。</p>
+<p>安装密钥（prod.keys）和固件（firmware）后，您就完成了此步骤。</p>
+<hr>
+<h2 id=三安装游戏更新以及-dlc>三、安装游戏、更新以及 DLC<a hidden class=anchor aria-hidden=true href=#三安装游戏更新以及-dlc>#</a></h2>
+<p>现在开始安装游戏。下面是一些可信赖的网站列表，可从中获取 Switch 游戏、更新和 DLC。</p>
+<ul>
+<li><a href=https://nxbrew.com/>https://nxbrew.com/</a></li>
+<li><a href=https://nsw2u.xyz/>https://nsw2u.xyz/</a></li>
+<li><a href=https://nswgame.com/category/switch/>https://nswgame.com/category/switch/</a></li>
+<li><a href=https://www.ziperto.com/nintendo-switch-nsp/>https://www.ziperto.com/nintendo-switch-nsp/</a></li>
+</ul>
+<p><strong>PS：</strong> 建议在访问任何这些网站之前安装广告拦截器，例如：https://ublockorigin.com/</p>
+<p><strong>PS：</strong> 下载时，您可能会看到三种文件类型。 NSP、XCI 和 NSZ。 Yuzu 和 Ryujinx 都不支持 NSZ，所以不要下载。 XCI 已将更新文件合并到游戏文件中，因此您只需下载一个文件。 NSP 有不同的游戏和更新文件，更容易更新。看你自己习惯，喜欢那个就下载哪个。</p>
+<h3 id=ryujinx-加载游戏>Ryujinx 加载游戏<a hidden class=anchor aria-hidden=true href=#ryujinx-加载游戏>#</a></h3>
+<p>下载游戏后，将其放入您希望保存所有 Switch 游戏的文件夹中（<strong>仅放置游戏文件，而不放置更新或 DLC 文件</strong>）。</p>
+<p>打开 Ryujinx 并点击「选项」，然后点击「设置」。在「常规」选项卡下，找到「游戏目录」并单击「添加」按钮。找到到游戏文件夹所在的位置，然后单击「添加」。最后，点击右下角的「保存」。</p>
+<h3 id=加载游戏更新文件-和-dlcs>加载游戏更新文件 和 DLCs<a hidden class=anchor aria-hidden=true href=#加载游戏更新文件-和-dlcs>#</a></h3>
+<p>打开 Ryujinx。右键单击您要更新或安装 DLC 的游戏。单击「管理标题更新」或「管理 DLC」。然后使用「添加」按钮选择要安装的更新/DLC 文件。如果安装正确，它应该会在游戏旁边显示更新版本。</p>
+<hr>
+<h2 id=四模拟器性能优化>四、模拟器性能优化<a hidden class=anchor aria-hidden=true href=#四模拟器性能优化>#</a></h2>
+<p>Ryujinx 不需要很多优化，您只需转到控制选项卡并设置您的控制器（手柄或者键盘，推荐使用 Switch 手柄，减少适配问题）。 Vulkan 是首选，但如果游戏无法在 Vulkan 上运行，请尝试 OpenGL。</p>
+<p><strong>PS：</strong> 您现在可以开始玩玩游戏，因为所有必需的步骤都已完成。</p>
+<p>接下来的部分是可选的，即安装存档（saves）、模组（mods）、着色器（shaders）和一些错误修复。</p>
+<h2 id=五安装模组mods存档saves和着色器shaders>五、安装模组（Mods）、存档（Saves）和着色器（Shaders）<a hidden class=anchor aria-hidden=true href=#五安装模组mods存档saves和着色器shaders>#</a></h2>
+<h3 id=mods>Mods<a hidden class=anchor aria-hidden=true href=#mods>#</a></h3>
+<p>您可以从以下站点获得一些 Switch Mods：</p>
+<ul>
+<li><a href="https://drive.google.com/drive/folders/1dY20qH3phqoUfmAEdngTzrtMIvPFwSG4?usp=sharing">Our Collection</a></li>
+<li><a href=https://github.com/theboy181/switch-ptchtxt-mods>TheBoy181&rsquo;s GitHub</a></li>
+<li><a href=https://github.com/yuzu-emu/yuzu/wiki/Switch-Mods>Official Yuzu mods page</a></li>
+</ul>
+<p>要安装 Mods，请右键单击要为其安装 Mods 的游戏，单击「打开 Mods 目录」并将 Mods 文件夹粘贴到那里。您必须放置您下载的 mod <em><strong>文件夹</strong></em>，而不仅仅是其中的文件。</p>
+<p>要安装为真实硬件制作的 atmosphere mods，请右键单击游戏，然后单击「打开 Atmosphere Mods 目」并将 Mods 文件夹粘贴到那里。</p>
+<h3 id=shaders>Shaders<a hidden class=anchor aria-hidden=true href=#shaders>#</a></h3>
+<p>你可以从我们的 GitHub 找到一些 shader 缓存。</p>
+<p><strong>Shaders:</strong> <a href=https://github.com/JENOVAAbsolute/128BB-Shaders>https://github.com/JENOVAAbsolute/128BB-Shaders</a></p>
+<p>安装 shaders：</p>
+<ul>
+<li>右键单击一个游戏，单击「缓存管理」，然后「打开着色器缓存目录」，并将其替换为您的缓存。</li>
+</ul>
+<h3 id=saves>Saves<a hidden class=anchor aria-hidden=true href=#saves>#</a></h3>
+<p>你可以在这里找到一些游戏存档：</p>
+<p><strong>Our collection:</strong> <a href="https://drive.google.com/drive/folders/1G2gHYZn7Dbx_X9iYUgpOfCBiWCixBTWU?usp=sharing">https://drive.google.com/drive/folders/1G2gHYZn7Dbx_X9iYUgpOfCBiWCixBTWU?usp=sharing</a></p>
+<p><strong>Alternative:</strong> <a href=https://www.homebrewgeneral.net/2020/03/switch-games-save.html>https://www.homebrewgeneral.net/2020/03/switch-games-save.html</a></p>
+<p>安装存档：</p>
+<ul>
+<li>右键单击您要安装存档的游戏，单击「打开应用存档目录」并将存档文件放进去（或者替换）。</li>
+</ul>
+<p><strong>备份缓存文件：</strong></p>
+<p>If you ever need to reinstall Ryujinx, back up your saves folder by going to <code>%AppData%\Ryujinx\bis\user\save</code> and backing up that folder. Replace <code>%AppData%\Ryujinx</code> with your portable folder if using portable mode.</p>
+<p>如果你需要重新安装 Ryujinx，请转到「%AppData%\Ryujinx\bis\user\save」并备份应用存档文件夹。 如果使用便携模式，请将「%AppData%\Ryujinx」替换为便携文件夹。</p>
+<hr>
+<h2 id=六杂项>六、杂项<a hidden class=anchor aria-hidden=true href=#六杂项>#</a></h2>
+<h3 id=错误或者其他问题修复>错误或者其他问题修复<a hidden class=anchor aria-hidden=true href=#错误或者其他问题修复>#</a></h3>
+<p><strong>BKTR Error:</strong> 当你启动一个更新，而不是实际的游戏时，你会得到这个错误。</p>
+<p><strong>Video Core Error:</strong> Vulkan驱动程序已经过时了。</p>
+<ul>
+<li>如果使用的是 Nvidia GPU, 安装这个文件：https://developer.nvidia.com/vulkan-beta-45836-windows-10-dch</li>
+<li>对于 AMD GPU 的，只需在 AMD 软件面板中更新到最新的 *** 可选 *** 驱动程序。</li>
+</ul>
+<p><strong>&ldquo;NCA Header key could not be found&rdquo; error:</strong> 密钥已过期，更新秘钥即可。</p>
+<p><strong>Crypto revision error:</strong> 密钥已过期（同上）</p>
+<p><strong>Updates or DLC failing to install:</strong> 密钥已过期（同上）</p>
+<p><strong>Games not appearing in your game list</strong></p>
+<ul>
+<li>确保游戏文件放入了游戏目录，并且只有游戏文件（更新/存档/Mods 需要放到对应的目录）</li>
+<li>您在游戏文件夹中放置了游戏更新而不是游戏。 通过查看文件名来检查这一点。 您将看到[v0]或[v357534]。 [v0]永远都是游戏。 否则就是更新。</li>
+<li>游戏文件损坏。</li>
+</ul>
+<p>&ndash;EOF&ndash;</p>
+<ul>
+<li>Source: <a href=https://github.com/Abd-007/Switch-Emulators-Guide/blob/main/Ryujinx.md>https://github.com/Abd-007/Switch-Emulators-Guide/blob/main/Ryujinx.md</a></li>
+</ul>
+</div>
+<footer class=post-footer>
+<nav class=paginav>
+<a class=next href=https://fun2ex.com/posts/read-and-parse-json-with-rust/>
+<span class=title>Next Page »</span>
+<br>
+<span>Read and Parse JSON With Rust</span>
+</a>
+</nav>
+</footer><script src=https://utteranc.es/client.js repo=nikejaycn/nikejaycn.github.io issue-term=pathname label=✨💬✨ theme=photon-dark crossorigin=anonymous async></script>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2023 <a href=https://fun2ex.com>跨出界 - 技术分享</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+<div class=beian>
+<a target=_blank href=https://beian.miit.gov.cn/>粤ICP备18115339号-1</a>
+</div>
+<div class=foreverblog>
+<a href=https://www.foreverblog.cn/ target=_blank> <img src=https://static.fun2ex.com/upload/CBLVVh.png alt=foreverblog style=width:16px;height:16px></a>
+<a href=https://www.foreverblog.cn/go.html target=_blank> <img src=https://static.fun2ex.com/upload/22kTLG.gif alt="foreverblog random" style=width:16px;height:16px></a>
+</div>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script></body>
+</html>
