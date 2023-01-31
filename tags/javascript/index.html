@@ -8,7 +8,7 @@
 <meta name=description content>
 <meta name=author content>
 <link rel=canonical href=https://fun2ex.com/tags/javascript/>
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.52983f1a74dcce35d8b2ed33add97f1d33aca443e98699c0a85e5f8bc04d1218.css integrity="sha256-Upg/GnTczjXYsu0zrdl/HTOspEPphpnAqF5fi8BNEhg=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.567046b46e38010753ffef9b783ee9fc8613e5d9ab600826e74e025f13ee9b74.css integrity="sha256-VnBGtG44AQdT/++beD7p/IYT5dmrYAgm504CXxPum3Q=" rel="preload stylesheet" as=style>
 <link rel=icon href=https://static.fun2ex.com/upload/a2.png/w128>
 <link rel=icon type=image/png sizes=16x16 href=https://static.fun2ex.com/upload/a2.png/w16>
 <link rel=icon type=image/png sizes=32x32 href=https://static.fun2ex.com/upload/a2.png/w32>
@@ -24,6 +24,7 @@
 </noscript>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css>
 <style>body{font-family:lxgw wenkai lite,sans-serif}code{font-family:consolas,monospace,lxgw wenkai lite,sans-serif}</style>
+<meta name=referrer content="no-referrer">
 <meta property="og:title" content="javascript">
 <meta property="og:description" content>
 <meta property="og:type" content="website">
@@ -76,6 +77,25 @@
 <header class=page-header><div class=breadcrumbs><a href=https://fun2ex.com>Home</a>&nbsp;»&nbsp;<a href=https://fun2ex.com/tags/>Tags</a></div>
 <h1>javascript</h1>
 </header>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>在 hugo 中插入游戏信息卡片
+</h2>
+</header>
+<section class=entry-content>
+<p>起因：受到 https://immmmm.com/hugo-shortcodes-douban/ 的启发，看了一下也不是特别复杂，简单仿照了一下，获取游戏数据并展示。
+目前支持游研社的链接（数据相对比较全，也比较好获取），后续有空的话可能会考虑一下支持一下 Steam 商店 之类的平台。
+代码不复杂，直接开源了：gameinfo-api
+框架使用的是 expressjs，使用起来并不复杂，直接看文档吧。
+顺便撸了一个免费的 Node 服务：https://gameinfo-api.onrender.com，限制如下：
+每月 100G 流量 每月 750 小时的时候时间 超过 15 分钟没有流量的话，服务会被睡眠，睡眠后如果重新收到请求，服务冷启动的时间可能需要 30s 或者更长的时间 如果不嫌弃的话，可以直接使用以上的 URL。
+使用方法和案例如下：
+hugo 的 shortcode 和 CSS 在此：https://gist.github.com/bobolo2ex/7ffd163cc99d7891c8c362b19b632b34
+&lt;!-- shortcode --> {{ $dbUrl := "https://https://gameinfo-api.onrender.com/" }} {{ $dbID := replaceRE `.*yystv.cn/g/([0-9]+)/.*` "$1" (.Get 0) }} {{ $db := getJSON $dbUrl "yys/v1/" $dbID }} {{ $score := div (int $db.score) 10.0 }} &lt;div class="post-preview game"> &lt;img referrer-policy="no-referrer" loading="lazy" class="post-preview--image" src="{{ $db....</p>
+</section>
+<footer class=entry-footer><span title="2023-01-31 15:31:50 +0800 +0800">January 31, 2023</span></footer>
+<a class=entry-link aria-label="post link to 在 hugo 中插入游戏信息卡片" href=https://fun2ex.com/posts/game-info-show-api/></a>
+</article>
 <article class="post-entry tag-entry">
 <header class=entry-header>
 <h2> 面试题一道

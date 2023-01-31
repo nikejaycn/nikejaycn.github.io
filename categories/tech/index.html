@@ -8,7 +8,7 @@
 <meta name=description content>
 <meta name=author content>
 <link rel=canonical href=https://fun2ex.com/categories/tech/>
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.52983f1a74dcce35d8b2ed33add97f1d33aca443e98699c0a85e5f8bc04d1218.css integrity="sha256-Upg/GnTczjXYsu0zrdl/HTOspEPphpnAqF5fi8BNEhg=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.567046b46e38010753ffef9b783ee9fc8613e5d9ab600826e74e025f13ee9b74.css integrity="sha256-VnBGtG44AQdT/++beD7p/IYT5dmrYAgm504CXxPum3Q=" rel="preload stylesheet" as=style>
 <link rel=icon href=https://static.fun2ex.com/upload/a2.png/w128>
 <link rel=icon type=image/png sizes=16x16 href=https://static.fun2ex.com/upload/a2.png/w16>
 <link rel=icon type=image/png sizes=32x32 href=https://static.fun2ex.com/upload/a2.png/w32>
@@ -24,6 +24,7 @@
 </noscript>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css>
 <style>body{font-family:lxgw wenkai lite,sans-serif}code{font-family:consolas,monospace,lxgw wenkai lite,sans-serif}</style>
+<meta name=referrer content="no-referrer">
 <meta property="og:title" content="tech">
 <meta property="og:description" content>
 <meta property="og:type" content="website">
@@ -76,6 +77,25 @@
 <header class=page-header><div class=breadcrumbs><a href=https://fun2ex.com>Home</a>&nbsp;»&nbsp;<a href=https://fun2ex.com/categories/>Categories</a></div>
 <h1>tech</h1>
 </header>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>在 hugo 中插入游戏信息卡片
+</h2>
+</header>
+<section class=entry-content>
+<p>起因：受到 https://immmmm.com/hugo-shortcodes-douban/ 的启发，看了一下也不是特别复杂，简单仿照了一下，获取游戏数据并展示。
+目前支持游研社的链接（数据相对比较全，也比较好获取），后续有空的话可能会考虑一下支持一下 Steam 商店 之类的平台。
+代码不复杂，直接开源了：gameinfo-api
+框架使用的是 expressjs，使用起来并不复杂，直接看文档吧。
+顺便撸了一个免费的 Node 服务：https://gameinfo-api.onrender.com，限制如下：
+每月 100G 流量 每月 750 小时的时候时间 超过 15 分钟没有流量的话，服务会被睡眠，睡眠后如果重新收到请求，服务冷启动的时间可能需要 30s 或者更长的时间 如果不嫌弃的话，可以直接使用以上的 URL。
+使用方法和案例如下：
+hugo 的 shortcode 和 CSS 在此：https://gist.github.com/bobolo2ex/7ffd163cc99d7891c8c362b19b632b34
+&lt;!-- shortcode --> {{ $dbUrl := "https://https://gameinfo-api.onrender.com/" }} {{ $dbID := replaceRE `.*yystv.cn/g/([0-9]+)/.*` "$1" (.Get 0) }} {{ $db := getJSON $dbUrl "yys/v1/" $dbID }} {{ $score := div (int $db.score) 10.0 }} &lt;div class="post-preview game"> &lt;img referrer-policy="no-referrer" loading="lazy" class="post-preview--image" src="{{ $db....</p>
+</section>
+<footer class=entry-footer><span title="2023-01-31 15:31:50 +0800 +0800">January 31, 2023</span></footer>
+<a class=entry-link aria-label="post link to 在 hugo 中插入游戏信息卡片" href=https://fun2ex.com/posts/game-info-show-api/></a>
+</article>
 <article class="post-entry tag-entry">
 <header class=entry-header>
 <h2>Read and Parse JSON With Rust
@@ -210,25 +230,6 @@ const testData = { a_bbb: 123, a_g: [1, 2, 3, 4], a_d: { s: 2, s_d: 3 }, a_f: [1
 </section>
 <footer class=entry-footer><span title="2019-11-15 10:39:11 +0800 +0800">November 15, 2019</span></footer>
 <a class=entry-link aria-label="post link to  面试题一道" href=https://fun2ex.com/posts/change_json_underline_to_camp/></a>
-</article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>SFTPGo 安装配置指南
-</h2>
-</header>
-<section class=entry-content>
-<p> SFTPGo Full featured and highly configurable SFTP server software 一个全功能和高度可配置的SFTP服务器软件
-这是 Github 上作者对这个软件的介绍，适用下来也名副其实，符合我的需求。但是因为官网上安装引导文档比较含糊，就记录一下自己折腾的过程。
-以下的操作过程均基于一个全新安装的 Ubuntu 18.04.2 LTS (Bionic Beaver) 操作系统，按道理 Debian 适用。
-因为我自己只想配置一个独立的 SFTP 服务器，利用 SFTPGo 来协助管理账号，所以没有适用 MySQL / PostreSQL 之类的数据库，而选用了 SQLite 3.x.
-版本：0.9.0 版本：0.9.4-dev
-安装 SFTPGo 需要的系统环境 需要 Go 1.12 版本以上 需要一个数据库 ( MySQL / PostreSQL / SQLite ) 如果需要运行 cli 测试脚本，还需要 Python 环境和 Request 库。 Git 命令 $ sudo add-apt-repository ppa:longsleep/golang-backports $ sudo apt update $ sudo apt install golang-go sqlite3 python3 python3-pip git SFTPGo 安装 很简单，只需要执行以下命令：
-$ go get -u github.com/drakkan/sftpgo 然后在你的 $GOPATH/bin/ 下找到 sftpgo 命令，如果你不知道你的 $GOPATH 目录，请执行 go env 查看你的环境变量。
-这样就算安装完成了，但是具体要使用的话，还需要简单配置一下。
-...</p>
-</section>
-<footer class=entry-footer><span title="2019-08-19 10:38:55 +0800 +0800">August 19, 2019</span></footer>
-<a class=entry-link aria-label="post link to SFTPGo 安装配置指南" href=https://fun2ex.com/posts/sftpgo-setting-and-install-guide/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

@@ -13,7 +13,7 @@
  更换成 SAMBA, SMB 无法卸载不影响关机，不会造成假死。 在关机前, 手动在 Unassigned Devices umount 所有已经挂载的 NFS mount, 或者可以打开终端运行 umount -l /mnt/remotes/* 强制卸载所有 NFS umount.  剩下在问题就是如何把方案 2 改成自动化，不需要每次去手工执行，在 unraid forums 看到一个解决方案：">
 <meta name=author content>
 <link rel=canonical href=https://fun2ex.com/posts/fixed-the-unraid-umount-nfs-problem/>
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.52983f1a74dcce35d8b2ed33add97f1d33aca443e98699c0a85e5f8bc04d1218.css integrity="sha256-Upg/GnTczjXYsu0zrdl/HTOspEPphpnAqF5fi8BNEhg=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.567046b46e38010753ffef9b783ee9fc8613e5d9ab600826e74e025f13ee9b74.css integrity="sha256-VnBGtG44AQdT/++beD7p/IYT5dmrYAgm504CXxPum3Q=" rel="preload stylesheet" as=style>
 <script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
 <link rel=icon href=https://static.fun2ex.com/upload/a2.png/w128>
 <link rel=icon type=image/png sizes=16x16 href=https://static.fun2ex.com/upload/a2.png/w16>
@@ -29,6 +29,7 @@
 </noscript>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css>
 <style>body{font-family:lxgw wenkai lite,sans-serif}code{font-family:consolas,monospace,lxgw wenkai lite,sans-serif}</style>
+<meta name=referrer content="no-referrer">
 <meta property="og:title" content="解决 Unraid 在关机的之后无法 unmout NFS 的问题">
 <meta property="og:description" content="先说一下场景：
  主机安装了 unraid 6.9.2 开了一个虚拟机跑黑群晖, 并直通了一个网口+两块硬盘 unraid 通过 Unassigned Devices 来挂载黑群晖的硬盘, 使用 NFS 协议  问题： 想更换硬盘的时候, 直接点停止阵列, 等了大半天都没有停止成功。 检查了一下系统日志, 发现一直卡在 Unmounting Remote SMB/NFS Share 不成功, 并且一直在重试。
