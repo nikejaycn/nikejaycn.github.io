@@ -303,7 +303,7 @@ Games
 </p>
 </div>
 <footer class=post-footer>
-</footer><script src=https://utteranc.es/client.js repo=nikejaycn/nikejaycn.github.io issue-term=pathname label=✨💬✨ theme=photon-dark crossorigin=anonymous async></script>
+</footer><script>(function(){const b=localStorage.getItem("pref-theme")==="dark"?"github-dark":"github-light",a=document.createElement("script");a.src="https://utteranc.es/client.js",a.crossorigin="anonymous",a.async=!0,a.setAttribute("repo","nikejaycn/nikejaycn.github.io"),a.setAttribute("issue-term","pathname"),a.setAttribute("label","✨💬✨"),a.setAttribute("theme",b),document.body.appendChild(a)})()</script>
 </article>
 </main>
 <footer class=footer>
@@ -323,6 +323,7 @@ Powered by
 </footer>
 <a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
 </a>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{const a=document.querySelector(".utterances-frame"),b={type:"set-theme",theme:localStorage.getItem("pref-theme")==="light"?"github-dark":"github-light"};a?.contentWindow.postMessage(b,"https://utteranc.es")})</script>
 <script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
 <script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
 <script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
